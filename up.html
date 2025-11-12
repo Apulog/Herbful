@@ -1,0 +1,1765 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Firebase Realtime Database Herbal Remedies Batch Upload</title>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        padding: 20px;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+      }
+
+      .header {
+        background: linear-gradient(135deg, #2c3e50, #34495e);
+        color: white;
+        padding: 30px;
+        text-align: center;
+      }
+
+      .header h1 {
+        font-size: 2.5em;
+        margin-bottom: 10px;
+      }
+
+      .header p {
+        opacity: 0.9;
+        font-size: 1.1em;
+      }
+
+      .content {
+        padding: 30px;
+      }
+
+      .config-section {
+        background: #f8f9fa;
+        padding: 25px;
+        border-radius: 10px;
+        margin-bottom: 30px;
+        border-left: 4px solid #3498db;
+      }
+
+      .config-section h2 {
+        color: #2c3e50;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .config-section h2::before {
+        content: "⚙️";
+      }
+
+      .input-group {
+        margin-bottom: 15px;
+      }
+
+      .input-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: 600;
+        color: #34495e;
+      }
+
+      .input-group input {
+        width: 100%;
+        padding: 12px;
+        border: 2px solid #e1e8ed;
+        border-radius: 8px;
+        font-size: 16px;
+        transition: border-color 0.3s;
+      }
+
+      .input-group input:focus {
+        outline: none;
+        border-color: #3498db;
+      }
+
+      .actions {
+        display: flex;
+        gap: 15px;
+        margin-top: 25px;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        padding: 15px 25px;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .btn-primary {
+        background: #3498db;
+        color: white;
+      }
+
+      .btn-primary:hover {
+        background: #2980b9;
+        transform: translateY(-2px);
+      }
+
+      .btn-success {
+        background: #27ae60;
+        color: white;
+      }
+
+      .btn-success:hover {
+        background: #219a52;
+        transform: translateY(-2px);
+      }
+
+      .btn-danger {
+        background: #e74c3c;
+        color: white;
+      }
+
+      .btn-danger:hover {
+        background: #c0392b;
+        transform: translateY(-2px);
+      }
+
+      .btn:disabled {
+        background: #bdc3c7;
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      .status-section {
+        background: #fff;
+        border: 2px solid #e1e8ed;
+        border-radius: 10px;
+        padding: 25px;
+        margin-top: 30px;
+      }
+
+      .status-section h2 {
+        color: #2c3e50;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .status-section h2::before {
+        content: "📊";
+      }
+
+      .progress-bar {
+        width: 100%;
+        height: 20px;
+        background: #ecf0f1;
+        border-radius: 10px;
+        overflow: hidden;
+        margin-bottom: 15px;
+      }
+
+      .progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #27ae60, #2ecc71);
+        transition: width 0.3s;
+        width: 0%;
+      }
+
+      .status-text {
+        font-size: 14px;
+        color: #7f8c8d;
+        margin-bottom: 10px;
+      }
+
+      .log-container {
+        background: #2c3e50;
+        color: #ecf0f1;
+        padding: 15px;
+        border-radius: 8px;
+        height: 200px;
+        overflow-y: auto;
+        font-family: "Courier New", monospace;
+        font-size: 14px;
+        margin-top: 15px;
+      }
+
+      .log-entry {
+        margin-bottom: 5px;
+        padding: 5px;
+        border-left: 3px solid #3498db;
+        padding-left: 10px;
+      }
+
+      .log-success {
+        border-left-color: #27ae60;
+        color: #2ecc71;
+      }
+
+      .log-error {
+        border-left-color: #e74c3c;
+        color: #e74c3c;
+      }
+
+      .log-info {
+        border-left-color: #3498db;
+        color: #3498db;
+      }
+
+      .data-preview {
+        background: #f8f9fa;
+        padding: 20px;
+        border-radius: 10px;
+        margin-top: 20px;
+        max-height: 300px;
+        overflow-y: auto;
+      }
+
+      .data-preview h3 {
+        color: #2c3e50;
+        margin-bottom: 15px;
+      }
+
+      .collection-info {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+      }
+
+      .info-card {
+        background: white;
+        padding: 15px;
+        border-radius: 8px;
+        border-left: 4px solid #3498db;
+        flex: 1;
+        min-width: 200px;
+      }
+
+      .info-card h4 {
+        color: #7f8c8d;
+        font-size: 14px;
+        margin-bottom: 5px;
+      }
+
+      .info-card p {
+        color: #2c3e50;
+        font-size: 18px;
+        font-weight: 600;
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          margin: 10px;
+        }
+
+        .header h1 {
+          font-size: 2em;
+        }
+
+        .actions {
+          flex-direction: column;
+        }
+
+        .btn {
+          width: 100%;
+          justify-content: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>🌿 Herbal Remedies Batch Upload</h1>
+        <p>
+          Upload 28 Philippine herbal remedies to Firebase Realtime Database
+        </p>
+      </div>
+
+      <div class="content">
+        <div class="config-section">
+          <h2>Firebase Configuration</h2>
+          <div class="input-group">
+            <label for="apiKey">API Key:</label>
+            <input
+              type="text"
+              id="apiKey"
+              placeholder="Enter your Firebase API Key"
+            />
+          </div>
+          <div class="input-group">
+            <label for="projectId">Project ID:</label>
+            <input
+              type="text"
+              id="projectId"
+              placeholder="Enter your Firebase Project ID"
+            />
+          </div>
+          <div class="input-group">
+            <label for="databaseURL">Database URL:</label>
+            <input
+              type="text"
+              id="databaseURL"
+              placeholder="Enter your Firebase Database URL"
+            />
+          </div>
+          <div class="input-group">
+            <label for="nodeName">Node Name:</label>
+            <input
+              type="text"
+              id="nodeName"
+              value="herbalRemedies"
+              placeholder="Enter node name"
+            />
+          </div>
+
+          <div class="actions">
+            <button class="btn btn-primary" onclick="initializeFirebase()">
+              🔗 Initialize Firebase
+            </button>
+            <button
+              class="btn btn-success"
+              id="uploadBtn"
+              onclick="uploadData()"
+              disabled
+            >
+              ⬆️ Upload All Data
+            </button>
+            <button
+              class="btn btn-danger"
+              onclick="clearNode()"
+              disabled
+              id="clearBtn"
+            >
+              🗑️ Clear Node
+            </button>
+            <button
+              class="btn btn-primary"
+              onclick="testArrayUpload()"
+              disabled
+              id="testBtn"
+            >
+              🧪 Test Array Upload
+            </button>
+          </div>
+        </div>
+
+        <div class="collection-info">
+          <div class="info-card">
+            <h4>Total Records</h4>
+            <p id="totalRecords">28</p>
+          </div>
+          <div class="info-card">
+            <h4>Node</h4>
+            <p id="currentNode">herbalRemedies</p>
+          </div>
+          <div class="info-card">
+            <h4>Status</h4>
+            <p id="connectionStatus">🔴 Not Connected</p>
+          </div>
+        </div>
+
+        <div class="status-section">
+          <h2>Upload Progress</h2>
+          <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+          <div class="status-text" id="progressText">
+            Ready to initialize Firebase
+          </div>
+
+          <div class="log-container" id="logContainer">
+            <div class="log-entry log-info">
+              Welcome to Herbal Remedies Batch Upload
+            </div>
+            <div class="log-entry log-info">
+              Please configure Firebase and click "Initialize Firebase"
+            </div>
+          </div>
+        </div>
+
+        <div class="data-preview">
+          <h3>Data Preview (First 3 Records)</h3>
+          <pre id="dataPreview">Loading preview...</pre>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Herbal remedies data
+      const herbalData = [
+        {
+          id: 1,
+          name: "Malunggay",
+          category: ["Metabolic", "Lactation", "Anti-inflammatory"],
+          symptoms: [
+            "Chest heaviness",
+            "dizziness",
+            "fatigue",
+            "frequent urination",
+            "excessive thirst",
+            "tiredness",
+            "headaches",
+            "shortness of breath",
+            "swelling",
+            "joint stiffness",
+            "body pain",
+            "low breastmilk flow",
+          ],
+          imageUrl: "",
+          sourceType: "Local Remedy",
+          sourceInfo: {
+            authority: "",
+            url: "",
+            description: "",
+            verificationDate: "",
+          },
+          preparation:
+            "Boil fresh leaves (5-10 minutes) and drink as tea, Add to soups and dishes",
+          usage: "Oral consumption",
+          dosage: "As needed for symptoms",
+          warnings:
+            "Consult doctor for chronic conditions, May interact with diabetes medications",
+          benefits: [
+            "High cholesterol management",
+            "Blood sugar control",
+            "Blood pressure management",
+            "Anti-inflammatory",
+            "Increases breastmilk supply",
+          ],
+          averageRating: 0,
+          totalReviews: 0,
+          createdAt: "21/09/2025",
+          updatedAt: "05/10/2025",
+        },
+        {
+          id: 2,
+          name: "Lomboy (Duhat)",
+          category: ["Metabolic", "Digestive", "Oral Health"],
+          symptoms: [
+            "Frequent urination",
+            "excessive thirst",
+            "tiredness",
+            "loose bowel movement",
+            "stomach pain",
+            "gum swelling",
+            "gum bleeding",
+            "slow healing wounds",
+            "skin irritation",
+          ],
+          imageUrl: "",
+          sourceType: "Local Remedy",
+          sourceInfo: {
+            authority: "",
+            url: "",
+            description: "",
+            verificationDate: "",
+          },
+          preparation:
+            "Boil fresh or dried leaves for 10-15 minutes and drink as tea, Pound leaves and apply as poultice",
+          usage: "Oral consumption or topical application",
+          dosage: "As needed for symptoms",
+          warnings:
+            "Monitor blood sugar levels, Consult dentist for persistent gum problems",
+          benefits: [
+            "Blood sugar management",
+            "Diarrhea relief",
+            "Oral health improvement",
+            "Wound healing",
+          ],
+          averageRating: 0,
+          totalReviews: 0,
+          createdAt: "21/09/2025",
+          updatedAt: "05/10/2025",
+        },
+        {
+          id: 3,
+          name: "Tawa-Tawa",
+          category: ["Hematological", "Respiratory", "Digestive"],
+          symptoms: [
+            "Persistent fever",
+            "low platelet-related bleeding",
+            "cough",
+            "difficulty breathing/wheezing",
+            "diarrhea",
+            "indigestion",
+            "sore or bleeding gums",
+            "slow wound healing",
+            "respiratory discomfort",
+          ],
+          imageUrl: "",
+          sourceType: "Local Remedy",
+          sourceInfo: {
+            authority: "",
+            url: "",
+            description: "",
+            verificationDate: "",
+          },
+          preparation:
+            "Boil handful of fresh leaves in 2 cups of water for 10-15 minutes, Crush leaves for topical application",
+          usage: "Oral consumption or topical application",
+          dosage: "1 cup 3-4 times daily",
+          warnings:
+            "Not a substitute for medical treatment in dengue, Consult doctor for persistent fever",
+          benefits: [
+            "Traditionally used to increase platelet count in dengue",
+            "Asthma and bronchitis relief",
+            "Anti-inflammatory",
+            "Diuretic properties",
+          ],
+          averageRating: 0,
+          totalReviews: 0,
+          createdAt: "21/09/2025",
+          updatedAt: "05/10/2025",
+        },
+        {
+          id: 4,
+          name: "Sambong",
+          category: ["Diuretic", "Respiratory", "Anti-inflammatory"],
+          symptoms: [
+            "Frequent urination",
+            "urinary discomfort or blockage",
+            "respiratory congestion",
+            "cough",
+            "fever heat",
+            "headache",
+            "joint or body aches",
+            "gastric pain",
+            "wound soreness",
+            "inflammation",
+            "skin irritation",
+          ],
+          imageUrl: "",
+          sourceType: "Verified Source",
+          sourceInfo: {
+            authority: "Philippine Department of Health",
+            url: "https://pitahc.gov.ph/directory-of-herbs/",
+            description: "Approved herbal medicine by PITAHC",
+            verificationDate: "01/01/2023",
+          },
+          preparation:
+            "Boil 50g of fresh leaves or 25g of dried leaves in 1 liter of water for 10-15 minutes",
+          usage: "Drink as tea or use essential oil in topical applications",
+          dosage: "1 cup three times a day",
+          warnings:
+            "Consult doctor for kidney problems, May cause allergic reactions",
+          benefits: [
+            "Eliminates kidney stones",
+            "Relieves rheumatism and hypertension",
+            "Treats colds and coughs",
+          ],
+          averageRating: 0,
+          totalReviews: 0,
+          createdAt: "21/09/2025",
+          updatedAt: "05/10/2025",
+        },
+        {
+          id: 5,
+          name: "Oregano",
+          category: ["Respiratory", "Digestive", "Anti-inflammatory"],
+          symptoms: [
+            "Cough",
+            "sore throat",
+            "congestion",
+            "mild fever",
+            "indigestion",
+            "stomach upset",
+            "menstrual pain",
+            "skin irritation",
+            "wound soreness",
+            "respiratory discomfort",
+            "sinus congestion",
+          ],
+          imageUrl: "",
+          sourceType: "Verified Source",
+          sourceInfo: {
+            authority: "Philippine Department of Health",
+            url: "https://www.stuartxchange.org/Oregano.html",
+            description: "Traditional medicinal herb with scientific backing",
+            verificationDate: "01/01/2023",
+          },
+          preparation:
+            "Boil 5-10 fresh leaves in 2 cups of water, Crush leaves for poultice, Use essential oil in diluted form",
+          usage: "Drink as tea, gargle, or apply topically",
+          dosage: "1/2 cup 3 times daily",
+          warnings:
+            "Avoid during pregnancy, May cause skin irritation in sensitive individuals",
+          benefits: [
+            "Treats cough, asthma, sore throat",
+            "Antibacterial and anti-inflammatory",
+            "Relieves indigestion and menstrual cramps",
+          ],
+          averageRating: 0,
+          totalReviews: 0,
+          createdAt: "21/09/2025",
+          updatedAt: "05/10/2025",
+        },
+        {
+          id: 6,
+          name: "Serpentina",
+          category: ["Cardiovascular", "Neurological", "Metabolic"],
+          symptoms: [
+            "Elevated blood pressure",
+            "inflammation-related pain",
+            "fever",
+            "respiratory discomfort",
+            "high blood sugar symptoms",
+            "digestive upset",
+            "stress and anxiety",
+            "sleep disturbances",
+          ],
+          imageUrl: "",
+          sourceType: "Local Remedy",
+          sourceInfo: {
+            authority: "",
+            url: "",
+            description: "",
+            verificationDate: "",
+          },
+          preparation:
+            "Boil leaves or roots into decoction, Make into capsules and extracts",
+          usage: "Oral consumption or topical application",
+          dosage: "As directed by traditional practitioner",
+          warnings:
+            "STRONG MEDICINAL HERB - CONSULT DOCTOR, May interact with blood pressure medications, Not for self-medication",
+          benefits: [
+            "Blood pressure management",
+            "Anti-inflammatory",
+            "Respiratory infection relief",
+            "Anxiety and insomnia relief",
+          ],
+          averageRating: 0,
+          totalReviews: 0,
+          createdAt: "21/09/2025",
+          updatedAt: "05/10/2025",
+        },
+        {
+          id: 7,
+          name: "Pansit-Pansitan",
+          category: ["Anti-inflammatory", "Pain Relief", "Dermatological"],
+          symptoms: [
+            "Joint pain and swelling",
+            "skin inflammation or infection",
+            "headache",
+            "abdominal discomfort",
+            "urinary or kidney-related pain",
+            "fever",
+            "sore throat",
+            "wound or burn soreness",
+            "eye irritation",
+            "elevated blood pressure",
+            "digestive upset",
+            "mental restlessness",
+          ],
+          imageUrl: "",
+          sourceType: "Verified Source",
+          sourceInfo: {
+            authority: "Philippine Department of Health",
+            url: "https://pitahc.gov.ph/directory-of-herbs/",
+            description: "Approved herbal medicine by PITAHC",
+            verificationDate: "01/01/2023",
+          },
+          preparation:
+            "Eat raw as salad, Boil 1 cup of leaves/stems in 2 cups of water, Pound into poultice",
+          usage: "Oral consumption or topical application",
+          dosage: "1 cup twice daily (morning and evening)",
+          warnings:
+            "Consult doctor for kidney problems, May interact with blood pressure medications",
+          benefits: [
+            "Lowers uric acid for gout",
+            "Anti-inflammatory",
+            "Pain relief for arthritis and headaches",
+          ],
+          averageRating: 0,
+          totalReviews: 0,
+          createdAt: "21/09/2025",
+          updatedAt: "05/10/2025",
+        },
+        {
+          id: 8,
+          name: "Tanglad",
+          category: ["Digestive", "Cardiovascular", "Respiratory"],
+          symptoms: [
+            "Upset stomach",
+            "bloating",
+            "indigestion cramps",
+            "fever heat",
+            "headache",
+            "elevated blood pressure symptoms",
+            "muscle or joint aches",
+            "anxiety or tension",
+            "fungal skin irritation",
+            "dandruff",
+            "cough and congestion",
+            "frequent urination",
+          ],
+          imageUrl: "",
+          sourceType: "Local Remedy",
+          sourceInfo: {
+            authority: "",
+            url: "",
+            description: "",
+            verificationDate: "",
+          },
+          preparation:
+            "Boil fresh stalks or leaves for 5-15 minutes, Use diluted essential oil topically or by inhalation",
+          usage: "Drink as tea or use topically",
+          dosage: "As needed for symptoms",
+          warnings: "May cause skin sensitivity to sunlight, Use in moderation",
+          benefits: [
+            "Digestive relief",
+            "Blood pressure management",
+            "Anxiety reduction",
+            "Fungal infection treatment",
+          ],
+          averageRating: 0,
+          totalReviews: 0,
+          createdAt: "21/09/2025",
+          updatedAt: "05/10/2025",
+        },
+        {
+          id: 9,
+          name: "Bayabas (Guava)",
+          category: ["Digestive", "Oral Health", "Dermatological"],
+          symptoms: [
+            "Loose or painful bowel movements",
+            "cough",
+            "chest congestion",
+            "mouth or gum discomfort",
+            "elevated blood sugar symptoms",
+            "high blood pressure symptoms",
+            "inflammation or swelling",
+            "skin irritation",
+            "acne",
+            "wound soreness",
+            "indigestion",
+            "bloating",
+          ],
+          imageUrl: "",
+          sourceType: "Verified Source",
+          sourceInfo: {
+            authority: "Philippine Department of Health",
+            url: "https://pitahc.gov.ph/directory-of-herbs/",
+            description: "Approved herbal medicine by PITAHC",
+            verificationDate: "01/01/2023",
+          },
+          preparation:
+            "Boil 4-6 fresh leaves in water for 10-15 minutes, Crush leaves into paste for topical use",
+          usage: "Drink as tea or apply topically",
+          dosage: "As needed for symptoms",
+          warnings: "Use in moderation, Consult doctor for persistent diarrhea",
+          benefits: [
+            "Treats diarrhea, gum infections, and wounds",
+            "Supports immune and heart health",
+          ],
+          averageRating: 0,
+          totalReviews: 0,
+          createdAt: "21/09/2025",
+          updatedAt: "05/10/2025",
+        },
+        {
+          id: 10,
+          name: "Herbaka",
+          category: ["Gynecological", "Digestive", "Antimalarial"],
+          symptoms: [
+            "Irregular menstrual flow or delay",
+            "abdominal pain or cramps",
+            "fever or chills",
+            "abdominal bloating or gas-related discomfort",
+          ],
+          imageUrl: "",
+          sourceType: "Local Remedy",
+          sourceInfo: {
+            authority: "",
+            url: "",
+            description: "",
+            verificationDate: "",
+          },
+          preparation:
+            "Boil 7 leaves in 3 glasses of water for menstrual issues, Squeeze leaves for juice extraction, Pound leaves for poultice",
+          usage: "Oral consumption or topical application",
+          dosage:
+            "1/2 glass twice daily for menstruation, 1 tablespoon daily for stomachache",
+          warnings:
+            "Consult doctor for persistent menstrual issues, Not for pregnant women",
+          benefits: [
+            "Regulates menstruation",
+            "Stomachache relief",
+            "Malaria symptom management",
+            "Gas pain relief",
+          ],
+          averageRating: 0,
+          totalReviews: 0,
+          createdAt: "21/09/2025",
+          updatedAt: "05/10/2025",
+        },
+        {
+          id: 11,
+          name: "Gawed",
+          category: ["Dermatological", "Oral Health", "Anti-inflammatory"],
+          symptoms: [
+            "Infected or slow-healing wounds",
+            "skin redness and swelling",
+            "cough and throat irritation",
+            "tooth pain",
+            "joint stiffness or pain",
+            "stomach discomfort",
+            "bloating",
+            "indigestion",
+          ],
+          imageUrl: "",
+          sourceType: "Local Remedy",
+          sourceInfo: {
+            authority: "",
+            url: "",
+            description: "",
+            verificationDate: "",
+          },
+          preparation:
+            "Wash and pound fresh leaves for poultice, Boil leaves for wash or mouth rinse",
+          usage: "Topical application or oral rinse",
+          dosage: "Apply as needed to affected areas",
+          warnings:
+            "Test on small skin area first, Avoid swallowing mouth rinse",
+          benefits: [
+            "Wound healing",
+            "Skin infection treatment",
+            "Cough and sore throat relief",
+            "Toothache relief",
+            "Arthritis pain management",
+          ],
+          averageRating: 0,
+          totalReviews: 0,
+          createdAt: "21/09/2025",
+          updatedAt: "05/10/2025",
+        },
+        {
+          id: 12,
+          name: "Biday",
+          category: ["Anti-inflammatory", "Dermatological"],
+          symptoms: [
+            "Skin redness",
+            "swelling",
+            "pain from boils",
+            "joint pain or stiffness",
+            "inflammation in affected areas",
+          ],
+          imageUrl: "",
+          sourceType: "Local Remedy",
+          sourceInfo: {
+            authority: "",
+            url: "",
+            description: "",
+            verificationDate: "",
+          },
+          preparation:
+            "Boil fresh stem or roots thoroughly to remove toxins, Pound leaves or stem for poultice",
+          usage: "External application on affected areas",
+          dosage: "Apply as needed",
+          warnings:
+            "MUST BOIL THOROUGHLY TO REMOVE TOXINS, Not for internal use without proper preparation",
+          benefits: [
+            "Reduces swelling",
+            "Traditional use for snake bites",
+            "Boil treatment",
+            "Rheumatism relief",
+          ],
+          averageRating: 0,
+          totalReviews: 0,
+          createdAt: "21/09/2025",
+          updatedAt: "05/10/2025",
+        },
+        {
+          id: 13,
+          name: "Kamyas",
+          category: ["Respiratory", "Cardiovascular", "Dermatological"],
+          symptoms: [
+            "Coughing",
+            "sore throat",
+            "nasal congestion",
+            "dizziness from high blood pressure",
+            "skin itching or irritation",
+            "joint pain and swelling",
+          ],
+          imageUrl: "",
+          sourceType: "Local Remedy",
+          sourceInfo: {
+            authority: "",
+            url: "",
+            description: "",
+            verificationDate: "",
+          },
+          preparation:
+            "Eat fresh fruits raw or as juice, Boil leaves for decoction, Apply leaves as poultice",
+          usage: "Oral consumption or topical application",
+          dosage: "As needed for symptoms",
+          warnings:
+            "May cause stomach upset in sensitive individuals, Monitor blood pressure",
+          benefits: [
+            "Cough and cold relief",
+            "Blood pressure management",
+            "Skin infection treatment",
+            "Rheumatism relief",
+          ],
+          averageRating: 0,
+          totalReviews: 0,
+          createdAt: "21/09/2025",
+          updatedAt: "05/10/2025",
+        },
+        {
+          id: 14,
+          name: "Lagundi",
+          category: ["Respiratory", "Anti-inflammatory"],
+          symptoms: [
+            "Persistent coughing",
+            "wheezing or shortness of breath",
+            "body heat or fever",
+            "nasal congestion",
+            "skin rashes or itching",
+            "abdominal pain with diarrhea",
+          ],
+          imageUrl: "",
+          sourceType: "Verified Source",
+          sourceInfo: {
+            authority: "Philippine Department of Health",
+            url: "https://pitahc.gov.ph/directory-of-herbs/",
+            description: "Approved herbal medicine by PITAHC",
+            verificationDate: "01/01/2023",
+          },
+          preparation: "Boil 5 leaves in 2 cups of water for 10-15 minutes",
+          usage: "Drink as tea or apply poultice externally",
+          dosage: "1 cup 3 times a day",
+          warnings:
+            "Not for children under 2 years old, Discontinue if rash or allergic reaction occurs",
+          benefits: [
+            "Cough and asthma relief",
+            "Reduces inflammation",
+            "Acts as bronchodilator and expectorant",
+          ],
+          averageRating: 0,
+          totalReviews: 0,
+          createdAt: "21/09/2025",
+          updatedAt: "05/10/2025",
+        },
+        {
+          id: 15,
+          name: "Subusob",
+          category: ["Dermatological", "Wound Care"],
+          symptoms: [
+            "Bleeding",
+            "skin irritation",
+            "swelling",
+            "pain from wounds or burns",
+            "redness and itching from insect bites",
+          ],
+          imageUrl: "",
+          sourceType: "Local Remedy",
+          sourceInfo: {
+            authority: "",
+            url: "",
+            description: "",
+            verificationDate: "",
+          },
+          preparation:
+            "Wash, pound, and apply fresh leaves directly, Use leaf decoction for washing wounds",
+          usage: "Topical application",
+          dosage: "Apply as needed to affected areas",
+          warnings:
+            "Clean wounds properly before application, Seek medical help for serious wounds",
+          benefits: [
+            "Stops bleeding",
+            "Wound and cut treatment",
+            "Skin infection management",
+            "Burn relief",
+            "Insect bite treatment",
+          ],
+          averageRating: 0,
+          totalReviews: 0,
+          createdAt: "21/09/2025",
+          updatedAt: "05/10/2025",
+        },
+        {
+          id: 16,
+          name: "Kutsay",
+          category: ["Digestive", "Cardiovascular", "Antimicrobial"],
+          symptoms: [
+            "Bloating",
+            "stomach pain",
+            "indigestion",
+            "loss of appetite",
+            "dizziness from high blood pressure",
+            "slow-healing wounds",
+            "skin irritation",
+          ],
+          imageUrl: "",
+          sourceType: "Verified Source",
+          sourceInfo: {
+            authority: "StuartXchange",
+            url: "https://www.stuartxchange.org/Kuchai.html",
+            description: "Traditional medicinal herb documentation",
+            verificationDate: "01/01/2023",
+          },
+          preparation:
+            "Eat raw or cooked, Pound for poultice, Make decoction from leaves",
+          usage: "Oral consumption or topical application",
+          dosage: "As culinary ingredient or small doses of juice extract",
+          warnings: "May interact with blood thinners, Use in moderation",
+          benefits: [
+            "Lowers blood pressure",
+            "Improves digestion",
+            "Antibacterial and antifungal",
+            "Appetite stimulation",
+          ],
+          averageRating: 0,
+          totalReviews: 0,
+          createdAt: "21/09/2025",
+          updatedAt: "05/10/2025",
+        },
+        {
+          id: 17,
+          name: "Banaba",
+          category: ["Metabolic", "Renal", "Cardiovascular"],
+          symptoms: [
+            "Frequent urination",
+            "excessive thirst",
+            "fatigue",
+            "high blood sugar symptoms",
+            "painful urination",
+            "swelling",
+            "dizziness from high blood pressure",
+            "weight gain",
+          ],
+          imageUrl: "",
+          sourceType: "Local Remedy",
+          sourceInfo: {
+            authority: "",
+            url: "",
+            description: "",
+            verificationDate: "",
+          },
+          preparation:
+            "Boil leaves for 10-15 minutes as tea, Eat young leaves fresh, Use dried leaves for herbal tea",
+          usage: "Oral consumption",
+          dosage: "As needed for symptoms",
+          warnings:
+            "Monitor blood sugar levels, Consult doctor for diabetes management",
+          benefits: [
+            "Diabetes management",
+            "Urinary tract infection treatment",
+            "Kidney support",
+            "Weight management",
+            "Blood pressure control",
+          ],
+          averageRating: 0,
+          totalReviews: 0,
+          createdAt: "21/09/2025",
+          updatedAt: "05/10/2025",
+        },
+        {
+          id: 18,
+          name: "Anunas",
+          category: ["Digestive", "Dermatological"],
+          symptoms: [
+            "Stomach pain",
+            "loose bowel movement",
+            "fever and body heat",
+            "skin swelling or redness",
+            "boils",
+            "bloating",
+            "poor digestion",
+          ],
+          imageUrl: "",
+          sourceType: "Local Remedy",
+          sourceInfo: {
+            authority: "",
+            url: "",
+            description: "",
+            verificationDate: "",
+          },
+          preparation:
+            "Boil leaves for decoction, Crush fresh leaves for external application, Eat fruit fresh",
+          usage: "Oral consumption or topical application",
+          dosage: "As needed for symptoms",
+          warnings:
+            "Seeds may be toxic in large quantities, Consult doctor for persistent diarrhea",
+          benefits: [
+            "Diarrhea and dysentery relief",
+            "Fever reduction",
+            "Skin infection treatment",
+            "Digestive improvement",
+          ],
+          averageRating: 0,
+          totalReviews: 0,
+          createdAt: "21/09/2025",
+          updatedAt: "05/10/2025",
+        },
+        {
+          id: 19,
+          name: "Miracle Fruit",
+          category: ["Metabolic", "Appetite Regulation"],
+          symptoms: [
+            "High blood sugar symptoms",
+            "loss of appetite",
+            "craving for sweets",
+          ],
+          imageUrl: "",
+          sourceType: "Local Remedy",
+          sourceInfo: {
+            authority: "",
+            url: "",
+            description: "",
+            verificationDate: "",
+          },
+          preparation:
+            "Eat fresh berries, Boil leaves for tea in some practices",
+          usage: "Oral consumption",
+          dosage: "As needed typically before meals",
+          warnings:
+            "Not a substitute for diabetes medication, Monitor blood sugar levels",
+          benefits: [
+            "Blood sugar management support",
+            "Natural sweetener alternative",
+            "Appetite improvement",
+          ],
+          averageRating: 0,
+          totalReviews: 0,
+          createdAt: "21/09/2025",
+          updatedAt: "05/10/2025",
+        },
+        {
+          id: 20,
+          name: "Avocado Leaves",
+          category: ["Renal", "Digestive", "Cardiovascular"],
+          symptoms: [
+            "Painful urination",
+            "frequent urination",
+            "stomach pain",
+            "loose stools",
+            "dizziness",
+            "high blood pressure symptoms",
+            "headache",
+            "body pain",
+          ],
+          imageUrl: "",
+          sourceType: "Local Remedy",
+          sourceInfo: {
+            authority: "",
+            url: "",
+            description: "",
+            verificationDate: "",
+          },
+          preparation:
+            "Boil fresh or dried leaves for 10-15 minutes, Crush leaves for poultice",
+          usage: "Drink as tea or apply topically",
+          dosage: "As needed for symptoms",
+          warnings:
+            "Consult doctor for kidney stones, May cause allergic reactions in sensitive individuals",
+          benefits: [
+            "Kidney stone management",
+            "Urinary tract infection relief",
+            "Diarrhea treatment",
+            "Blood pressure management",
+          ],
+          averageRating: 0,
+          totalReviews: 0,
+          createdAt: "21/09/2025",
+          updatedAt: "05/10/2025",
+        },
+        {
+          id: 21,
+          name: "Tagumbao",
+          category: ["Respiratory", "Digestive", "Dermatological"],
+          symptoms: [
+            "Persistent coughing",
+            "fever and body heat",
+            "abdominal pain",
+            "minor cuts and wounds",
+            "swelling",
+          ],
+          imageUrl: "",
+          sourceType: "Local Remedy",
+          sourceInfo: {
+            authority: "",
+            url: "",
+            description: "",
+            verificationDate: "",
+          },
+          preparation:
+            "Boil leaves for tea or decoction, Pound fresh leaves for poultice",
+          usage: "Oral consumption or topical application",
+          dosage: "As needed for symptoms",
+          warnings:
+            "Consult doctor for persistent symptoms, Clean wounds properly before application",
+          benefits: [
+            "Cough relief",
+            "Fever reduction",
+            "Stomach pain relief",
+            "Wound treatment",
+          ],
+          averageRating: 0,
+          totalReviews: 0,
+          createdAt: "21/09/2025",
+          updatedAt: "05/10/2025",
+        },
+        {
+          id: 22,
+          name: "Papaya Leaves",
+          category: ["Hematological", "Digestive", "Antiparasitic"],
+          symptoms: [
+            "Low platelet count",
+            "fever",
+            "stomach pain",
+            "indigestion",
+            "bloating",
+            "loss of appetite",
+            "intestinal discomfort",
+            "menstrual cramps",
+          ],
+          imageUrl: "",
+          sourceType: "Local Remedy",
+          sourceInfo: {
+            authority: "",
+            url: "",
+            description: "",
+            verificationDate: "",
+          },
+          preparation:
+            "Boil fresh leaves for 10-15 minutes, Extract juice from crushed leaves",
+          usage: "Oral consumption",
+          dosage: "As needed for symptoms",
+          warnings:
+            "Not a substitute for medical treatment in dengue, Consult doctor for persistent fever",
+          benefits: [
+            "Dengue fever supportive care",
+            "Digestive problem relief",
+            "Intestinal worm treatment",
+            "Menstrual pain relief",
+          ],
+          averageRating: 0,
+          totalReviews: 0,
+          createdAt: "21/09/2025",
+          updatedAt: "05/10/2025",
+        },
+        {
+          id: 23,
+          name: "Tsaang Gubat",
+          category: ["Digestive", "Oral Health"],
+          symptoms: [
+            "Stomach spasms",
+            "diarrhea",
+            "intestinal discomfort",
+            "oral cavities/decay",
+            "allergic rhinitis",
+            "sneezing or irritation",
+          ],
+          imageUrl: "",
+          sourceType: "Verified Source",
+          sourceInfo: {
+            authority: "Philippine Department of Health",
+            url: "https://pitahc.gov.ph/directory-of-herbs/",
+            description: "Approved herbal medicine by DOH",
+            verificationDate: "01/01/2023",
+          },
+          preparation:
+            "Boil 1 cup of dried leaves in 2 cups of water for 10 minutes",
+          usage: "Drink as tea or use as mouthwash",
+          dosage: "1 cup before meals",
+          warnings:
+            "Avoid excessive use, Consult doctor for persistent diarrhea",
+          benefits: [
+            "Treats stomachache and diarrhea",
+            "Used as mouthwash for gum infections",
+          ],
+          averageRating: 0,
+          totalReviews: 0,
+          createdAt: "21/09/2025",
+          updatedAt: "05/10/2025",
+        },
+        {
+          id: 24,
+          name: "Akapulko",
+          category: ["Dermatological", "Antifungal"],
+          symptoms: [
+            "Itchy, scaly skin patches",
+            "rash",
+            "irritation from fungal infections",
+          ],
+          imageUrl: "",
+          sourceType: "Verified Source",
+          sourceInfo: {
+            authority: "Philippine Department of Health",
+            url: "https://pitahc.gov.ph/directory-of-herbs/",
+            description: "Approved herbal medicine by DOH",
+            verificationDate: "01/01/2023",
+          },
+          preparation:
+            "Crush fresh leaves into paste, Apply as lotion/ointment",
+          usage: "Topical application on affected areas",
+          dosage: "Apply twice daily",
+          warnings:
+            "Do not apply on open wounds, Test on small area first for sensitivity",
+          benefits: [
+            "Treats fungal skin infections (ringworm, scabies, eczema)",
+            "Mild laxative properties",
+          ],
+          averageRating: 0,
+          totalReviews: 0,
+          createdAt: "21/09/2025",
+          updatedAt: "05/10/2025",
+        },
+        {
+          id: 25,
+          name: "Yerba Buena",
+          category: ["Pain Relief", "Respiratory", "Digestive"],
+          symptoms: [
+            "Headache",
+            "toothache",
+            "joint or menstrual pain",
+            "cough",
+            "sinus congestion",
+            "indigestion/gas",
+            "unpleasant mouth odor",
+          ],
+          imageUrl: "",
+          sourceType: "Verified Source",
+          sourceInfo: {
+            authority: "Philippine Department of Health",
+            url: "https://pitahc.gov.ph/directory-of-herbs/",
+            description: "Approved herbal medicine by DOH",
+            verificationDate: "01/01/2023",
+          },
+          preparation:
+            "Boil leaves for tea, Infuse in oil, Use as poultice or inhalation",
+          usage: "Drink as tea or apply topically",
+          dosage: "3 times a day as needed",
+          warnings:
+            "Avoid during pregnancy, May cause skin irritation in some individuals",
+          benefits: [
+            "Relieves body pain, headache, nausea, cough",
+            "Digestive comfort",
+          ],
+          averageRating: 0,
+          totalReviews: 0,
+          createdAt: "21/09/2025",
+          updatedAt: "05/10/2025",
+        },
+        {
+          id: 26,
+          name: "Bawang",
+          category: ["Cardiovascular", "Antimicrobial"],
+          symptoms: [
+            "High blood pressure (dizziness/throbbing)",
+            "elevated cholesterol",
+            "mild infections",
+            "poor digestion",
+          ],
+          imageUrl: "",
+          sourceType: "Verified Source",
+          sourceInfo: {
+            authority: "Philippine Department of Health",
+            url: "https://pitahc.gov.ph/directory-of-herbs/",
+            description: "Approved herbal medicine by DOH",
+            verificationDate: "01/01/2023",
+          },
+          preparation: "Consume raw, cooked, or in oil/extract form",
+          usage: "Oral consumption",
+          dosage: "1-2 raw cloves daily or as capsules",
+          warnings:
+            "May interact with blood thinners, Can cause stomach irritation",
+          benefits: [
+            "Lowers blood pressure and cholesterol",
+            "Antibacterial properties",
+            "Cardiovascular support",
+          ],
+          averageRating: 0,
+          totalReviews: 0,
+          createdAt: "21/09/2025",
+          updatedAt: "05/10/2025",
+        },
+        {
+          id: 27,
+          name: "Niyog-Niyogan",
+          category: ["Antiparasitic", "Anti-inflammatory"],
+          symptoms: [
+            "Worm infestation (abdominal discomfort, itching)",
+            "body aches",
+            "fever",
+            "headache",
+          ],
+          imageUrl: "",
+          sourceType: "Verified Source",
+          sourceInfo: {
+            authority: "Philippine Department of Health",
+            url: "https://pitahc.gov.ph/directory-of-herbs/",
+            description: "Approved herbal medicine by DOH",
+            verificationDate: "01/01/2023",
+          },
+          preparation: "Eat seeds or prepare leaf/root decoctions",
+          usage: "Oral consumption",
+          dosage: "8-10 seeds for children 4-6 years old, 2 hours after eating",
+          warnings:
+            "STRICT SUPERVISION REQUIRED, Follow correct dosage precisely, Can be toxic in high doses",
+          benefits: [
+            "Deworming, especially in children",
+            "Relieves rheumatism and diarrhea",
+          ],
+          averageRating: 0,
+          totalReviews: 0,
+          createdAt: "21/09/2025",
+          updatedAt: "05/10/2025",
+        },
+        {
+          id: 28,
+          name: "Ampalaya",
+          category: ["Endocrine", "Digestive", "Anti-inflammatory"],
+          symptoms: [
+            "High blood sugar symptoms (fatigue, thirst)",
+            "digestive discomfort",
+            "inflammation",
+            "high cholesterol",
+          ],
+          imageUrl: "",
+          sourceType: "Verified Source",
+          sourceInfo: {
+            authority: "Philippine Department of Health",
+            url: "https://pitahc.gov.ph/directory-of-herbs/",
+            description: "Approved herbal medicine by DOH",
+            verificationDate: "01/01/2023",
+          },
+          preparation: "Eat cooked leaves or fruits, Prepare as juice or tea",
+          usage: "Oral consumption",
+          dosage: "1/2 cup twice a day",
+          warnings:
+            "May interact with diabetes medications, Not recommended during pregnancy",
+          benefits: [
+            "Lowers blood sugar",
+            "Improves digestion",
+            "Anti-inflammatory properties",
+          ],
+          averageRating: 0,
+          totalReviews: 0,
+          createdAt: "21/09/2025",
+          updatedAt: "05/10/2025",
+        },
+        // ... (rest of the herbal data remains the same)
+      ];
+
+      let database = null;
+      let isFirebaseInitialized = false;
+
+      // Initialize Firebase
+      function initializeFirebase() {
+        const apiKey = document.getElementById("apiKey").value;
+        const projectId = document.getElementById("projectId").value;
+        const databaseURL = document.getElementById("databaseURL").value;
+
+        if (!apiKey || !projectId || !databaseURL) {
+          addLog(
+            "❌ Please enter API Key, Project ID, and Database URL",
+            "error"
+          );
+          return;
+        }
+
+        try {
+          const firebaseConfig = {
+            apiKey: apiKey,
+            projectId: projectId,
+            databaseURL: databaseURL,
+            authDomain: `${projectId}.firebaseapp.com`,
+          };
+
+          // Check if Firebase app already exists
+          if (firebase.apps.length === 0) {
+            firebase.initializeApp(firebaseConfig);
+          }
+
+          database = firebase.database();
+          isFirebaseInitialized = true;
+
+          document.getElementById("uploadBtn").disabled = false;
+          document.getElementById("clearBtn").disabled = false;
+          document.getElementById("testBtn").disabled = false;
+          document.getElementById("connectionStatus").innerHTML =
+            "🟢 Connected";
+          document.getElementById("connectionStatus").style.color = "#27ae60";
+
+          addLog("✅ Firebase initialized successfully", "success");
+          addLog("📁 Realtime Database connected", "success");
+          addLog("🚀 Ready to upload data", "info");
+        } catch (error) {
+          addLog(
+            `❌ Firebase initialization failed: ${error.message}`,
+            "error"
+          );
+        }
+      }
+
+      // Upload data to Realtime Database
+      async function uploadData() {
+        if (!isFirebaseInitialized) {
+          addLog("❌ Please initialize Firebase first", "error");
+          return;
+        }
+
+        const nodeName =
+          document.getElementById("nodeName").value || "herbalRemedies";
+        const uploadBtn = document.getElementById("uploadBtn");
+        uploadBtn.disabled = true;
+        uploadBtn.innerHTML = "⏳ Uploading...";
+
+        const progressFill = document.getElementById("progressFill");
+        const progressText = document.getElementById("progressText");
+        let successCount = 0;
+        let errorCount = 0;
+
+        addLog(
+          `📦 Starting upload of ${herbalData.length} records to "${nodeName}" node`,
+          "info"
+        );
+
+        for (let i = 0; i < herbalData.length; i++) {
+          const item = herbalData[i];
+          const progress = ((i + 1) / herbalData.length) * 100;
+
+          progressFill.style.width = `${progress}%`;
+          progressText.textContent = `Uploading ${i + 1}/${
+            herbalData.length
+          } - ${item.name}`;
+
+          try {
+            // Convert arrays to objects for Firebase Realtime Database
+            const processedItem = processArraysForFirebase(item);
+
+            // Use the ID as the key for each item in the node
+            await database.ref(`${nodeName}/${item.id}`).set(processedItem);
+            successCount++;
+            addLog(`✅ Uploaded: ${item.name} (ID: ${item.id})`, "success");
+          } catch (error) {
+            errorCount++;
+            addLog(
+              `❌ Failed to upload ${item.name}: ${error.message}`,
+              "error"
+            );
+          }
+
+          // Small delay to prevent overwhelming the database
+          await new Promise((resolve) => setTimeout(resolve, 100));
+        }
+
+        progressText.textContent = `Upload completed: ${successCount} successful, ${errorCount} failed`;
+
+        if (errorCount === 0) {
+          addLog(
+            `🎉 All ${successCount} records uploaded successfully!`,
+            "success"
+          );
+          progressFill.style.background = "#27ae60";
+        } else {
+          addLog(`⚠️ Upload completed with ${errorCount} errors`, "error");
+          progressFill.style.background = "#e74c3c";
+        }
+
+        uploadBtn.disabled = false;
+        uploadBtn.innerHTML = "⬆️ Upload All Data";
+      }
+
+      // Process arrays for Firebase Realtime Database
+      function processArraysForFirebase(item) {
+        const processed = { ...item };
+
+        // Convert arrays to objects with numeric keys
+        if (Array.isArray(processed.category)) {
+          processed.category = arrayToObject(processed.category);
+        }
+
+        if (Array.isArray(processed.symptoms)) {
+          processed.symptoms = arrayToObject(processed.symptoms);
+        }
+
+        if (Array.isArray(processed.benefits)) {
+          processed.benefits = arrayToObject(processed.benefits);
+        }
+
+        // Process nested arrays in sourceInfo if needed
+        if (processed.sourceInfo) {
+          Object.keys(processed.sourceInfo).forEach((key) => {
+            if (Array.isArray(processed.sourceInfo[key])) {
+              processed.sourceInfo[key] = arrayToObject(
+                processed.sourceInfo[key]
+              );
+            }
+          });
+        }
+
+        return processed;
+      }
+
+      // Convert array to object with numeric keys
+      function arrayToObject(array) {
+        const obj = {};
+        array.forEach((item, index) => {
+          obj[index] = item;
+        });
+        return obj;
+      }
+
+      // Test array upload with a simple example
+      async function testArrayUpload() {
+        if (!isFirebaseInitialized) {
+          addLog("❌ Please initialize Firebase first", "error");
+          return;
+        }
+
+        const nodeName =
+          document.getElementById("nodeName").value || "herbalRemedies";
+        const testBtn = document.getElementById("testBtn");
+        testBtn.disabled = true;
+        testBtn.innerHTML = "⏳ Testing...";
+
+        try {
+          const testData = {
+            id: "test",
+            name: "Test Herb",
+            category: arrayToObject(["Test1", "Test2", "Test3"]),
+            symptoms: arrayToObject(["Symptom1", "Symptom2"]),
+            benefits: arrayToObject(["Benefit1", "Benefit2", "Benefit3"]),
+          };
+
+          await database.ref(`${nodeName}/test`).set(testData);
+          addLog("✅ Test data with arrays uploaded successfully", "success");
+
+          // Retrieve and log the test data to verify
+          const snapshot = await database.ref(`${nodeName}/test`).once("value");
+          const retrievedData = snapshot.val();
+          addLog(
+            `📋 Retrieved test data: ${JSON.stringify(retrievedData)}`,
+            "info"
+          );
+
+          // Clean up test data
+          await database.ref(`${nodeName}/test`).remove();
+          addLog("🧹 Test data cleaned up", "info");
+        } catch (error) {
+          addLog(`❌ Test failed: ${error.message}`, "error");
+        }
+
+        testBtn.disabled = false;
+        testBtn.innerHTML = "🧪 Test Array Upload";
+      }
+
+      // Clear node
+      async function clearNode() {
+        if (!isFirebaseInitialized) {
+          addLog("❌ Please initialize Firebase first", "error");
+          return;
+        }
+
+        if (
+          !confirm(
+            "⚠️ Are you sure you want to clear the entire node? This cannot be undone."
+          )
+        ) {
+          return;
+        }
+
+        const nodeName =
+          document.getElementById("nodeName").value || "herbalRemedies";
+        const clearBtn = document.getElementById("clearBtn");
+        clearBtn.disabled = true;
+        clearBtn.innerHTML = "⏳ Clearing...";
+
+        try {
+          await database.ref(nodeName).remove();
+          addLog(`🗑️ Cleared all data from "${nodeName}" node`, "success");
+        } catch (error) {
+          addLog(`❌ Failed to clear node: ${error.message}`, "error");
+        }
+
+        clearBtn.disabled = false;
+        clearBtn.innerHTML = "🗑️ Clear Node";
+      }
+
+      // Add log entry
+      function addLog(message, type = "info") {
+        const logContainer = document.getElementById("logContainer");
+        const logEntry = document.createElement("div");
+        logEntry.className = `log-entry log-${type}`;
+        logEntry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+        logContainer.appendChild(logEntry);
+        logContainer.scrollTop = logContainer.scrollHeight;
+      }
+
+      // Update node name in real-time
+      document
+        .getElementById("nodeName")
+        .addEventListener("input", function () {
+          document.getElementById("currentNode").textContent =
+            this.value || "herbalRemedies";
+        });
+
+      // Display data preview
+      function displayDataPreview() {
+        const preview = document.getElementById("dataPreview");
+        const previewData = herbalData.slice(0, 3).map((item) => ({
+          id: item.id,
+          name: item.name,
+          category: item.category,
+          symptoms: item.symptoms.slice(0, 3), // Show first 3 symptoms
+          benefits: item.benefits.slice(0, 2), // Show first 2 benefits
+        }));
+        preview.textContent = JSON.stringify(previewData, null, 2);
+      }
+
+      // Initialize data preview
+      displayDataPreview();
+
+      // Add some sample Firebase config for demonstration
+      document.getElementById("apiKey").value =
+        localStorage.getItem("firebaseApiKey") || "";
+      document.getElementById("projectId").value =
+        localStorage.getItem("firebaseProjectId") || "";
+      document.getElementById("databaseURL").value =
+        localStorage.getItem("firebaseDatabaseURL") || "";
+
+      // Save config to localStorage
+      document.getElementById("apiKey").addEventListener("input", function () {
+        localStorage.setItem("firebaseApiKey", this.value);
+      });
+
+      document
+        .getElementById("projectId")
+        .addEventListener("input", function () {
+          localStorage.setItem("firebaseProjectId", this.value);
+        });
+
+      document
+        .getElementById("databaseURL")
+        .addEventListener("input", function () {
+          localStorage.setItem("firebaseDatabaseURL", this.value);
+        });
+    </script>
+  </body>
+</html>
