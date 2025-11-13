@@ -1,1066 +1,1189 @@
 [
-  {
-    "id": "malunggay",
-    "averageRating": 4.7,
-    "benefits": [
-      "High cholesterol management",
-      "Blood sugar control",
-      "Blood pressure management",
-      "Anti-inflammatory",
-      "Increases breastmilk supply"
-    ],
-    "category": ["Metabolic", "Lactation", "Anti-inflammatory"],
-    "createdAt": "2025-11-09T01:52:36.493Z",
-    "dosage": "As needed for symptoms",
-    "imageUrl": "https://firebasestorage.googleapis.com/v0/b/herbful-535e4.firebasestorage.app/o/treatments%2Fimages%2F1762653156494xdhrkn0mu%2F1762681425645_Malunggay(Moringa).jpg?alt=media\u0026token=175aff3c-f5b3-4699-8adf-c2717ad0316f",
-    "name": "Malunggay",
-    "preparation": [
-      "Boil fresh leaves (5-10 minutes) and drink as tea",
-      "Add to soups and dishes"
-    ],
-    "sourceType": "Local Remedy",
-    "symptoms": [
-      "Chest heaviness",
-      "dizziness",
-      "fatigue",
-      "frequent urination",
-      "excessive thirst",
-      "tiredness",
-      "headaches",
-      "shortness of breath",
-      "swelling",
-      "joint stiffness",
-      "body pain",
-      "low breastmilk flow"
-    ],
-    "totalReviews": 3,
-    "updatedAt": "2025-11-09T10:01:04.068Z",
-    "usage": "Oral consumption",
-    "warnings": [
-      "Consult doctor for chronic conditions",
-      "May interact with diabetes medications"
-    ]
-  },
-  {
-    "id": "lomboy (duhat)",
-    "averageRating": 4.5,
-    "benefits": [
-      "Blood sugar management",
-      "Diarrhea relief",
-      "Oral health improvement",
-      "Wound healing"
-    ],
-    "category": ["Metabolic", "Digestive", "Oral Health"],
-    "createdAt": "2025-11-09T01:52:36.493Z",
-    "dosage": "As needed for symptoms",
-    "imageUrl": "https://firebasestorage.googleapis.com/v0/b/herbful-535e4.firebasestorage.app/o/treatments%2Fimages%2F1762653156495fm3oxwh0e%2F1762680626663_Lomboy%20(Duhat)%20Leaves.jpg?alt=media\u0026token=053ced53-e285-4674-9236-c7120d18ce29",
-    "name": "Lomboy (Duhat)",
-    "preparation": [
-      "Boil fresh or dried leaves for 10-15 minutes and drink as tea",
-      "Pound leaves and apply as poultice"
-    ],
-    "sourceType": "Local Remedy",
-    "symptoms": [
-      "frequent urination",
-      "excessive thirst",
-      "tiredness",
-      "loose bowel movement",
-      "stomach pain",
-      "gum swelling",
-      "gum bleeding",
-      "slow healing wounds",
-      "skin irritation"
-    ],
-    "totalReviews": 2,
-    "updatedAt": "2025-11-09T10:24:12.424Z",
-    "usage": "Oral consumption or topical application",
-    "warnings": [
-      "Monitor blood sugar levels",
-      "Consult dentist for persistent gum problems"
-    ]
-  },
-  {
-    "id": "tawa-tawa",
-    "averageRating": 4.5,
-    "benefits": [
-      "Traditionally used to increase platelet count in dengue",
-      "Asthma and bronchitis relief",
-      "Anti-inflammatory",
-      "Diuretic properties"
-    ],
-    "category": ["Hematological", "Respiratory", "Digestive"],
-    "createdAt": "2025-11-09T01:52:36.493Z",
-    "dosage": "1 cup 3-4 times daily",
-    "imageUrl": "https://firebasestorage.googleapis.com/v0/b/herbful-535e4.firebasestorage.app/o/treatments%2Fimages%2F1762653156496702czp9rn%2F1762681460790_Tawa-Tawa.jpg?alt=media\u0026token=559415c5-2663-44fb-8cf6-924915634e60",
-    "name": "Tawa-Tawa",
-    "preparation": [
-      "Boil handful of fresh leaves in 2 cups of water for 10-15 minutes",
-      "Crush leaves for topical application"
-    ],
-    "sourceType": "Local Remedy",
-    "symptoms": [
-      "Persistent fever",
-      "low platelet-related bleeding",
-      "cough",
-      "difficulty breathing/wheezing",
-      "diarrhea",
-      "indigestion",
-      "sore or bleeding gums",
-      "slow wound healing",
-      "respiratory discomfort"
-    ],
-    "totalReviews": 2,
-    "updatedAt": "2025-11-09T09:44:22.834Z",
-    "usage": "Oral consumption or topical application",
-    "warnings": [
-      "Not a substitute for medical treatment in dengue",
-      "Consult doctor for persistent fever"
-    ]
-  },
-  {
-    "id": "sambong",
-    "averageRating": 4.5,
-    "benefits": [
-      "Eliminates kidney stones",
-      "Relieves rheumatism and hypertension",
-      "Treats colds and coughs"
-    ],
-    "category": ["Diuretic", "Respiratory", "Anti-inflammatory"],
-    "createdAt": "2025-11-09T01:52:36.493Z",
-    "dosage": "1 cup three times a day",
-    "imageUrl": "https://firebasestorage.googleapis.com/v0/b/herbful-535e4.firebasestorage.app/o/treatments%2Fimages%2F1762653156497mzo0mf5vw%2F1762681497536_Sambong%20(Subusob)Scientific%20name%20Blumea%20balsamifera.jpg?alt=media\u0026token=8922c08a-29ed-45f4-b552-9dc55e5d777b",
-    "name": "Sambong",
-    "preparation": [
-      "Boil 50g of fresh leaves or 25g of dried leaves in 1 liter of water for 10-15 minutes"
-    ],
-    "sourceInfo": {
-      "authority": "Philippine Department of Health",
-      "description": "Approved herbal medicine by PITAHC",
-      "url": "https://pitahc.gov.ph/directory-of-herbs/",
-      "verificationDate": "01/01/2023"
+    {
+        "id":  "malunggay",
+        "averageRating":  4.7,
+        "benefits":  [
+                         "High cholesterol management",
+                         "Blood sugar control",
+                         "Blood pressure management",
+                         "Anti-inflammatory",
+                         "Increases breastmilk supply"
+                     ],
+        "category":  [
+                         "Metabolic",
+                         "Lactation",
+                         "Anti-inflammatory"
+                     ],
+        "createdAt":  "2025-11-09T01:52:36.493Z",
+        "dosage":  "As needed for symptoms",
+        "imageUrl":  "https://firebasestorage.googleapis.com/v0/b/herbful-535e4.firebasestorage.app/o/treatments%2Fimages%2F1762653156494xdhrkn0mu%2F1762681425645_Malunggay(Moringa).jpg?alt=media\u0026token=175aff3c-f5b3-4699-8adf-c2717ad0316f",
+        "name":  "Malunggay",
+        "preparation":  [
+                            "Boil fresh leaves (5-10 minutes) and drink as tea",
+                            "Add to soups and dishes"
+                        ],
+        "sourceType":  "Local Remedy",
+        "symptoms":  [
+                         "Chest heaviness",
+                         "dizziness",
+                         "fatigue",
+                         "frequent urination",
+                         "excessive thirst",
+                         "tiredness",
+                         "headaches",
+                         "shortness of breath",
+                         "swelling",
+                         "joint stiffness",
+                         "body pain",
+                         "low breastmilk flow"
+                     ],
+        "totalReviews":  3,
+        "updatedAt":  "2025-11-09T10:01:04.068Z",
+        "usage":  "Oral consumption",
+        "warnings":  [
+                         "Consult doctor for chronic conditions",
+                         "May interact with diabetes medications"
+                     ]
     },
-    "sourceType": "Verified Source",
-    "symptoms": [
-      "frequent urination",
-      "urinary discomfort or blockage",
-      "respiratory congestion",
-      "cough",
-      "fever heat",
-      "headache",
-      "joint or body aches",
-      "gastric pain",
-      "wound soreness",
-      "inflammation",
-      "skin irritation"
-    ],
-    "totalReviews": 2,
-    "updatedAt": "2025-11-09T10:24:12.539Z",
-    "usage": "Drink as tea or use essential oil in topical applications",
-    "warnings": [
-      "Consult doctor for kidney problems",
-      "May cause allergic reactions"
-    ]
-  },
-  {
-    "id": "oregano",
-    "averageRating": 4.5,
-    "benefits": [
-      "Treats cough, asthma, sore throat",
-      "Antibacterial and anti-inflammatory",
-      "Relieves indigestion and menstrual cramps"
-    ],
-    "category": ["Respiratory", "Digestive", "Anti-inflammatory"],
-    "createdAt": "2025-11-09T01:52:36.493Z",
-    "dosage": "1/2 cup 3 times daily",
-    "imageUrl": "https://firebasestorage.googleapis.com/v0/b/herbful-535e4.firebasestorage.app/o/treatments%2Fimages%2F1762653156498z5u1zl82r%2F1762682546047_Oregano.jpg?alt=media\u0026token=30005e8d-6472-491f-a995-7e9cb337e0b4",
-    "name": "Oregano",
-    "preparation": [
-      "Boil 5-10 fresh leaves in 2 cups of water",
-      "Crush leaves for poultice",
-      "Use essential oil in diluted form"
-    ],
-    "sourceInfo": {
-      "authority": "Philippine Department of Health",
-      "description": "Traditional medicinal herb with scientific backing",
-      "url": "https://www.stuartxchange.org/Oregano.html",
-      "verificationDate": "01/01/2023"
+    {
+        "id":  "lomboy-(duhat)",
+        "averageRating":  4.5,
+        "benefits":  [
+                         "Blood sugar management",
+                         "Diarrhea relief",
+                         "Oral health improvement",
+                         "Wound healing"
+                     ],
+        "category":  [
+                         "Metabolic",
+                         "Digestive",
+                         "Oral Health"
+                     ],
+        "createdAt":  "2025-11-09T01:52:36.493Z",
+        "dosage":  "As needed for symptoms",
+        "imageUrl":  "https://firebasestorage.googleapis.com/v0/b/herbful-535e4.firebasestorage.app/o/treatments%2Fimages%2F1762653156495fm3oxwh0e%2F1762680626663_Lomboy%20(Duhat)%20Leaves.jpg?alt=media\u0026token=053ced53-e285-4674-9236-c7120d18ce29",
+        "name":  "Lomboy (Duhat)",
+        "preparation":  [
+                            "Boil fresh or dried leaves for 10-15 minutes and drink as tea",
+                            "Pound leaves and apply as poultice"
+                        ],
+        "sourceType":  "Local Remedy",
+        "symptoms":  [
+                         "frequent urination",
+                         "excessive thirst",
+                         "tiredness",
+                         "loose bowel movement",
+                         "stomach pain",
+                         "gum swelling",
+                         "gum bleeding",
+                         "slow healing wounds",
+                         "skin irritation"
+                     ],
+        "totalReviews":  2,
+        "updatedAt":  "2025-11-09T10:24:12.424Z",
+        "usage":  "Oral consumption or topical application",
+        "warnings":  [
+                         "Monitor blood sugar levels",
+                         "Consult dentist for persistent gum problems"
+                     ]
     },
-    "sourceType": "",
-    "symptoms": [
-      "cough",
-      "sore throat",
-      "congestion",
-      "mild fever",
-      "indigestion",
-      "stomach upset",
-      "menstrual pain",
-      "skin irritation",
-      "wound soreness",
-      "respiratory discomfort",
-      "sinus congestion"
-    ],
-    "totalReviews": 2,
-    "updatedAt": "2025-11-09T10:24:12.619Z",
-    "usage": "Drink as tea, gargle, or apply topically",
-    "warnings": [
-      "Avoid during pregnancy",
-      "May cause skin irritation in sensitive individuals"
-    ]
-  },
-  {
-    "id": "serpentina",
-    "averageRating": 4.5,
-    "benefits": [
-      "Blood pressure management",
-      "Anti-inflammatory",
-      "Respiratory infection relief",
-      "Anxiety and insomnia relief"
-    ],
-    "category": ["Cardiovascular", "Neurological", "Metabolic"],
-    "createdAt": "2025-11-09T01:52:36.493Z",
-    "dosage": "As directed by traditional practitioner",
-    "imageUrl": "https://firebasestorage.googleapis.com/v0/b/herbful-535e4.firebasestorage.app/o/treatments%2Fimages%2F1762653156499aac1c9y2v%2F1762682609381_Serpentina.jpg?alt=media\u0026token=50289751-c359-4e29-a2ef-a83072268848",
-    "name": "Serpentina",
-    "preparation": [
-      "Boil leaves or roots into decoction",
-      "Make into capsules and extracts"
-    ],
-    "sourceType": "Local Remedy",
-    "symptoms": [
-      "Elevated blood pressure",
-      "inflammation-related pain",
-      "fever",
-      "respiratory discomfort",
-      "high blood sugar symptoms",
-      "digestive upset",
-      "stress and anxiety",
-      "sleep disturbances"
-    ],
-    "totalReviews": 2,
-    "updatedAt": "2025-11-09T10:03:31.834Z",
-    "usage": "Oral consumption or topical application",
-    "warnings": [
-      "STRONG MEDICINAL HERB - CONSULT DOCTOR",
-      "May interact with blood pressure medications",
-      "Not for self-medication"
-    ]
-  },
-  {
-    "id": "pansit-pansitan",
-    "averageRating": 4.5,
-    "benefits": [
-      "Lowers uric acid for gout",
-      "Anti-inflammatory",
-      "Pain relief for arthritis and headaches"
-    ],
-    "category": ["Anti-inflammatory", "Pain Relief", "Dermatological"],
-    "createdAt": "2025-11-09T01:52:36.493Z",
-    "dosage": "1 cup twice daily (morning and evening)",
-    "imageUrl": "https://firebasestorage.googleapis.com/v0/b/herbful-535e4.firebasestorage.app/o/treatments%2Fimages%2F1762653156500hpu7pjckf%2F1762682648268_Pansit-Pansitan.jpg?alt=media\u0026token=fb9aa1b9-349f-4cc0-9e24-2a784211cc26",
-    "name": "Pansit-Pansitan",
-    "preparation": [
-      "Eat raw as salad",
-      "Boil 1 cup of leaves/stems in 2 cups of water",
-      "Pound into poultice"
-    ],
-    "sourceInfo": {
-      "authority": "Philippine Department of Health",
-      "description": "Approved herbal medicine by PITAHC",
-      "url": "https://pitahc.gov.ph/directory-of-herbs/",
-      "verificationDate": "01/01/2023"
+    {
+        "id":  "tawa-tawa",
+        "averageRating":  4.5,
+        "benefits":  [
+                         "Traditionally used to increase platelet count in dengue",
+                         "Asthma and bronchitis relief",
+                         "Anti-inflammatory",
+                         "Diuretic properties"
+                     ],
+        "category":  [
+                         "Hematological",
+                         "Respiratory",
+                         "Digestive"
+                     ],
+        "createdAt":  "2025-11-09T01:52:36.493Z",
+        "dosage":  "1 cup 3-4 times daily",
+        "imageUrl":  "https://firebasestorage.googleapis.com/v0/b/herbful-535e4.firebasestorage.app/o/treatments%2Fimages%2F1762653156496702czp9rn%2F1762681460790_Tawa-Tawa.jpg?alt=media\u0026token=559415c5-2663-44fb-8cf6-924915634e60",
+        "name":  "Tawa-Tawa",
+        "preparation":  [
+                            "Boil handful of fresh leaves in 2 cups of water for 10-15 minutes",
+                            "Crush leaves for topical application"
+                        ],
+        "sourceType":  "Local Remedy",
+        "symptoms":  [
+                         "Persistent fever",
+                         "low platelet-related bleeding",
+                         "cough",
+                         "difficulty breathing/wheezing",
+                         "diarrhea",
+                         "indigestion",
+                         "sore or bleeding gums",
+                         "slow wound healing",
+                         "respiratory discomfort"
+                     ],
+        "totalReviews":  2,
+        "updatedAt":  "2025-11-09T09:44:22.834Z",
+        "usage":  "Oral consumption or topical application",
+        "warnings":  [
+                         "Not a substitute for medical treatment in dengue",
+                         "Consult doctor for persistent fever"
+                     ]
     },
-    "sourceType": "Verified Source",
-    "symptoms": [
-      "Joint pain and swelling",
-      "skin inflammation or infection",
-      "headache",
-      "abdominal discomfort",
-      "urinary or kidney-related pain",
-      "fever",
-      "sore throat",
-      "wound or burn soreness",
-      "eye irritation",
-      "Elevated blood pressure",
-      "digestive upset",
-      "mental restlessness"
-    ],
-    "totalReviews": 2,
-    "updatedAt": "2025-11-09T10:24:12.687Z",
-    "usage": "Oral consumption or topical application",
-    "warnings": [
-      "Consult doctor for kidney problems",
-      "May interact with blood pressure medications"
-    ]
-  },
-  {
-    "id": "tanglad",
-    "averageRating": 4.5,
-    "benefits": [
-      "Digestive relief",
-      "Blood pressure management",
-      "Anxiety reduction",
-      "Fungal infection treatment"
-    ],
-    "category": ["Digestive", "Cardiovascular", "Respiratory"],
-    "createdAt": "2025-11-09T01:52:36.493Z",
-    "dosage": "As needed for symptoms",
-    "imageUrl": "https://firebasestorage.googleapis.com/v0/b/herbful-535e4.firebasestorage.app/o/treatments%2Fimages%2F1762653156501n79ffsidz%2F1762682679343_Tanglad.jpg?alt=media\u0026token=950a23de-ef69-486b-82c3-dd3551ffaa05",
-    "name": "Tanglad",
-    "preparation": [
-      "Boil fresh stalks or leaves for 5-15 minutes",
-      "Use diluted essential oil topically or by inhalation"
-    ],
-    "sourceType": "Local Remedy",
-    "symptoms": [
-      "Upset stomach",
-      "bloating",
-      "indigestion cramps",
-      "fever heat",
-      "headache",
-      "elevated blood pressure symptoms",
-      "muscle or joint aches",
-      "anxiety or tension",
-      "fungal skin irritation",
-      "dandruff",
-      "cough and congestion",
-      "frequent urination"
-    ],
-    "totalReviews": 2,
-    "updatedAt": "2025-11-09T10:04:43.179Z",
-    "usage": "Drink as tea or use topically",
-    "warnings": ["May cause skin sensitivity to sunlight", "Use in moderation"]
-  },
-  {
-    "id": "bayabas (guava)",
-    "averageRating": 4.5,
-    "benefits": [
-      "Treats diarrhea, gum infections, and wounds",
-      "Supports immune and heart health"
-    ],
-    "category": ["Digestive", "Oral Health", "Dermatological"],
-    "createdAt": "2025-11-09T01:52:36.493Z",
-    "dosage": "As needed for symptoms",
-    "imageUrl": "https://firebasestorage.googleapis.com/v0/b/herbful-535e4.firebasestorage.app/o/treatments%2Fimages%2F1762653156502eygn84pzd%2F1762682713170_Guava%20Leaves.jpg?alt=media\u0026token=aa5260df-f45d-45e4-a1ad-477b8791aea9",
-    "name": "Bayabas (Guava)",
-    "preparation": [
-      "Boil 4-6 fresh leaves in water for 10-15 minutes",
-      "Crush leaves into paste for topical use"
-    ],
-    "sourceInfo": {
-      "authority": "Philippine Department of Health",
-      "description": "Approved herbal medicine by PITAHC",
-      "url": "https://pitahc.gov.ph/directory-of-herbs/",
-      "verificationDate": "01/01/2023"
+    {
+        "id":  "sambong",
+        "averageRating":  4.5,
+        "benefits":  [
+                         "Eliminates kidney stones",
+                         "Relieves rheumatism and hypertension",
+                         "Treats colds and coughs"
+                     ],
+        "category":  [
+                         "Diuretic",
+                         "Respiratory",
+                         "Anti-inflammatory"
+                     ],
+        "createdAt":  "2025-11-09T01:52:36.493Z",
+        "dosage":  "1 cup three times a day",
+        "imageUrl":  "https://firebasestorage.googleapis.com/v0/b/herbful-535e4.firebasestorage.app/o/treatments%2Fimages%2F1762653156497mzo0mf5vw%2F1762681497536_Sambong%20(Subusob)Scientific%20name%20Blumea%20balsamifera.jpg?alt=media\u0026token=8922c08a-29ed-45f4-b552-9dc55e5d777b",
+        "name":  "Sambong",
+        "preparation":  [
+                            "Boil 50g of fresh leaves or 25g of dried leaves in 1 liter of water for 10-15 minutes"
+                        ],
+        "sourceInfo":  {
+                           "authority":  "Philippine Department of Health",
+                           "description":  "Approved herbal medicine by PITAHC",
+                           "url":  "https://pitahc.gov.ph/directory-of-herbs/",
+                           "verificationDate":  "01/01/2023"
+                       },
+        "sourceType":  "Verified Source",
+        "symptoms":  [
+                         "frequent urination",
+                         "urinary discomfort or blockage",
+                         "respiratory congestion",
+                         "cough",
+                         "fever heat",
+                         "headache",
+                         "joint or body aches",
+                         "gastric pain",
+                         "wound soreness",
+                         "inflammation",
+                         "skin irritation"
+                     ],
+        "totalReviews":  2,
+        "updatedAt":  "2025-11-09T10:24:12.539Z",
+        "usage":  "Drink as tea or use essential oil in topical applications",
+        "warnings":  [
+                         "Consult doctor for kidney problems",
+                         "May cause allergic reactions"
+                     ]
     },
-    "sourceType": "Verified Source",
-    "symptoms": [
-      "Loose or painful bowel movements",
-      "cough",
-      "chest congestion",
-      "mouth or gum discomfort",
-      "elevated blood sugar symptoms",
-      "high blood pressure symptoms",
-      "inflammation or swelling",
-      "skin irritation",
-      "acne",
-      "wound soreness",
-      "indigestion",
-      "bloating"
-    ],
-    "totalReviews": 2,
-    "updatedAt": "2025-11-09T10:05:17.095Z",
-    "usage": "Drink as tea or apply topically",
-    "warnings": ["Use in moderation", "Consult doctor for persistent diarrhea"]
-  },
-  {
-    "id": "herbaka",
-    "averageRating": 0,
-    "benefits": [
-      "Regulates menstruation",
-      "Stomachache relief",
-      "Malaria symptom management",
-      "Gas pain relief"
-    ],
-    "category": ["Gynecological", "Digestive", "Antimalarial"],
-    "createdAt": "2025-11-09T01:52:36.493Z",
-    "dosage": "1/2 glass twice daily for menstruation, 1 tablespoon daily for stomachache",
-    "imageUrl": "https://firebasestorage.googleapis.com/v0/b/herbful-535e4.firebasestorage.app/o/treatments%2Fimages%2F1762653156503ijit73iya%2F1762682734801_Herbaka.jpg?alt=media\u0026token=4078c4d9-802d-4fa3-8c5c-ab660e8077c3",
-    "name": "Herbaka",
-    "preparation": [
-      "Boil 7 leaves in 3 glasses of water for menstrual issues",
-      "Squeeze leaves for juice extraction",
-      "Pound leaves for poultice"
-    ],
-    "sourceType": "Local Remedy",
-    "symptoms": [
-      "Irregular menstrual flow or delay",
-      "abdominal pain or cramps",
-      "fever or chills",
-      "abdominal bloating or gas-related discomfort"
-    ],
-    "totalReviews": 0,
-    "updatedAt": "2025-11-09T10:05:36.285Z",
-    "usage": "Oral consumption or topical application",
-    "warnings": [
-      "Consult doctor for persistent menstrual issues",
-      "Not for pregnant women"
-    ]
-  },
-  {
-    "id": "gawed",
-    "averageRating": 0,
-    "benefits": [
-      "Wound healing",
-      "Skin infection treatment",
-      "Cough and sore throat relief",
-      "Toothache relief",
-      "Arthritis pain management"
-    ],
-    "category": ["Dermatological", "Oral Health", "Anti-inflammatory"],
-    "createdAt": "2025-11-09T01:52:36.493Z",
-    "dosage": "Apply as needed to affected areas",
-    "imageUrl": "https://firebasestorage.googleapis.com/v0/b/herbful-535e4.firebasestorage.app/o/treatments%2Fimages%2F1762653156504kbi95radp%2F1762682976525_Gawed.jpg?alt=media\u0026token=e1d7dc14-61bc-4bae-9643-2122b51873c8",
-    "name": "Gawed",
-    "preparation": [
-      "Wash and pound fresh leaves for poultice",
-      "Boil leaves for wash or mouth rinse"
-    ],
-    "sourceType": "Local Remedy",
-    "symptoms": [
-      "Infected or slow-healing wounds",
-      "skin redness and swelling",
-      "cough and throat irritation",
-      "tooth pain",
-      "joint stiffness or pain",
-      "stomach discomfort",
-      "bloating",
-      "indigestion"
-    ],
-    "totalReviews": 0,
-    "updatedAt": "2025-11-09T10:09:38.838Z",
-    "usage": "Topical application or oral rinse",
-    "warnings": [
-      "Test on small skin area first",
-      "Avoid swallowing mouth rinse"
-    ]
-  },
-  {
-    "id": "biday",
-    "averageRating": 0,
-    "benefits": [
-      "Reduces swelling",
-      "Traditional use for snake bites",
-      "Boil treatment",
-      "Rheumatism relief"
-    ],
-    "category": ["Anti-inflammatory", "Dermatological"],
-    "createdAt": "2025-11-09T01:52:36.493Z",
-    "dosage": "Apply as needed",
-    "imageUrl": "https://firebasestorage.googleapis.com/v0/b/herbful-535e4.firebasestorage.app/o/treatments%2Fimages%2F1762653156505g43x1ckmr%2F1762683029535_Biday.jpg?alt=media\u0026token=8e64679b-199f-4b0b-8089-5c7712831186",
-    "name": "Biday",
-    "preparation": [
-      "Boil fresh stem or roots thoroughly to remove toxins",
-      "Pound leaves or stem for poultice"
-    ],
-    "sourceType": "Local Remedy",
-    "symptoms": [
-      "Skin redness",
-      "swelling",
-      "pain from boils",
-      "joint pain or stiffness",
-      "inflammation in affected areas"
-    ],
-    "totalReviews": 0,
-    "updatedAt": "2025-11-09T10:10:33.911Z",
-    "usage": "External application on affected areas",
-    "warnings": [
-      "MUST BOIL THOROUGHLY TO REMOVE TOXINS",
-      "Not for internal use without proper preparation"
-    ]
-  },
-  {
-    "id": "kamyas",
-    "averageRating": 0,
-    "benefits": [
-      "Cough and cold relief",
-      "Blood pressure management",
-      "Skin infection treatment",
-      "Rheumatism relief"
-    ],
-    "category": ["Respiratory", "Cardiovascular", "Dermatological"],
-    "createdAt": "2025-11-09T01:52:36.493Z",
-    "dosage": "As needed for symptoms",
-    "imageUrl": "https://firebasestorage.googleapis.com/v0/b/herbful-535e4.firebasestorage.app/o/treatments%2Fimages%2F17626531565063m1nvzmmb%2F1762683258369_Kamyas.jpg?alt=media\u0026token=7938ed46-2e82-4546-989a-2d8dc6caf541",
-    "name": "Kamyas",
-    "preparation": [
-      "Eat fresh fruits raw or as juice",
-      "Boil leaves for decoction",
-      "Apply leaves as poultice"
-    ],
-    "sourceType": "Local Remedy",
-    "symptoms": [
-      "Coughing",
-      "sore throat",
-      "nasal congestion",
-      "dizziness from high blood pressure",
-      "skin itching or irritation",
-      "Joint pain and swelling"
-    ],
-    "totalReviews": 0,
-    "updatedAt": "2025-11-09T10:24:12.756Z",
-    "usage": "Oral consumption or topical application",
-    "warnings": [
-      "May cause stomach upset in sensitive individuals",
-      "Monitor blood pressure"
-    ]
-  },
-  {
-    "id": "lagundi",
-    "averageRating": 5,
-    "benefits": [
-      "Cough and asthma relief",
-      "Reduces inflammation",
-      "Acts as bronchodilator and expectorant"
-    ],
-    "category": ["Respiratory", "Anti-inflammatory"],
-    "createdAt": "2025-11-09T01:52:36.493Z",
-    "dosage": "1 cup 3 times a day",
-    "imageUrl": "https://firebasestorage.googleapis.com/v0/b/herbful-535e4.firebasestorage.app/o/treatments%2Fimages%2F1762653156507e7hsvkr2z%2F1762683281000_Lagundi.jpg?alt=media\u0026token=0c80bb4b-a877-4848-be6e-8ae3c2c93d74",
-    "name": "Lagundi",
-    "preparation": ["Boil 5 leaves in 2 cups of water for 10-15 minutes"],
-    "sourceInfo": {
-      "authority": "Philippine Department of Health",
-      "description": "Approved herbal medicine by PITAHC",
-      "url": "https://pitahc.gov.ph/directory-of-herbs/",
-      "verificationDate": "01/01/2023"
+    {
+        "id":  "oregano",
+        "averageRating":  4.5,
+        "benefits":  [
+                         "Treats cough, asthma, sore throat",
+                         "Antibacterial and anti-inflammatory",
+                         "Relieves indigestion and menstrual cramps"
+                     ],
+        "category":  [
+                         "Respiratory",
+                         "Digestive",
+                         "Anti-inflammatory"
+                     ],
+        "createdAt":  "2025-11-09T01:52:36.493Z",
+        "dosage":  "1/2 cup 3 times daily",
+        "imageUrl":  "https://firebasestorage.googleapis.com/v0/b/herbful-535e4.firebasestorage.app/o/treatments%2Fimages%2F1762653156498z5u1zl82r%2F1762682546047_Oregano.jpg?alt=media\u0026token=30005e8d-6472-491f-a995-7e9cb337e0b4",
+        "name":  "Oregano",
+        "preparation":  [
+                            "Boil 5-10 fresh leaves in 2 cups of water",
+                            "Crush leaves for poultice",
+                            "Use essential oil in diluted form"
+                        ],
+        "sourceInfo":  {
+                           "authority":  "Philippine Department of Health",
+                           "description":  "Traditional medicinal herb with scientific backing",
+                           "url":  "https://www.stuartxchange.org/Oregano.html",
+                           "verificationDate":  "01/01/2023"
+                       },
+        "sourceType":  "",
+        "symptoms":  [
+                         "cough",
+                         "sore throat",
+                         "congestion",
+                         "mild fever",
+                         "indigestion",
+                         "stomach upset",
+                         "menstrual pain",
+                         "skin irritation",
+                         "wound soreness",
+                         "respiratory discomfort",
+                         "sinus congestion"
+                     ],
+        "totalReviews":  2,
+        "updatedAt":  "2025-11-09T10:24:12.619Z",
+        "usage":  "Drink as tea, gargle, or apply topically",
+        "warnings":  [
+                         "Avoid during pregnancy",
+                         "May cause skin irritation in sensitive individuals"
+                     ]
     },
-    "sourceType": "",
-    "symptoms": [
-      "Persistent coughing",
-      "wheezing or shortness of breath",
-      "body heat or fever",
-      "nasal congestion",
-      "skin rashes or itching",
-      "abdominal pain with diarrhea"
-    ],
-    "totalReviews": 2,
-    "updatedAt": "2025-11-09T10:14:42.964Z",
-    "usage": "Drink as tea or apply poultice externally",
-    "warnings": [
-      "Not for children under 2 years old",
-      "Discontinue if rash or allergic reaction occurs"
-    ]
-  },
-  {
-    "id": "subusob",
-    "averageRating": 0,
-    "benefits": [
-      "Stops bleeding",
-      "Wound and cut treatment",
-      "Skin infection management",
-      "Burn relief",
-      "Insect bite treatment"
-    ],
-    "category": ["Dermatological", "Wound Care"],
-    "createdAt": "2025-11-09T01:52:36.493Z",
-    "dosage": "Apply as needed to affected areas",
-    "imageUrl": "https://firebasestorage.googleapis.com/v0/b/herbful-535e4.firebasestorage.app/o/treatments%2Fimages%2F17626531565080m8slxz3r%2F1762683203625_Sambong%20(Subusob)Scientific%20name%20Blumea%20balsamifera.jpg?alt=media\u0026token=7b85d1f2-f2d3-49ff-a4e9-b8be0efe30b8",
-    "name": "Subusob",
-    "preparation": [
-      "Wash",
-      "pound",
-      "and apply fresh leaves directly",
-      "Use leaf decoction for washing wounds"
-    ],
-    "sourceType": "Local Remedy",
-    "symptoms": [
-      "Bleeding",
-      "skin irritation",
-      "swelling",
-      "pain from wounds or burns",
-      "redness and itching from insect bites"
-    ],
-    "totalReviews": 0,
-    "updatedAt": "2025-11-09T10:13:25.685Z",
-    "usage": "Topical application",
-    "warnings": [
-      "Clean wounds properly before application",
-      "Seek medical help for serious wounds"
-    ]
-  },
-  {
-    "id": "kutsay",
-    "averageRating": 4.5,
-    "benefits": [
-      "Lowers blood pressure",
-      "Improves digestion",
-      "Antibacterial and antifungal",
-      "Appetite stimulation"
-    ],
-    "category": ["Digestive", "Cardiovascular", "Antimicrobial"],
-    "createdAt": "2025-11-09T01:52:36.493Z",
-    "dosage": "As culinary ingredient or small doses of juice extract",
-    "imageUrl": "https://firebasestorage.googleapis.com/v0/b/herbful-535e4.firebasestorage.app/o/treatments%2Fimages%2F1762653156509fu4qzppxp%2F1762683158675_KUTSAY.jpg?alt=media\u0026token=7d97262e-f9e8-43d0-9373-ac2b79787366",
-    "name": "Kutsay",
-    "preparation": [
-      "Eat raw or cooked",
-      "Pound for poultice",
-      "Make decoction from leaves"
-    ],
-    "sourceInfo": {
-      "authority": "StuartXchange",
-      "description": "Traditional medicinal herb documentation",
-      "url": "https://www.stuartxchange.org/Kuchai.html",
-      "verificationDate": "01/01/2023"
+    {
+        "id":  "serpentina",
+        "averageRating":  4.5,
+        "benefits":  [
+                         "Blood pressure management",
+                         "Anti-inflammatory",
+                         "Respiratory infection relief",
+                         "Anxiety and insomnia relief"
+                     ],
+        "category":  [
+                         "Cardiovascular",
+                         "Neurological",
+                         "Metabolic"
+                     ],
+        "createdAt":  "2025-11-09T01:52:36.493Z",
+        "dosage":  "As directed by traditional practitioner",
+        "imageUrl":  "https://firebasestorage.googleapis.com/v0/b/herbful-535e4.firebasestorage.app/o/treatments%2Fimages%2F1762653156499aac1c9y2v%2F1762682609381_Serpentina.jpg?alt=media\u0026token=50289751-c359-4e29-a2ef-a83072268848",
+        "name":  "Serpentina",
+        "preparation":  [
+                            "Boil leaves or roots into decoction",
+                            "Make into capsules and extracts"
+                        ],
+        "sourceType":  "Local Remedy",
+        "symptoms":  [
+                         "Elevated blood pressure",
+                         "inflammation-related pain",
+                         "fever",
+                         "respiratory discomfort",
+                         "high blood sugar symptoms",
+                         "digestive upset",
+                         "stress and anxiety",
+                         "sleep disturbances"
+                     ],
+        "totalReviews":  2,
+        "updatedAt":  "2025-11-09T10:03:31.834Z",
+        "usage":  "Oral consumption or topical application",
+        "warnings":  [
+                         "STRONG MEDICINAL HERB - CONSULT DOCTOR",
+                         "May interact with blood pressure medications",
+                         "Not for self-medication"
+                     ]
     },
-    "sourceType": "Verified Source",
-    "symptoms": [
-      "bloating",
-      "stomach pain",
-      "indigestion",
-      "loss of appetite",
-      "dizziness from high blood pressure",
-      "slow-healing wounds",
-      "skin irritation"
-    ],
-    "totalReviews": 2,
-    "updatedAt": "2025-11-09T10:24:12.841Z",
-    "usage": "Oral consumption or topical application",
-    "warnings": ["May interact with blood thinners", "Use in moderation"]
-  },
-  {
-    "id": "banaba",
-    "averageRating": 4.5,
-    "benefits": [
-      "Diabetes management",
-      "Urinary tract infection treatment",
-      "Kidney support",
-      "Weight management",
-      "Blood pressure control"
-    ],
-    "category": ["Metabolic", "Renal", "Cardiovascular"],
-    "createdAt": "2025-11-09T01:52:36.493Z",
-    "dosage": "As needed for symptoms",
-    "imageUrl": "https://firebasestorage.googleapis.com/v0/b/herbful-535e4.firebasestorage.app/o/treatments%2Fimages%2F1762653156510uw1iu9ofn%2F1762683129167_BANABA.jpg?alt=media\u0026token=e9caf82d-5eee-4960-93d8-84d3364a2c12",
-    "name": "Banaba",
-    "preparation": [
-      "Boil leaves for 10-15 minutes as tea",
-      "Eat young leaves fresh",
-      "Use dried leaves for herbal tea"
-    ],
-    "sourceType": "Local Remedy",
-    "symptoms": [
-      "frequent urination",
-      "excessive thirst",
-      "fatigue",
-      "high blood sugar symptoms",
-      "painful urination",
-      "swelling",
-      "dizziness from high blood pressure",
-      "weight gain"
-    ],
-    "totalReviews": 2,
-    "updatedAt": "2025-11-09T10:24:12.917Z",
-    "usage": "Oral consumption",
-    "warnings": [
-      "Monitor blood sugar levels",
-      "Consult doctor for diabetes management"
-    ]
-  },
-  {
-    "id": "anunas",
-    "averageRating": 0,
-    "benefits": [
-      "Diarrhea and dysentery relief",
-      "Fever reduction",
-      "Skin infection treatment",
-      "Digestive improvement"
-    ],
-    "category": ["Digestive", "Dermatological"],
-    "createdAt": "2025-11-09T01:52:36.493Z",
-    "dosage": "As needed for symptoms",
-    "imageUrl": "https://firebasestorage.googleapis.com/v0/b/herbful-535e4.firebasestorage.app/o/treatments%2Fimages%2F1762653156511bcrni5u4p%2F1762683105624_ANUNAS.jpg?alt=media\u0026token=8632f66d-993e-48de-87aa-87d6a2ac5fbc",
-    "name": "Anunas",
-    "preparation": [
-      "Boil leaves for decoction",
-      "Crush fresh leaves for external application",
-      "Eat fruit fresh"
-    ],
-    "sourceType": "Local Remedy",
-    "symptoms": [
-      "stomach pain",
-      "loose bowel movement",
-      "fever and body heat",
-      "skin swelling or redness",
-      "boils",
-      "bloating",
-      "poor digestion"
-    ],
-    "totalReviews": 0,
-    "updatedAt": "2025-11-09T10:24:12.986Z",
-    "usage": "Oral consumption or topical application",
-    "warnings": [
-      "Seeds may be toxic in large quantities",
-      "Consult doctor for persistent diarrhea"
-    ]
-  },
-  {
-    "id": "miracle fruit",
-    "averageRating": 4.5,
-    "benefits": [
-      "Blood sugar management support",
-      "Natural sweetener alternative",
-      "Appetite improvement"
-    ],
-    "category": ["Metabolic", "Appetite Regulation"],
-    "createdAt": "2025-11-09T01:52:36.493Z",
-    "dosage": "As needed typically before meals",
-    "imageUrl": "https://firebasestorage.googleapis.com/v0/b/herbful-535e4.firebasestorage.app/o/treatments%2Fimages%2F1762653156512281oidctw%2F1762683082633_MIRACLEFRUIT.jpg?alt=media\u0026token=0514196b-295f-482c-bd27-cbb1713acffe",
-    "name": "Miracle Fruit",
-    "preparation": [
-      "Eat fresh berries",
-      "Boil leaves for tea in some practices"
-    ],
-    "sourceType": "Local Remedy",
-    "symptoms": [
-      "high blood sugar symptoms",
-      "loss of appetite",
-      "craving for sweets"
-    ],
-    "totalReviews": 2,
-    "updatedAt": "2025-11-09T10:24:13.062Z",
-    "usage": "Oral consumption",
-    "warnings": [
-      "Not a substitute for diabetes medication",
-      "Monitor blood sugar levels"
-    ]
-  },
-  {
-    "id": "avocado leaves",
-    "averageRating": 4.5,
-    "benefits": [
-      "Kidney stone management",
-      "Urinary tract infection relief",
-      "Diarrhea treatment",
-      "Blood pressure management"
-    ],
-    "category": ["Renal", "Digestive", "Cardiovascular"],
-    "createdAt": "2025-11-09T01:52:36.493Z",
-    "dosage": "As needed for symptoms",
-    "imageUrl": "https://firebasestorage.googleapis.com/v0/b/herbful-535e4.firebasestorage.app/o/treatments%2Fimages%2F1762653156513hnjntmv43%2F1762683057108_AVOCADOLEAVES.jpg?alt=media\u0026token=ac362d78-10b4-435c-b354-c99605a125c5",
-    "name": "Avocado Leaves",
-    "preparation": [
-      "Boil fresh or dried leaves for 10-15 minutes",
-      "Crush leaves for poultice"
-    ],
-    "sourceType": "Local Remedy",
-    "symptoms": [
-      "painful urination",
-      "frequent urination",
-      "stomach pain",
-      "loose stools",
-      "dizziness",
-      "high blood pressure symptoms",
-      "headache",
-      "body pain"
-    ],
-    "totalReviews": 2,
-    "updatedAt": "2025-11-09T10:24:13.170Z",
-    "usage": "Drink as tea or apply topically",
-    "warnings": [
-      "Consult doctor for kidney stones",
-      "May cause allergic reactions in sensitive individuals"
-    ]
-  },
-  {
-    "id": "tagumbao",
-    "averageRating": 0,
-    "benefits": [
-      "Cough relief",
-      "Fever reduction",
-      "Stomach pain relief",
-      "Wound treatment"
-    ],
-    "category": ["Respiratory", "Digestive", "Dermatological"],
-    "createdAt": "2025-11-09T01:52:36.493Z",
-    "dosage": "As needed for symptoms",
-    "imageUrl": "https://firebasestorage.googleapis.com/v0/b/herbful-535e4.firebasestorage.app/o/treatments%2Fimages%2F17626531565145twwb3h5y%2F1762682931721_TAGUMBAO.jpg?alt=media\u0026token=1945e382-e790-464a-9c5d-9c0fc8207784",
-    "name": "Tagumbao",
-    "preparation": [
-      "Boil leaves for tea or decoction",
-      "Pound fresh leaves for poultice"
-    ],
-    "sourceType": "Local Remedy",
-    "symptoms": [
-      "Persistent coughing",
-      "fever and body heat",
-      "abdominal pain",
-      "minor cuts and wounds",
-      "swelling"
-    ],
-    "totalReviews": 0,
-    "updatedAt": "2025-11-09T10:08:55.074Z",
-    "usage": "Oral consumption or topical application",
-    "warnings": [
-      "Consult doctor for persistent symptoms",
-      "Clean wounds properly before application"
-    ]
-  },
-  {
-    "id": "papaya leaves",
-    "averageRating": 4.5,
-    "benefits": [
-      "Dengue fever supportive care",
-      "Digestive problem relief",
-      "Intestinal worm treatment",
-      "Menstrual pain relief"
-    ],
-    "category": ["Hematological", "Digestive", "Antiparasitic"],
-    "createdAt": "2025-11-09T01:52:36.493Z",
-    "dosage": "As needed for symptoms",
-    "imageUrl": "https://firebasestorage.googleapis.com/v0/b/herbful-535e4.firebasestorage.app/o/treatments%2Fimages%2F1762653156515esqkytdlf%2F1762682903643_PAPAYALEAVES.jpg?alt=media\u0026token=bf22e838-4d42-473d-8f61-1037970f762a",
-    "name": "Papaya Leaves",
-    "preparation": [
-      "Boil fresh leaves for 10-15 minutes",
-      "Extract juice from crushed leaves"
-    ],
-    "sourceType": "Local Remedy",
-    "symptoms": [
-      "Low platelet count",
-      "fever",
-      "stomach pain",
-      "indigestion",
-      "bloating",
-      "loss of appetite",
-      "intestinal discomfort",
-      "menstrual cramps"
-    ],
-    "totalReviews": 2,
-    "updatedAt": "2025-11-09T10:08:25.646Z",
-    "usage": "Oral consumption",
-    "warnings": [
-      "Not a substitute for medical treatment in dengue",
-      "Consult doctor for persistent fever"
-    ]
-  },
-  {
-    "id": "tsaang gubat",
-    "averageRating": 4.5,
-    "benefits": [
-      "Treats stomachache and diarrhea",
-      "Used as mouthwash for gum infections"
-    ],
-    "category": ["Digestive", "Oral Health"],
-    "createdAt": "2025-11-09T01:52:36.493Z",
-    "dosage": "1 cup before meals",
-    "imageUrl": "https://firebasestorage.googleapis.com/v0/b/herbful-535e4.firebasestorage.app/o/treatments%2Fimages%2F1762653156516fe8hrzy0o%2F1762682872856_TSAANGGUBAT.jpg?alt=media\u0026token=c221cdec-25c8-48a6-9e53-8b1b07b8b823",
-    "name": "Tsaang Gubat",
-    "preparation": [
-      "Boil 1 cup of dried leaves in 2 cups of water for 10 minutes"
-    ],
-    "sourceInfo": {
-      "authority": "Philippine Department of Health",
-      "description": "Approved herbal medicine by DOH",
-      "url": "https://pitahc.gov.ph/directory-of-herbs/",
-      "verificationDate": "01/01/2023"
+    {
+        "id":  "pansit-pansitan",
+        "averageRating":  4.5,
+        "benefits":  [
+                         "Lowers uric acid for gout",
+                         "Anti-inflammatory",
+                         "Pain relief for arthritis and headaches"
+                     ],
+        "category":  [
+                         "Anti-inflammatory",
+                         "Pain Relief",
+                         "Dermatological"
+                     ],
+        "createdAt":  "2025-11-09T01:52:36.493Z",
+        "dosage":  "1 cup twice daily (morning and evening)",
+        "imageUrl":  "https://firebasestorage.googleapis.com/v0/b/herbful-535e4.firebasestorage.app/o/treatments%2Fimages%2F1762653156500hpu7pjckf%2F1762682648268_Pansit-Pansitan.jpg?alt=media\u0026token=fb9aa1b9-349f-4cc0-9e24-2a784211cc26",
+        "name":  "Pansit-Pansitan",
+        "preparation":  [
+                            "Eat raw as salad",
+                            "Boil 1 cup of leaves/stems in 2 cups of water",
+                            "Pound into poultice"
+                        ],
+        "sourceInfo":  {
+                           "authority":  "Philippine Department of Health",
+                           "description":  "Approved herbal medicine by PITAHC",
+                           "url":  "https://pitahc.gov.ph/directory-of-herbs/",
+                           "verificationDate":  "01/01/2023"
+                       },
+        "sourceType":  "Verified Source",
+        "symptoms":  [
+                         "Joint pain and swelling",
+                         "skin inflammation or infection",
+                         "headache",
+                         "abdominal discomfort",
+                         "urinary or kidney-related pain",
+                         "fever",
+                         "sore throat",
+                         "wound or burn soreness",
+                         "eye irritation",
+                         "Elevated blood pressure",
+                         "digestive upset",
+                         "mental restlessness"
+                     ],
+        "totalReviews":  2,
+        "updatedAt":  "2025-11-09T10:24:12.687Z",
+        "usage":  "Oral consumption or topical application",
+        "warnings":  [
+                         "Consult doctor for kidney problems",
+                         "May interact with blood pressure medications"
+                     ]
     },
-    "sourceType": "Verified Source",
-    "symptoms": [
-      "Stomach spasms",
-      "diarrhea",
-      "intestinal discomfort",
-      "oral cavities/decay",
-      "allergic rhinitis",
-      "sneezing or irritation"
-    ],
-    "totalReviews": 2,
-    "updatedAt": "2025-11-09T10:07:54.148Z",
-    "usage": "Drink as tea or use as mouthwash",
-    "warnings": [
-      "Avoid excessive use",
-      "Consult doctor for persistent diarrhea"
-    ]
-  },
-  {
-    "id": "akapulko",
-    "averageRating": 4.5,
-    "benefits": [
-      "Treats fungal skin infections (ringworm, scabies, eczema)",
-      "Mild laxative properties"
-    ],
-    "category": ["Dermatological", "Antifungal"],
-    "createdAt": "2025-11-09T01:52:36.493Z",
-    "dosage": "Apply twice daily",
-    "imageUrl": "https://firebasestorage.googleapis.com/v0/b/herbful-535e4.firebasestorage.app/o/treatments%2Fimages%2F1762653156517omqgp6xz6%2F1762682850345_AKAPULO.jpg?alt=media\u0026token=c1ac61dc-ef5f-4765-ba1a-da13cdd3ca2b",
-    "name": "Akapulko",
-    "preparation": [
-      "Crush fresh leaves into paste",
-      "Apply as lotion/ointment"
-    ],
-    "sourceInfo": {
-      "authority": "Philippine Department of Health",
-      "description": "Approved herbal medicine by DOH",
-      "url": "https://pitahc.gov.ph/directory-of-herbs/",
-      "verificationDate": "01/01/2023"
+    {
+        "id":  "tanglad",
+        "averageRating":  4.5,
+        "benefits":  [
+                         "Digestive relief",
+                         "Blood pressure management",
+                         "Anxiety reduction",
+                         "Fungal infection treatment"
+                     ],
+        "category":  [
+                         "Digestive",
+                         "Cardiovascular",
+                         "Respiratory"
+                     ],
+        "createdAt":  "2025-11-09T01:52:36.493Z",
+        "dosage":  "As needed for symptoms",
+        "imageUrl":  "https://firebasestorage.googleapis.com/v0/b/herbful-535e4.firebasestorage.app/o/treatments%2Fimages%2F1762653156501n79ffsidz%2F1762682679343_Tanglad.jpg?alt=media\u0026token=950a23de-ef69-486b-82c3-dd3551ffaa05",
+        "name":  "Tanglad",
+        "preparation":  [
+                            "Boil fresh stalks or leaves for 5-15 minutes",
+                            "Use diluted essential oil topically or by inhalation"
+                        ],
+        "sourceType":  "Local Remedy",
+        "symptoms":  [
+                         "Upset stomach",
+                         "bloating",
+                         "indigestion cramps",
+                         "fever heat",
+                         "headache",
+                         "elevated blood pressure symptoms",
+                         "muscle or joint aches",
+                         "anxiety or tension",
+                         "fungal skin irritation",
+                         "dandruff",
+                         "cough and congestion",
+                         "frequent urination"
+                     ],
+        "totalReviews":  2,
+        "updatedAt":  "2025-11-09T10:04:43.179Z",
+        "usage":  "Drink as tea or use topically",
+        "warnings":  [
+                         "May cause skin sensitivity to sunlight",
+                         "Use in moderation"
+                     ]
     },
-    "sourceType": "Verified Source",
-    "symptoms": [
-      "Itchy, scaly skin patches",
-      "rash",
-      "irritation from fungal infections"
-    ],
-    "totalReviews": 2,
-    "updatedAt": "2025-11-09T10:07:31.765Z",
-    "usage": "Topical application on affected areas",
-    "warnings": [
-      "Do not apply on open wounds",
-      "Test on small area first for sensitivity"
-    ]
-  },
-  {
-    "id": "yerba buena",
-    "averageRating": 4.5,
-    "benefits": [
-      "Relieves body pain, headache, nausea, cough",
-      "Digestive comfort"
-    ],
-    "category": ["Pain Relief", "Respiratory", "Digestive"],
-    "createdAt": "2025-11-09T01:52:36.493Z",
-    "dosage": "3 times a day as needed",
-    "imageUrl": "https://firebasestorage.googleapis.com/v0/b/herbful-535e4.firebasestorage.app/o/treatments%2Fimages%2F1762653156518nf5m56eoh%2F1762682827714_YERBABUENA.jpg?alt=media\u0026token=eb6db537-546d-4476-bf99-b43a0c27a2a5",
-    "name": "Yerba Buena",
-    "preparation": [
-      "Boil leaves for tea",
-      "Infuse in oil",
-      "Use as poultice or inhalation"
-    ],
-    "sourceInfo": {
-      "authority": "Philippine Department of Health",
-      "description": "Approved herbal medicine by DOH",
-      "url": "https://pitahc.gov.ph/directory-of-herbs/",
-      "verificationDate": "01/01/2023"
+    {
+        "id":  "bayabas-(guava)",
+        "averageRating":  4.5,
+        "benefits":  [
+                         "Treats diarrhea, gum infections, and wounds",
+                         "Supports immune and heart health"
+                     ],
+        "category":  [
+                         "Digestive",
+                         "Oral Health",
+                         "Dermatological"
+                     ],
+        "createdAt":  "2025-11-09T01:52:36.493Z",
+        "dosage":  "As needed for symptoms",
+        "imageUrl":  "https://firebasestorage.googleapis.com/v0/b/herbful-535e4.firebasestorage.app/o/treatments%2Fimages%2F1762653156502eygn84pzd%2F1762682713170_Guava%20Leaves.jpg?alt=media\u0026token=aa5260df-f45d-45e4-a1ad-477b8791aea9",
+        "name":  "Bayabas (Guava)",
+        "preparation":  [
+                            "Boil 4-6 fresh leaves in water for 10-15 minutes",
+                            "Crush leaves into paste for topical use"
+                        ],
+        "sourceInfo":  {
+                           "authority":  "Philippine Department of Health",
+                           "description":  "Approved herbal medicine by PITAHC",
+                           "url":  "https://pitahc.gov.ph/directory-of-herbs/",
+                           "verificationDate":  "01/01/2023"
+                       },
+        "sourceType":  "Verified Source",
+        "symptoms":  [
+                         "Loose or painful bowel movements",
+                         "cough",
+                         "chest congestion",
+                         "mouth or gum discomfort",
+                         "elevated blood sugar symptoms",
+                         "high blood pressure symptoms",
+                         "inflammation or swelling",
+                         "skin irritation",
+                         "acne",
+                         "wound soreness",
+                         "indigestion",
+                         "bloating"
+                     ],
+        "totalReviews":  2,
+        "updatedAt":  "2025-11-09T10:05:17.095Z",
+        "usage":  "Drink as tea or apply topically",
+        "warnings":  [
+                         "Use in moderation",
+                         "Consult doctor for persistent diarrhea"
+                     ]
     },
-    "sourceType": "Verified Source",
-    "symptoms": [
-      "headache",
-      "toothache",
-      "joint or menstrual pain",
-      "cough",
-      "sinus congestion",
-      "indigestion/gas",
-      "unpleasant mouth odor"
-    ],
-    "totalReviews": 2,
-    "updatedAt": "2025-11-09T10:24:13.243Z",
-    "usage": "Drink as tea or apply topically",
-    "warnings": [
-      "Avoid during pregnancy",
-      "May cause skin irritation in some individuals"
-    ]
-  },
-  {
-    "id": "bawang",
-    "averageRating": 4.5,
-    "benefits": [
-      "Lowers blood pressure and cholesterol",
-      "Antibacterial properties",
-      "Cardiovascular support"
-    ],
-    "category": ["Cardiovascular", "Antimicrobial"],
-    "createdAt": "2025-11-09T01:52:36.493Z",
-    "dosage": "1-2 raw cloves daily or as capsules",
-    "imageUrl": "https://firebasestorage.googleapis.com/v0/b/herbful-535e4.firebasestorage.app/o/treatments%2Fimages%2F1762653156519w4mt9q3wg%2F1762682790411_BAWANG.jpg?alt=media\u0026token=54859a92-7391-4d0a-8bbd-cdd55659ddd2",
-    "name": "Bawang",
-    "preparation": ["Consume raw", "cooked", "or in oil/extract form"],
-    "sourceInfo": {
-      "authority": "Philippine Department of Health",
-      "description": "Approved herbal medicine by DOH",
-      "url": "https://pitahc.gov.ph/directory-of-herbs/",
-      "verificationDate": "01/01/2023"
+    {
+        "id":  "herbaka",
+        "averageRating":  0,
+        "benefits":  [
+                         "Regulates menstruation",
+                         "Stomachache relief",
+                         "Malaria symptom management",
+                         "Gas pain relief"
+                     ],
+        "category":  [
+                         "Gynecological",
+                         "Digestive",
+                         "Antimalarial"
+                     ],
+        "createdAt":  "2025-11-09T01:52:36.493Z",
+        "dosage":  "1/2 glass twice daily for menstruation, 1 tablespoon daily for stomachache",
+        "imageUrl":  "https://firebasestorage.googleapis.com/v0/b/herbful-535e4.firebasestorage.app/o/treatments%2Fimages%2F1762653156503ijit73iya%2F1762682734801_Herbaka.jpg?alt=media\u0026token=4078c4d9-802d-4fa3-8c5c-ab660e8077c3",
+        "name":  "Herbaka",
+        "preparation":  [
+                            "Boil 7 leaves in 3 glasses of water for menstrual issues",
+                            "Squeeze leaves for juice extraction",
+                            "Pound leaves for poultice"
+                        ],
+        "sourceType":  "Local Remedy",
+        "symptoms":  [
+                         "Irregular menstrual flow or delay",
+                         "abdominal pain or cramps",
+                         "fever or chills",
+                         "abdominal bloating or gas-related discomfort"
+                     ],
+        "totalReviews":  0,
+        "updatedAt":  "2025-11-09T10:05:36.285Z",
+        "usage":  "Oral consumption or topical application",
+        "warnings":  [
+                         "Consult doctor for persistent menstrual issues",
+                         "Not for pregnant women"
+                     ]
     },
-    "sourceType": "Verified Source",
-    "symptoms": [
-      "High blood pressure (dizziness/throbbing)",
-      "elevated cholesterol",
-      "mild infections",
-      "poor digestion"
-    ],
-    "totalReviews": 2,
-    "updatedAt": "2025-11-09T10:06:31.997Z",
-    "usage": "Oral consumption",
-    "warnings": [
-      "May interact with blood thinners",
-      "Can cause stomach irritation"
-    ]
-  },
-  {
-    "id": "niyog-niyogan",
-    "averageRating": 4.5,
-    "benefits": [
-      "Deworming, especially in children",
-      "Relieves rheumatism and diarrhea"
-    ],
-    "category": ["Antiparasitic", "Anti-inflammatory"],
-    "createdAt": "2025-11-09T01:52:36.493Z",
-    "dosage": "8-10 seeds for children 4-6 years old, 2 hours after eating",
-    "imageUrl": "https://firebasestorage.googleapis.com/v0/b/herbful-535e4.firebasestorage.app/o/treatments%2Fimages%2F1762653156520wo5xd71iu%2F1762682762166_NIYOGNIYOGAN.jpg?alt=media\u0026token=049d89a7-5f39-47c9-b5e8-914404ef2014",
-    "name": "Niyog-Niyogan",
-    "preparation": ["Eat seeds or prepare leaf/root decoctions"],
-    "sourceInfo": {
-      "authority": "Philippine Department of Health",
-      "description": "Approved herbal medicine by DOH",
-      "url": "https://pitahc.gov.ph/directory-of-herbs/",
-      "verificationDate": "01/01/2023"
+    {
+        "id":  "gawed",
+        "averageRating":  0,
+        "benefits":  [
+                         "Wound healing",
+                         "Skin infection treatment",
+                         "Cough and sore throat relief",
+                         "Toothache relief",
+                         "Arthritis pain management"
+                     ],
+        "category":  [
+                         "Dermatological",
+                         "Oral Health",
+                         "Anti-inflammatory"
+                     ],
+        "createdAt":  "2025-11-09T01:52:36.493Z",
+        "dosage":  "Apply as needed to affected areas",
+        "imageUrl":  "https://firebasestorage.googleapis.com/v0/b/herbful-535e4.firebasestorage.app/o/treatments%2Fimages%2F1762653156504kbi95radp%2F1762682976525_Gawed.jpg?alt=media\u0026token=e1d7dc14-61bc-4bae-9643-2122b51873c8",
+        "name":  "Gawed",
+        "preparation":  [
+                            "Wash and pound fresh leaves for poultice",
+                            "Boil leaves for wash or mouth rinse"
+                        ],
+        "sourceType":  "Local Remedy",
+        "symptoms":  [
+                         "Infected or slow-healing wounds",
+                         "skin redness and swelling",
+                         "cough and throat irritation",
+                         "tooth pain",
+                         "joint stiffness or pain",
+                         "stomach discomfort",
+                         "bloating",
+                         "indigestion"
+                     ],
+        "totalReviews":  0,
+        "updatedAt":  "2025-11-09T10:09:38.838Z",
+        "usage":  "Topical application or oral rinse",
+        "warnings":  [
+                         "Test on small skin area first",
+                         "Avoid swallowing mouth rinse"
+                     ]
     },
-    "sourceType": "Verified Source",
-    "symptoms": [
-      "Worm infestation (abdominal discomfort, itching)",
-      "body aches",
-      "fever",
-      "headache"
-    ],
-    "totalReviews": 2,
-    "updatedAt": "2025-11-09T10:06:03.173Z",
-    "usage": "Oral consumption",
-    "warnings": [
-      "STRICT SUPERVISION REQUIRED",
-      "Follow correct dosage precisely",
-      "Can be toxic in high doses"
-    ]
-  },
-  {
-    "id": "ampalaya",
-    "averageRating": 3.5,
-    "benefits": [
-      "Lowers blood sugar",
-      "Improves digestion",
-      "Anti-inflammatory properties"
-    ],
-    "category": ["Endocrine", "Digestive", "Anti-inflammatory"],
-    "createdAt": "2025-11-09T01:52:36.493Z",
-    "dosage": "1/2 cup twice a day",
-    "imageUrl": "https://firebasestorage.googleapis.com/v0/b/herbful-535e4.firebasestorage.app/o/treatments%2Fimages%2F17626531565210aifkrldv%2F1762682580224_AMPALAYA.jpg?alt=media\u0026token=215f0590-f898-4f4b-837b-9ffc627e52d2",
-    "name": "Ampalaya",
-    "preparation": ["Eat cooked leaves or fruits", "Prepare as juice or tea"],
-    "sourceInfo": {
-      "authority": "Philippine Department of Health",
-      "description": "Approved herbal medicine by DOH",
-      "url": "https://pitahc.gov.ph/directory-of-herbs/",
-      "verificationDate": "01/01/2023"
+    {
+        "id":  "biday",
+        "averageRating":  0,
+        "benefits":  [
+                         "Reduces swelling",
+                         "Traditional use for snake bites",
+                         "Boil treatment",
+                         "Rheumatism relief"
+                     ],
+        "category":  [
+                         "Anti-inflammatory",
+                         "Dermatological"
+                     ],
+        "createdAt":  "2025-11-09T01:52:36.493Z",
+        "dosage":  "Apply as needed",
+        "imageUrl":  "https://firebasestorage.googleapis.com/v0/b/herbful-535e4.firebasestorage.app/o/treatments%2Fimages%2F1762653156505g43x1ckmr%2F1762683029535_Biday.jpg?alt=media\u0026token=8e64679b-199f-4b0b-8089-5c7712831186",
+        "name":  "Biday",
+        "preparation":  [
+                            "Boil fresh stem or roots thoroughly to remove toxins",
+                            "Pound leaves or stem for poultice"
+                        ],
+        "sourceType":  "Local Remedy",
+        "symptoms":  [
+                         "Skin redness",
+                         "swelling",
+                         "pain from boils",
+                         "joint pain or stiffness",
+                         "inflammation in affected areas"
+                     ],
+        "totalReviews":  0,
+        "updatedAt":  "2025-11-09T10:10:33.911Z",
+        "usage":  "External application on affected areas",
+        "warnings":  [
+                         "MUST BOIL THOROUGHLY TO REMOVE TOXINS",
+                         "Not for internal use without proper preparation"
+                     ]
     },
-    "sourceType": "Verified Source",
-    "symptoms": [
-      "High blood sugar symptoms (fatigue, thirst)",
-      "digestive discomfort",
-      "inflammation",
-      "high cholesterol"
-    ],
-    "totalReviews": 2,
-    "updatedAt": "2025-11-09T10:03:01.726Z",
-    "usage": "Oral consumption",
-    "warnings": [
-      "May interact with diabetes medications",
-      "Not recommended during pregnancy"
-    ]
-  }
+    {
+        "id":  "kamyas",
+        "averageRating":  0,
+        "benefits":  [
+                         "Cough and cold relief",
+                         "Blood pressure management",
+                         "Skin infection treatment",
+                         "Rheumatism relief"
+                     ],
+        "category":  [
+                         "Respiratory",
+                         "Cardiovascular",
+                         "Dermatological"
+                     ],
+        "createdAt":  "2025-11-09T01:52:36.493Z",
+        "dosage":  "As needed for symptoms",
+        "imageUrl":  "https://firebasestorage.googleapis.com/v0/b/herbful-535e4.firebasestorage.app/o/treatments%2Fimages%2F17626531565063m1nvzmmb%2F1762683258369_Kamyas.jpg?alt=media\u0026token=7938ed46-2e82-4546-989a-2d8dc6caf541",
+        "name":  "Kamyas",
+        "preparation":  [
+                            "Eat fresh fruits raw or as juice",
+                            "Boil leaves for decoction",
+                            "Apply leaves as poultice"
+                        ],
+        "sourceType":  "Local Remedy",
+        "symptoms":  [
+                         "Coughing",
+                         "sore throat",
+                         "nasal congestion",
+                         "dizziness from high blood pressure",
+                         "skin itching or irritation",
+                         "Joint pain and swelling"
+                     ],
+        "totalReviews":  0,
+        "updatedAt":  "2025-11-09T10:24:12.756Z",
+        "usage":  "Oral consumption or topical application",
+        "warnings":  [
+                         "May cause stomach upset in sensitive individuals",
+                         "Monitor blood pressure"
+                     ]
+    },
+    {
+        "id":  "lagundi",
+        "averageRating":  5,
+        "benefits":  [
+                         "Cough and asthma relief",
+                         "Reduces inflammation",
+                         "Acts as bronchodilator and expectorant"
+                     ],
+        "category":  [
+                         "Respiratory",
+                         "Anti-inflammatory"
+                     ],
+        "createdAt":  "2025-11-09T01:52:36.493Z",
+        "dosage":  "1 cup 3 times a day",
+        "imageUrl":  "https://firebasestorage.googleapis.com/v0/b/herbful-535e4.firebasestorage.app/o/treatments%2Fimages%2F1762653156507e7hsvkr2z%2F1762683281000_Lagundi.jpg?alt=media\u0026token=0c80bb4b-a877-4848-be6e-8ae3c2c93d74",
+        "name":  "Lagundi",
+        "preparation":  [
+                            "Boil 5 leaves in 2 cups of water for 10-15 minutes"
+                        ],
+        "sourceInfo":  {
+                           "authority":  "Philippine Department of Health",
+                           "description":  "Approved herbal medicine by PITAHC",
+                           "url":  "https://pitahc.gov.ph/directory-of-herbs/",
+                           "verificationDate":  "01/01/2023"
+                       },
+        "sourceType":  "",
+        "symptoms":  [
+                         "Persistent coughing",
+                         "wheezing or shortness of breath",
+                         "body heat or fever",
+                         "nasal congestion",
+                         "skin rashes or itching",
+                         "abdominal pain with diarrhea"
+                     ],
+        "totalReviews":  2,
+        "updatedAt":  "2025-11-09T10:14:42.964Z",
+        "usage":  "Drink as tea or apply poultice externally",
+        "warnings":  [
+                         "Not for children under 2 years old",
+                         "Discontinue if rash or allergic reaction occurs"
+                     ]
+    },
+    {
+        "id":  "subusob",
+        "averageRating":  0,
+        "benefits":  [
+                         "Stops bleeding",
+                         "Wound and cut treatment",
+                         "Skin infection management",
+                         "Burn relief",
+                         "Insect bite treatment"
+                     ],
+        "category":  [
+                         "Dermatological",
+                         "Wound Care"
+                     ],
+        "createdAt":  "2025-11-09T01:52:36.493Z",
+        "dosage":  "Apply as needed to affected areas",
+        "imageUrl":  "https://firebasestorage.googleapis.com/v0/b/herbful-535e4.firebasestorage.app/o/treatments%2Fimages%2F17626531565080m8slxz3r%2F1762683203625_Sambong%20(Subusob)Scientific%20name%20Blumea%20balsamifera.jpg?alt=media\u0026token=7b85d1f2-f2d3-49ff-a4e9-b8be0efe30b8",
+        "name":  "Subusob",
+        "preparation":  [
+                            "Wash",
+                            "pound",
+                            "and apply fresh leaves directly",
+                            "Use leaf decoction for washing wounds"
+                        ],
+        "sourceType":  "Local Remedy",
+        "symptoms":  [
+                         "Bleeding",
+                         "skin irritation",
+                         "swelling",
+                         "pain from wounds or burns",
+                         "redness and itching from insect bites"
+                     ],
+        "totalReviews":  0,
+        "updatedAt":  "2025-11-09T10:13:25.685Z",
+        "usage":  "Topical application",
+        "warnings":  [
+                         "Clean wounds properly before application",
+                         "Seek medical help for serious wounds"
+                     ]
+    },
+    {
+        "id":  "kutsay",
+        "averageRating":  4.5,
+        "benefits":  [
+                         "Lowers blood pressure",
+                         "Improves digestion",
+                         "Antibacterial and antifungal",
+                         "Appetite stimulation"
+                     ],
+        "category":  [
+                         "Digestive",
+                         "Cardiovascular",
+                         "Antimicrobial"
+                     ],
+        "createdAt":  "2025-11-09T01:52:36.493Z",
+        "dosage":  "As culinary ingredient or small doses of juice extract",
+        "imageUrl":  "https://firebasestorage.googleapis.com/v0/b/herbful-535e4.firebasestorage.app/o/treatments%2Fimages%2F1762653156509fu4qzppxp%2F1762683158675_KUTSAY.jpg?alt=media\u0026token=7d97262e-f9e8-43d0-9373-ac2b79787366",
+        "name":  "Kutsay",
+        "preparation":  [
+                            "Eat raw or cooked",
+                            "Pound for poultice",
+                            "Make decoction from leaves"
+                        ],
+        "sourceInfo":  {
+                           "authority":  "StuartXchange",
+                           "description":  "Traditional medicinal herb documentation",
+                           "url":  "https://www.stuartxchange.org/Kuchai.html",
+                           "verificationDate":  "01/01/2023"
+                       },
+        "sourceType":  "Verified Source",
+        "symptoms":  [
+                         "bloating",
+                         "stomach pain",
+                         "indigestion",
+                         "loss of appetite",
+                         "dizziness from high blood pressure",
+                         "slow-healing wounds",
+                         "skin irritation"
+                     ],
+        "totalReviews":  2,
+        "updatedAt":  "2025-11-09T10:24:12.841Z",
+        "usage":  "Oral consumption or topical application",
+        "warnings":  [
+                         "May interact with blood thinners",
+                         "Use in moderation"
+                     ]
+    },
+    {
+        "id":  "banaba",
+        "averageRating":  4.5,
+        "benefits":  [
+                         "Diabetes management",
+                         "Urinary tract infection treatment",
+                         "Kidney support",
+                         "Weight management",
+                         "Blood pressure control"
+                     ],
+        "category":  [
+                         "Metabolic",
+                         "Renal",
+                         "Cardiovascular"
+                     ],
+        "createdAt":  "2025-11-09T01:52:36.493Z",
+        "dosage":  "As needed for symptoms",
+        "imageUrl":  "https://firebasestorage.googleapis.com/v0/b/herbful-535e4.firebasestorage.app/o/treatments%2Fimages%2F1762653156510uw1iu9ofn%2F1762683129167_BANABA.jpg?alt=media\u0026token=e9caf82d-5eee-4960-93d8-84d3364a2c12",
+        "name":  "Banaba",
+        "preparation":  [
+                            "Boil leaves for 10-15 minutes as tea",
+                            "Eat young leaves fresh",
+                            "Use dried leaves for herbal tea"
+                        ],
+        "sourceType":  "Local Remedy",
+        "symptoms":  [
+                         "frequent urination",
+                         "excessive thirst",
+                         "fatigue",
+                         "high blood sugar symptoms",
+                         "painful urination",
+                         "swelling",
+                         "dizziness from high blood pressure",
+                         "weight gain"
+                     ],
+        "totalReviews":  2,
+        "updatedAt":  "2025-11-09T10:24:12.917Z",
+        "usage":  "Oral consumption",
+        "warnings":  [
+                         "Monitor blood sugar levels",
+                         "Consult doctor for diabetes management"
+                     ]
+    },
+    {
+        "id":  "anunas",
+        "averageRating":  0,
+        "benefits":  [
+                         "Diarrhea and dysentery relief",
+                         "Fever reduction",
+                         "Skin infection treatment",
+                         "Digestive improvement"
+                     ],
+        "category":  [
+                         "Digestive",
+                         "Dermatological"
+                     ],
+        "createdAt":  "2025-11-09T01:52:36.493Z",
+        "dosage":  "As needed for symptoms",
+        "imageUrl":  "https://firebasestorage.googleapis.com/v0/b/herbful-535e4.firebasestorage.app/o/treatments%2Fimages%2F1762653156511bcrni5u4p%2F1762683105624_ANUNAS.jpg?alt=media\u0026token=8632f66d-993e-48de-87aa-87d6a2ac5fbc",
+        "name":  "Anunas",
+        "preparation":  [
+                            "Boil leaves for decoction",
+                            "Crush fresh leaves for external application",
+                            "Eat fruit fresh"
+                        ],
+        "sourceType":  "Local Remedy",
+        "symptoms":  [
+                         "stomach pain",
+                         "loose bowel movement",
+                         "fever and body heat",
+                         "skin swelling or redness",
+                         "boils",
+                         "bloating",
+                         "poor digestion"
+                     ],
+        "totalReviews":  0,
+        "updatedAt":  "2025-11-09T10:24:12.986Z",
+        "usage":  "Oral consumption or topical application",
+        "warnings":  [
+                         "Seeds may be toxic in large quantities",
+                         "Consult doctor for persistent diarrhea"
+                     ]
+    },
+    {
+        "id":  "miracle-fruit",
+        "averageRating":  4.5,
+        "benefits":  [
+                         "Blood sugar management support",
+                         "Natural sweetener alternative",
+                         "Appetite improvement"
+                     ],
+        "category":  [
+                         "Metabolic",
+                         "Appetite Regulation"
+                     ],
+        "createdAt":  "2025-11-09T01:52:36.493Z",
+        "dosage":  "As needed typically before meals",
+        "imageUrl":  "https://firebasestorage.googleapis.com/v0/b/herbful-535e4.firebasestorage.app/o/treatments%2Fimages%2F1762653156512281oidctw%2F1762683082633_MIRACLEFRUIT.jpg?alt=media\u0026token=0514196b-295f-482c-bd27-cbb1713acffe",
+        "name":  "Miracle Fruit",
+        "preparation":  [
+                            "Eat fresh berries",
+                            "Boil leaves for tea in some practices"
+                        ],
+        "sourceType":  "Local Remedy",
+        "symptoms":  [
+                         "high blood sugar symptoms",
+                         "loss of appetite",
+                         "craving for sweets"
+                     ],
+        "totalReviews":  2,
+        "updatedAt":  "2025-11-09T10:24:13.062Z",
+        "usage":  "Oral consumption",
+        "warnings":  [
+                         "Not a substitute for diabetes medication",
+                         "Monitor blood sugar levels"
+                     ]
+    },
+    {
+        "id":  "avocado-leaves",
+        "averageRating":  4.5,
+        "benefits":  [
+                         "Kidney stone management",
+                         "Urinary tract infection relief",
+                         "Diarrhea treatment",
+                         "Blood pressure management"
+                     ],
+        "category":  [
+                         "Renal",
+                         "Digestive",
+                         "Cardiovascular"
+                     ],
+        "createdAt":  "2025-11-09T01:52:36.493Z",
+        "dosage":  "As needed for symptoms",
+        "imageUrl":  "https://firebasestorage.googleapis.com/v0/b/herbful-535e4.firebasestorage.app/o/treatments%2Fimages%2F1762653156513hnjntmv43%2F1762683057108_AVOCADOLEAVES.jpg?alt=media\u0026token=ac362d78-10b4-435c-b354-c99605a125c5",
+        "name":  "Avocado Leaves",
+        "preparation":  [
+                            "Boil fresh or dried leaves for 10-15 minutes",
+                            "Crush leaves for poultice"
+                        ],
+        "sourceType":  "Local Remedy",
+        "symptoms":  [
+                         "painful urination",
+                         "frequent urination",
+                         "stomach pain",
+                         "loose stools",
+                         "dizziness",
+                         "high blood pressure symptoms",
+                         "headache",
+                         "body pain"
+                     ],
+        "totalReviews":  2,
+        "updatedAt":  "2025-11-09T10:24:13.170Z",
+        "usage":  "Drink as tea or apply topically",
+        "warnings":  [
+                         "Consult doctor for kidney stones",
+                         "May cause allergic reactions in sensitive individuals"
+                     ]
+    },
+    {
+        "id":  "tagumbao",
+        "averageRating":  0,
+        "benefits":  [
+                         "Cough relief",
+                         "Fever reduction",
+                         "Stomach pain relief",
+                         "Wound treatment"
+                     ],
+        "category":  [
+                         "Respiratory",
+                         "Digestive",
+                         "Dermatological"
+                     ],
+        "createdAt":  "2025-11-09T01:52:36.493Z",
+        "dosage":  "As needed for symptoms",
+        "imageUrl":  "https://firebasestorage.googleapis.com/v0/b/herbful-535e4.firebasestorage.app/o/treatments%2Fimages%2F17626531565145twwb3h5y%2F1762682931721_TAGUMBAO.jpg?alt=media\u0026token=1945e382-e790-464a-9c5d-9c0fc8207784",
+        "name":  "Tagumbao",
+        "preparation":  [
+                            "Boil leaves for tea or decoction",
+                            "Pound fresh leaves for poultice"
+                        ],
+        "sourceType":  "Local Remedy",
+        "symptoms":  [
+                         "Persistent coughing",
+                         "fever and body heat",
+                         "abdominal pain",
+                         "minor cuts and wounds",
+                         "swelling"
+                     ],
+        "totalReviews":  0,
+        "updatedAt":  "2025-11-09T10:08:55.074Z",
+        "usage":  "Oral consumption or topical application",
+        "warnings":  [
+                         "Consult doctor for persistent symptoms",
+                         "Clean wounds properly before application"
+                     ]
+    },
+    {
+        "id":  "papaya-leaves",
+        "averageRating":  4.5,
+        "benefits":  [
+                         "Dengue fever supportive care",
+                         "Digestive problem relief",
+                         "Intestinal worm treatment",
+                         "Menstrual pain relief"
+                     ],
+        "category":  [
+                         "Hematological",
+                         "Digestive",
+                         "Antiparasitic"
+                     ],
+        "createdAt":  "2025-11-09T01:52:36.493Z",
+        "dosage":  "As needed for symptoms",
+        "imageUrl":  "https://firebasestorage.googleapis.com/v0/b/herbful-535e4.firebasestorage.app/o/treatments%2Fimages%2F1762653156515esqkytdlf%2F1762682903643_PAPAYALEAVES.jpg?alt=media\u0026token=bf22e838-4d42-473d-8f61-1037970f762a",
+        "name":  "Papaya Leaves",
+        "preparation":  [
+                            "Boil fresh leaves for 10-15 minutes",
+                            "Extract juice from crushed leaves"
+                        ],
+        "sourceType":  "Local Remedy",
+        "symptoms":  [
+                         "Low platelet count",
+                         "fever",
+                         "stomach pain",
+                         "indigestion",
+                         "bloating",
+                         "loss of appetite",
+                         "intestinal discomfort",
+                         "menstrual cramps"
+                     ],
+        "totalReviews":  2,
+        "updatedAt":  "2025-11-09T10:08:25.646Z",
+        "usage":  "Oral consumption",
+        "warnings":  [
+                         "Not a substitute for medical treatment in dengue",
+                         "Consult doctor for persistent fever"
+                     ]
+    },
+    {
+        "id":  "tsaang-gubat",
+        "averageRating":  4.5,
+        "benefits":  [
+                         "Treats stomachache and diarrhea",
+                         "Used as mouthwash for gum infections"
+                     ],
+        "category":  [
+                         "Digestive",
+                         "Oral Health"
+                     ],
+        "createdAt":  "2025-11-09T01:52:36.493Z",
+        "dosage":  "1 cup before meals",
+        "imageUrl":  "https://firebasestorage.googleapis.com/v0/b/herbful-535e4.firebasestorage.app/o/treatments%2Fimages%2F1762653156516fe8hrzy0o%2F1762682872856_TSAANGGUBAT.jpg?alt=media\u0026token=c221cdec-25c8-48a6-9e53-8b1b07b8b823",
+        "name":  "Tsaang Gubat",
+        "preparation":  [
+                            "Boil 1 cup of dried leaves in 2 cups of water for 10 minutes"
+                        ],
+        "sourceInfo":  {
+                           "authority":  "Philippine Department of Health",
+                           "description":  "Approved herbal medicine by DOH",
+                           "url":  "https://pitahc.gov.ph/directory-of-herbs/",
+                           "verificationDate":  "01/01/2023"
+                       },
+        "sourceType":  "Verified Source",
+        "symptoms":  [
+                         "Stomach spasms",
+                         "diarrhea",
+                         "intestinal discomfort",
+                         "oral cavities/decay",
+                         "allergic rhinitis",
+                         "sneezing or irritation"
+                     ],
+        "totalReviews":  2,
+        "updatedAt":  "2025-11-09T10:07:54.148Z",
+        "usage":  "Drink as tea or use as mouthwash",
+        "warnings":  [
+                         "Avoid excessive use",
+                         "Consult doctor for persistent diarrhea"
+                     ]
+    },
+    {
+        "id":  "akapulko",
+        "averageRating":  4.5,
+        "benefits":  [
+                         "Treats fungal skin infections (ringworm, scabies, eczema)",
+                         "Mild laxative properties"
+                     ],
+        "category":  [
+                         "Dermatological",
+                         "Antifungal"
+                     ],
+        "createdAt":  "2025-11-09T01:52:36.493Z",
+        "dosage":  "Apply twice daily",
+        "imageUrl":  "https://firebasestorage.googleapis.com/v0/b/herbful-535e4.firebasestorage.app/o/treatments%2Fimages%2F1762653156517omqgp6xz6%2F1762682850345_AKAPULO.jpg?alt=media\u0026token=c1ac61dc-ef5f-4765-ba1a-da13cdd3ca2b",
+        "name":  "Akapulko",
+        "preparation":  [
+                            "Crush fresh leaves into paste",
+                            "Apply as lotion/ointment"
+                        ],
+        "sourceInfo":  {
+                           "authority":  "Philippine Department of Health",
+                           "description":  "Approved herbal medicine by DOH",
+                           "url":  "https://pitahc.gov.ph/directory-of-herbs/",
+                           "verificationDate":  "01/01/2023"
+                       },
+        "sourceType":  "Verified Source",
+        "symptoms":  [
+                         "Itchy, scaly skin patches",
+                         "rash",
+                         "irritation from fungal infections"
+                     ],
+        "totalReviews":  2,
+        "updatedAt":  "2025-11-09T10:07:31.765Z",
+        "usage":  "Topical application on affected areas",
+        "warnings":  [
+                         "Do not apply on open wounds",
+                         "Test on small area first for sensitivity"
+                     ]
+    },
+    {
+        "id":  "yerba-buena",
+        "averageRating":  4.5,
+        "benefits":  [
+                         "Relieves body pain, headache, nausea, cough",
+                         "Digestive comfort"
+                     ],
+        "category":  [
+                         "Pain Relief",
+                         "Respiratory",
+                         "Digestive"
+                     ],
+        "createdAt":  "2025-11-09T01:52:36.493Z",
+        "dosage":  "3 times a day as needed",
+        "imageUrl":  "https://firebasestorage.googleapis.com/v0/b/herbful-535e4.firebasestorage.app/o/treatments%2Fimages%2F1762653156518nf5m56eoh%2F1762682827714_YERBABUENA.jpg?alt=media\u0026token=eb6db537-546d-4476-bf99-b43a0c27a2a5",
+        "name":  "Yerba Buena",
+        "preparation":  [
+                            "Boil leaves for tea",
+                            "Infuse in oil",
+                            "Use as poultice or inhalation"
+                        ],
+        "sourceInfo":  {
+                           "authority":  "Philippine Department of Health",
+                           "description":  "Approved herbal medicine by DOH",
+                           "url":  "https://pitahc.gov.ph/directory-of-herbs/",
+                           "verificationDate":  "01/01/2023"
+                       },
+        "sourceType":  "Verified Source",
+        "symptoms":  [
+                         "headache",
+                         "toothache",
+                         "joint or menstrual pain",
+                         "cough",
+                         "sinus congestion",
+                         "indigestion/gas",
+                         "unpleasant mouth odor"
+                     ],
+        "totalReviews":  2,
+        "updatedAt":  "2025-11-09T10:24:13.243Z",
+        "usage":  "Drink as tea or apply topically",
+        "warnings":  [
+                         "Avoid during pregnancy",
+                         "May cause skin irritation in some individuals"
+                     ]
+    },
+    {
+        "id":  "bawang",
+        "averageRating":  4.5,
+        "benefits":  [
+                         "Lowers blood pressure and cholesterol",
+                         "Antibacterial properties",
+                         "Cardiovascular support"
+                     ],
+        "category":  [
+                         "Cardiovascular",
+                         "Antimicrobial"
+                     ],
+        "createdAt":  "2025-11-09T01:52:36.493Z",
+        "dosage":  "1-2 raw cloves daily or as capsules",
+        "imageUrl":  "https://firebasestorage.googleapis.com/v0/b/herbful-535e4.firebasestorage.app/o/treatments%2Fimages%2F1762653156519w4mt9q3wg%2F1762682790411_BAWANG.jpg?alt=media\u0026token=54859a92-7391-4d0a-8bbd-cdd55659ddd2",
+        "name":  "Bawang",
+        "preparation":  [
+                            "Consume raw",
+                            "cooked",
+                            "or in oil/extract form"
+                        ],
+        "sourceInfo":  {
+                           "authority":  "Philippine Department of Health",
+                           "description":  "Approved herbal medicine by DOH",
+                           "url":  "https://pitahc.gov.ph/directory-of-herbs/",
+                           "verificationDate":  "01/01/2023"
+                       },
+        "sourceType":  "Verified Source",
+        "symptoms":  [
+                         "High blood pressure (dizziness/throbbing)",
+                         "elevated cholesterol",
+                         "mild infections",
+                         "poor digestion"
+                     ],
+        "totalReviews":  2,
+        "updatedAt":  "2025-11-09T10:06:31.997Z",
+        "usage":  "Oral consumption",
+        "warnings":  [
+                         "May interact with blood thinners",
+                         "Can cause stomach irritation"
+                     ]
+    },
+    {
+        "id":  "niyog-niyogan",
+        "averageRating":  4.5,
+        "benefits":  [
+                         "Deworming, especially in children",
+                         "Relieves rheumatism and diarrhea"
+                     ],
+        "category":  [
+                         "Antiparasitic",
+                         "Anti-inflammatory"
+                     ],
+        "createdAt":  "2025-11-09T01:52:36.493Z",
+        "dosage":  "8-10 seeds for children 4-6 years old, 2 hours after eating",
+        "imageUrl":  "https://firebasestorage.googleapis.com/v0/b/herbful-535e4.firebasestorage.app/o/treatments%2Fimages%2F1762653156520wo5xd71iu%2F1762682762166_NIYOGNIYOGAN.jpg?alt=media\u0026token=049d89a7-5f39-47c9-b5e8-914404ef2014",
+        "name":  "Niyog-Niyogan",
+        "preparation":  [
+                            "Eat seeds or prepare leaf/root decoctions"
+                        ],
+        "sourceInfo":  {
+                           "authority":  "Philippine Department of Health",
+                           "description":  "Approved herbal medicine by DOH",
+                           "url":  "https://pitahc.gov.ph/directory-of-herbs/",
+                           "verificationDate":  "01/01/2023"
+                       },
+        "sourceType":  "Verified Source",
+        "symptoms":  [
+                         "Worm infestation (abdominal discomfort, itching)",
+                         "body aches",
+                         "fever",
+                         "headache"
+                     ],
+        "totalReviews":  2,
+        "updatedAt":  "2025-11-09T10:06:03.173Z",
+        "usage":  "Oral consumption",
+        "warnings":  [
+                         "STRICT SUPERVISION REQUIRED",
+                         "Follow correct dosage precisely",
+                         "Can be toxic in high doses"
+                     ]
+    },
+    {
+        "id":  "ampalaya",
+        "averageRating":  3.5,
+        "benefits":  [
+                         "Lowers blood sugar",
+                         "Improves digestion",
+                         "Anti-inflammatory properties"
+                     ],
+        "category":  [
+                         "Endocrine",
+                         "Digestive",
+                         "Anti-inflammatory"
+                     ],
+        "createdAt":  "2025-11-09T01:52:36.493Z",
+        "dosage":  "1/2 cup twice a day",
+        "imageUrl":  "https://firebasestorage.googleapis.com/v0/b/herbful-535e4.firebasestorage.app/o/treatments%2Fimages%2F17626531565210aifkrldv%2F1762682580224_AMPALAYA.jpg?alt=media\u0026token=215f0590-f898-4f4b-837b-9ffc627e52d2",
+        "name":  "Ampalaya",
+        "preparation":  [
+                            "Eat cooked leaves or fruits",
+                            "Prepare as juice or tea"
+                        ],
+        "sourceInfo":  {
+                           "authority":  "Philippine Department of Health",
+                           "description":  "Approved herbal medicine by DOH",
+                           "url":  "https://pitahc.gov.ph/directory-of-herbs/",
+                           "verificationDate":  "01/01/2023"
+                       },
+        "sourceType":  "Verified Source",
+        "symptoms":  [
+                         "High blood sugar symptoms (fatigue, thirst)",
+                         "digestive discomfort",
+                         "inflammation",
+                         "high cholesterol"
+                     ],
+        "totalReviews":  2,
+        "updatedAt":  "2025-11-09T10:03:01.726Z",
+        "usage":  "Oral consumption",
+        "warnings":  [
+                         "May interact with diabetes medications",
+                         "Not recommended during pregnancy"
+                     ]
+    }
 ]

@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, Edit, Trash2 } from "lucide-react";
 import Link from "next/link";
 import { getTreatment, deleteTreatment } from "@/lib/admin/treatments-api";
+import { getReviews } from "@/lib/admin/reviews-api";
 import { ConfirmDialog } from "@/components/admin/confirm-dialog";
 import { toast } from "@/hooks/use-toast";
 import Image from "next/image";
@@ -41,6 +42,10 @@ export default function TreatmentViewPage() {
   const [treatment, setTreatment] = useState<Treatment | null>(null);
   const [loading, setLoading] = useState(true);
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
+  const [liveReviewCount, setLiveReviewCount] = useState<number | null>(null);
+  const [liveAverageRating, setLiveAverageRating] = useState<number | null>(
+    null
+  );
 
   const treatmentId = searchParams.get("id");
 
@@ -60,6 +65,38 @@ export default function TreatmentViewPage() {
     try {
       const data = await getTreatment(treatmentId);
       setTreatment(data);
+
+      // Fetch live review count for this treatment
+      try {
+        const reviewsData = await getReviews({
+          page: 1,
+          limit: 10000,
+          search: "",
+          rating: undefined,
+        });
+
+        // Count reviews and calculate average rating for this treatment
+        const treatmentReviews = reviewsData.reviews.filter(
+          (review) =>
+            review.treatmentName.toLowerCase() === data.name.toLowerCase()
+        );
+        setLiveReviewCount(treatmentReviews.length);
+
+        // Calculate average rating
+        if (treatmentReviews.length > 0) {
+          const avgRating =
+            treatmentReviews.reduce((sum, review) => sum + review.rating, 0) /
+            treatmentReviews.length;
+          setLiveAverageRating(avgRating);
+        } else {
+          setLiveAverageRating(0);
+        }
+      } catch (reviewError) {
+        console.error("Error fetching review count:", reviewError);
+        // Fall back to the count from treatment data
+        setLiveReviewCount(data.totalReviews);
+        setLiveAverageRating(data.averageRating);
+      }
     } catch (error) {
       console.error("Error loading treatment:", error);
       const errorMessage =
@@ -160,14 +197,13 @@ export default function TreatmentViewPage() {
         </div>
         <div className="flex gap-2">
           <Link
-            href={{
-              pathname: "/admin/reviews",
-              query: { treatment: treatment.name },
-            }}
+            href={`/admin/reviews?treatment=${encodeURIComponent(
+              treatment.name
+            )}`}
           >
             <Button variant="secondary" className="gap-2">
               <span>⭐</span>
-              View {treatment.totalReviews} Reviews
+              View {liveReviewCount ?? treatment.totalReviews} Reviews
             </Button>
           </Link>
           <Link href={`/admin/treatments/edit?id=${treatment.id}`}>
@@ -225,7 +261,7 @@ export default function TreatmentViewPage() {
               <div>
                 <h4 className="font-semibold mb-2">Benefits</h4>
                 <div className="flex flex-wrap gap-1">
-                  {treatment.benefits.map((benefit, idx) => (
+                  {(treatment.benefits || []).map((benefit, idx) => (
                     <Badge key={idx} variant="secondary" className="text-xs">
                       {benefit}
                     </Badge>
@@ -237,7 +273,7 @@ export default function TreatmentViewPage() {
                 <div>
                   <h4 className="font-semibold mb-2">Symptoms</h4>
                   <div className="flex flex-wrap gap-1">
-                    {treatment.symptoms.map((symptom, idx) => (
+                    {(treatment.symptoms || []).map((symptom, idx) => (
                       <Badge key={idx} variant="secondary" className="text-xs">
                         {symptom}
                       </Badge>
@@ -265,7 +301,7 @@ export default function TreatmentViewPage() {
             </CardHeader>
             <CardContent>
               <ol className="space-y-2">
-                {treatment.preparation.map((step, idx) => (
+                {(treatment.preparation || []).map((step, idx) => (
                   <li key={idx} className="flex items-start">
                     <span className="bg-green-100 text-green-700 rounded-full w-6 h-6 flex items-center justify-center text-sm font-medium mr-3 mt-0.5">
                       {idx + 1}
@@ -277,7 +313,7 @@ export default function TreatmentViewPage() {
             </CardContent>
           </Card>
 
-          {treatment.warnings.length > 0 && (
+          {treatment.warnings && treatment.warnings.length > 0 && (
             <Card>
               <CardHeader>
                 <CardTitle className="text-amber-800">
@@ -286,7 +322,7 @@ export default function TreatmentViewPage() {
               </CardHeader>
               <CardContent>
                 <ul className="space-y-1">
-                  {treatment.warnings.map((warning, idx) => (
+                  {(treatment.warnings || []).map((warning, idx) => (
                     <li
                       key={idx}
                       className="text-sm text-amber-700 flex items-start"
@@ -310,10 +346,10 @@ export default function TreatmentViewPage() {
             <CardContent className="space-y-4">
               <div>
                 <div className="text-2xl font-bold">
-                  ⭐ {treatment.averageRating.toFixed(1)}
+                  ⭐ {(liveAverageRating ?? treatment.averageRating).toFixed(1)}
                 </div>
                 <p className="text-sm text-gray-500">
-                  {treatment.totalReviews} reviews
+                  {liveReviewCount ?? treatment.totalReviews} reviews
                 </p>
               </div>
               <div>

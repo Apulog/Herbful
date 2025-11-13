@@ -2,7 +2,7 @@
 
 import type React from "react";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useSearchParams } from "next/navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -36,11 +36,17 @@ interface Review {
 
 export default function ReviewsPage() {
   const searchParams = useSearchParams();
+
+  // Initialize treatment filter from URL immediately (before any effects run)
+  const initialTreatmentFilter = searchParams.get("treatment") || "all";
+
   const [reviews, setReviews] = useState<Review[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
   const [ratingFilter, setRatingFilter] = useState<string>("all");
-  const [treatmentFilter, setTreatmentFilter] = useState<string>("all");
+  const [treatmentFilter, setTreatmentFilter] = useState<string>(
+    initialTreatmentFilter
+  );
   const [sortBy, setSortBy] = useState<string>("newest");
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -56,29 +62,33 @@ export default function ReviewsPage() {
   >([]);
   const [ratingCounts, setRatingCounts] = useState<Record<number, number>>({});
 
-  // Initialize filters from URL parameters
+  // Initialize filters from URL parameters - must run before loadReviews
   useEffect(() => {
     const treatment = searchParams.get("treatment");
-    // Only set the treatment filter if it's different from current value
-    // and either treatment param exists or we're currently not on "all"
+    console.log("=== URL PARAMETER EFFECT ===");
+    console.log("URL treatment parameter:", treatment);
+    console.log("Current treatmentFilter state:", treatmentFilter);
+    // Only set the treatment filter from URL if a treatment parameter exists
     if (treatment) {
-      const decodedTreatment = decodeURIComponent(treatment);
-      if (decodedTreatment !== treatmentFilter) {
-        setTreatmentFilter(decodedTreatment);
-      }
-    } else if (treatmentFilter !== "all" && !treatment) {
-      setTreatmentFilter("all");
+      console.log("Setting treatment filter to:", treatment);
+      setTreatmentFilter(treatment);
+    } else {
+      console.log("No treatment parameter in URL, keeping current filter");
     }
-  }, [searchParams, treatmentFilter]);
+  }, [searchParams]);
 
   // Load reviews when filters change
-  useEffect(() => {
-    loadReviews();
-  }, [currentPage, searchTerm, ratingFilter, treatmentFilter, sortBy]);
-
-  const loadReviews = async () => {
+  const loadReviews = useCallback(async () => {
+    console.log("=== loadReviews STARTED ===");
     setLoading(true);
     try {
+      console.log("=== loadReviews called ===");
+      console.log("Current filters:", {
+        treatmentFilter,
+        ratingFilter,
+        searchTerm,
+      });
+
       // Always fetch all reviews to handle filtering and counts properly
       const data = await getReviews({
         page: 1,
@@ -86,6 +96,12 @@ export default function ReviewsPage() {
         search: searchTerm,
         rating: undefined, // Don't filter by rating in API call
       });
+
+      console.log("Total reviews fetched:", data.reviews.length);
+      console.log(
+        "Sample treatments:",
+        [...new Set(data.reviews.map((r) => r.treatmentName))].slice(0, 5)
+      );
 
       // Start with all reviews after search
       let filteredReviews = data.reviews;
@@ -100,20 +116,35 @@ export default function ReviewsPage() {
       // Update total count for display before any filters
       setTotalCountBeforeTreatmentFilter(filteredReviews.length);
 
-      // Apply treatment filter if selected
-      if (treatmentFilter !== "all") {
-        console.log("Filtering for treatment:", treatmentFilter);
-        console.log("Available treatments:", [
-          ...new Set(filteredReviews.map((r) => r.treatmentName)),
-        ]);
-        filteredReviews = filteredReviews.filter(
-          (review) =>
-            review.treatmentName.toLowerCase() === treatmentFilter.toLowerCase()
-        );
-      }
+      // Apply rating filter first (before treatment filter)
       if (ratingFilter !== "all") {
+        console.log("Applying rating filter:", ratingFilter);
         filteredReviews = filteredReviews.filter(
           (review) => review.rating === Number.parseInt(ratingFilter)
+        );
+        console.log("After rating filter:", filteredReviews.length);
+      }
+
+      // Apply treatment filter if selected
+      if (treatmentFilter !== "all") {
+        console.log("Applying treatment filter:", treatmentFilter);
+        console.log("Available treatments in filtered reviews:", [
+          ...new Set(filteredReviews.map((r) => r.treatmentName)),
+        ]);
+        const beforeCount = filteredReviews.length;
+        filteredReviews = filteredReviews.filter((review) => {
+          const matches =
+            review.treatmentName.toLowerCase() ===
+            treatmentFilter.toLowerCase();
+          if (!matches) {
+            console.log(
+              `Review "${review.treatmentName}" does not match filter "${treatmentFilter}"`
+            );
+          }
+          return matches;
+        });
+        console.log(
+          `Treatment filter applied: ${beforeCount} -> ${filteredReviews.length}`
         );
       }
 
@@ -155,22 +186,27 @@ export default function ReviewsPage() {
       const endIndex = startIndex + itemsPerPage;
       const paginatedReviews = filteredReviews.slice(startIndex, endIndex);
 
+      console.log(
+        "About to setReviews with:",
+        paginatedReviews.length,
+        "reviews"
+      );
+      console.log(
+        "Paginated reviews:",
+        paginatedReviews.map((r) => r.treatmentName)
+      );
       setReviews(paginatedReviews);
       setTotalPages(actualTotalPages);
       setTotalCount(actualTotalCount);
+      console.log(
+        "After setReviews - state should now have",
+        paginatedReviews.length,
+        "reviews"
+      );
 
-      // Always fetch all reviews for accurate counts, regardless of current page
-      const allReviewsForCount = await getReviews({
-        page: 1,
-        limit: 10000, // Get all reviews for counting
-        search: searchTerm,
-        rating:
-          ratingFilter === "all" ? undefined : Number.parseInt(ratingFilter),
-      });
-
-      // Count reviews per treatment after search but before rating filter
+      // Count reviews per treatment from the original data before filtering
       const treatmentCounts: Record<string, number> = {};
-      allReviewsForCount.reviews.forEach((review) => {
+      data.reviews.forEach((review) => {
         treatmentCounts[review.treatmentName] =
           (treatmentCounts[review.treatmentName] || 0) + 1;
       });
@@ -180,6 +216,10 @@ export default function ReviewsPage() {
         .map(([name, count]) => ({ name, count }))
         .sort((a, b) => a.name.localeCompare(b.name));
 
+      console.log(
+        "Setting treatments:",
+        treatmentsWithCounts.map((t) => `${t.name}(${t.count})`)
+      );
       setTreatments(treatmentsWithCounts);
     } catch (error) {
       toast({
@@ -189,8 +229,21 @@ export default function ReviewsPage() {
       });
     } finally {
       setLoading(false);
+      console.log("=== loadReviews FINISHED ===");
     }
-  };
+  }, [currentPage, searchTerm, ratingFilter, treatmentFilter, sortBy]);
+
+  useEffect(() => {
+    console.log("Filter changed, calling loadReviews");
+    console.log("Filters:", {
+      treatmentFilter,
+      ratingFilter,
+      searchTerm,
+      sortBy,
+      currentPage,
+    });
+    loadReviews();
+  }, [loadReviews]);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();

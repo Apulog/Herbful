@@ -11,6 +11,7 @@ import { Plus, Search, Edit, Trash2, Eye, ImageIcon } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { getTreatments, deleteTreatment } from "@/lib/admin/treatments-api";
+import { getReviews } from "@/lib/admin/reviews-api";
 import { AdminPagination } from "@/components/admin/pagination";
 import { ConfirmDialog } from "@/components/admin/confirm-dialog";
 import { toast } from "@/hooks/use-toast";
@@ -34,6 +35,9 @@ export default function TreatmentsPage() {
   const [totalPages, setTotalPages] = useState(1);
   const [totalCount, setTotalCount] = useState(0);
   const [deleteId, setDeleteId] = useState<string | null>(null);
+  const [liveReviewData, setLiveReviewData] = useState<
+    Record<string, { count: number; rating: number }>
+  >({});
 
   const itemsPerPage = 10;
 
@@ -52,6 +56,45 @@ export default function TreatmentsPage() {
       setTreatments(data.treatments);
       setTotalPages(data.totalPages);
       setTotalCount(data.totalCount);
+
+      // Fetch live review data for all treatments
+      try {
+        const reviewsData = await getReviews({
+          page: 1,
+          limit: 10000,
+          search: "",
+          rating: undefined,
+        });
+
+        // Calculate review count and average rating for each treatment
+        const reviewsByTreatment: Record<
+          string,
+          { count: number; ratings: number[] }
+        > = {};
+        reviewsData.reviews.forEach((review) => {
+          const treatmentName = review.treatmentName.toLowerCase();
+          if (!reviewsByTreatment[treatmentName]) {
+            reviewsByTreatment[treatmentName] = { count: 0, ratings: [] };
+          }
+          reviewsByTreatment[treatmentName].count += 1;
+          reviewsByTreatment[treatmentName].ratings.push(review.rating);
+        });
+
+        // Calculate average rating for each treatment
+        const liveData: Record<string, { count: number; rating: number }> = {};
+        Object.entries(reviewsByTreatment).forEach(([treatmentName, data]) => {
+          const avgRating =
+            data.ratings.length > 0
+              ? data.ratings.reduce((a, b) => a + b, 0) / data.ratings.length
+              : 0;
+          liveData[treatmentName] = { count: data.count, rating: avgRating };
+        });
+
+        setLiveReviewData(liveData);
+      } catch (reviewError) {
+        console.error("Error fetching live review data:", reviewError);
+        // If live data fetch fails, we'll fall back to cached data
+      }
     } catch (error) {
       toast({
         title: "Error",
@@ -227,16 +270,23 @@ export default function TreatmentsPage() {
                         )}
                       </div>
 
-                      <div className="flex items-center gap-4 text-sm text-gray-500 flex-wrap">
+                      {/* <div className="flex items-center gap-4 text-sm text-gray-500 flex-wrap">
                         <span>
-                          ⭐ {treatment.averageRating.toFixed(1)} (
-                          {treatment.totalReviews} reviews)
+                          ⭐{" "}
+                          {(
+                            liveReviewData[treatment.name.toLowerCase()]
+                              ?.rating ?? treatment.averageRating
+                          ).toFixed(1)}{" "}
+                          (
+                          {liveReviewData[treatment.name.toLowerCase()]
+                            ?.count ?? treatment.totalReviews}{" "}
+                          reviews)
                         </span>
                         <span>
                           Created:{" "}
                           {new Date(treatment.createdAt).toLocaleDateString()}
                         </span>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                 </div>
