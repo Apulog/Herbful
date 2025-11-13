@@ -209,18 +209,20 @@ export default function TreatmentsPage() {
                       </div>
 
                       <div className="flex flex-wrap gap-1 mb-2">
-                        {treatment.benefits.slice(0, 3).map((benefit, idx) => (
-                          <Badge
-                            key={idx}
-                            variant="secondary"
-                            className="text-xs"
-                          >
-                            {benefit}
-                          </Badge>
-                        ))}
-                        {treatment.benefits.length > 3 && (
+                        {(treatment.benefits || [])
+                          .slice(0, 3)
+                          .map((benefit, idx) => (
+                            <Badge
+                              key={idx}
+                              variant="secondary"
+                              className="text-xs"
+                            >
+                              {benefit}
+                            </Badge>
+                          ))}
+                        {(treatment.benefits || []).length > 3 && (
                           <Badge variant="secondary" className="text-xs">
-                            +{treatment.benefits.length - 3} more
+                            +{(treatment.benefits || []).length - 3} more
                           </Badge>
                         )}
                       </div>
