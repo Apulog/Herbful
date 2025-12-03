@@ -3,7 +3,7 @@ import { ref, set, get } from "firebase/database";
 import { db } from "@/lib/firebase-client";
 import type { SymptomsNode, SymptomData } from "@/lib/types/firebase";
 
-const SYMPTOMS_PATH = "symptoms";
+const SYMPTOMS_PATH = "symptoms2";
 
 /**
  * Sanitizes a symptom name to be used as a Firebase key
@@ -28,7 +28,7 @@ function sanitizeSymptomKey(symptomName: string): string {
 export async function syncSymptomsNode(): Promise<void> {
   try {
     // Get all treatments
-    const treatmentsRef = ref(db, "treatments");
+    const treatmentsRef = ref(db, "treatments2");
     const treatmentsSnapshot = await get(treatmentsRef);
 
     if (!treatmentsSnapshot.exists()) {
@@ -106,29 +106,28 @@ export async function updateSymptomsForTreatment(
     // Get current symptoms node
     const symptomsNode = await getSymptomsNode();
 
-    // Remove this treatment from all symptoms first
+    // Create a Set of current symptom keys for this treatment to track what we're adding
+    const currentSymptomKeysForTreatment = new Set<string>();
     Object.keys(symptomsNode).forEach((sanitizedKey) => {
       const symptomData = symptomsNode[sanitizedKey];
-      // Check if symptomData exists and has treatmentIds before filtering
-      if (symptomData && Array.isArray(symptomData.treatmentIds)) {
-        symptomData.treatmentIds = symptomData.treatmentIds.filter(
-          (id) => id !== treatmentId
-        );
-        // Remove empty symptom entries
-        if (symptomData.treatmentIds.length === 0) {
-          delete symptomsNode[sanitizedKey];
-        }
-      } else {
-        // If symptomData is invalid, remove the entry
-        delete symptomsNode[sanitizedKey];
+      // Check if this symptom includes our treatment
+      if (
+        symptomData &&
+        Array.isArray(symptomData.treatmentIds) &&
+        symptomData.treatmentIds.includes(treatmentId)
+      ) {
+        currentSymptomKeysForTreatment.add(sanitizedKey);
       }
     });
 
-    // Add this treatment to its symptoms
+    // Process new symptoms - add treatment to symptoms it wasn't in before
     symptoms.forEach((symptom) => {
       if (symptom && symptom.trim()) {
         const symptomName = symptom.trim();
         const sanitizedKey = sanitizeSymptomKey(symptomName);
+
+        // Remove from our tracking set since we're keeping/adding this one
+        currentSymptomKeysForTreatment.delete(sanitizedKey);
 
         if (!symptomsNode[sanitizedKey]) {
           symptomsNode[sanitizedKey] = {
@@ -138,6 +137,20 @@ export async function updateSymptomsForTreatment(
         }
         if (!symptomsNode[sanitizedKey].treatmentIds.includes(treatmentId)) {
           symptomsNode[sanitizedKey].treatmentIds.push(treatmentId);
+        }
+      }
+    });
+
+    // Remove treatment from symptoms it's no longer associated with
+    currentSymptomKeysForTreatment.forEach((sanitizedKey) => {
+      const symptomData = symptomsNode[sanitizedKey];
+      if (symptomData && Array.isArray(symptomData.treatmentIds)) {
+        symptomData.treatmentIds = symptomData.treatmentIds.filter(
+          (id) => id !== treatmentId
+        );
+        // Remove empty symptom entries
+        if (symptomData.treatmentIds.length === 0) {
+          delete symptomsNode[sanitizedKey];
         }
       }
     });
@@ -202,7 +215,7 @@ export async function renameSymptom(
     const newNameTrimmed = newName.trim();
 
     // Get all treatments
-    const treatmentsRef = ref(db, "treatments");
+    const treatmentsRef = ref(db, "treatments2");
     const treatmentsSnapshot = await get(treatmentsRef);
 
     if (!treatmentsSnapshot.exists()) {
@@ -221,8 +234,8 @@ export async function renameSymptom(
           const updatedSymptoms = symptoms.map((symptom: string) =>
             symptom === oldNameTrimmed ? newNameTrimmed : symptom
           );
-          updates[`treatments/${treatmentId}/symptoms`] = updatedSymptoms;
-          updates[`treatments/${treatmentId}/updatedAt`] =
+          updates[`treatments2/${treatmentId}/symptoms`] = updatedSymptoms;
+          updates[`treatments2/${treatmentId}/updatedAt`] =
             new Date().toISOString();
         }
       }

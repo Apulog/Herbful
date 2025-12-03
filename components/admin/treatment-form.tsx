@@ -35,17 +35,17 @@ import {
 } from "@/lib/admin/storage-api";
 import { toast } from "@/hooks/use-toast";
 import { ConfirmDialog } from "./confirm-dialog";
-import Image from "next/image";
+import { TreatmentImage } from "./treatment-image";
 
 interface TreatmentFormData {
   name: string;
   sourceType: "Local Remedy" | "Verified Source";
-  sourceInfo?: {
+  sources: Array<{
     authority: string;
     url: string;
     description: string;
     verificationDate: string;
-  };
+  }>;
   preparation: string[];
   usage: string;
   dosage: string;
@@ -103,6 +103,9 @@ export function TreatmentForm({
   const [formData, setFormData] = useState<TreatmentFormData>({
     name: "",
     sourceType: "Local Remedy",
+    sources: [
+      { authority: "", url: "", description: "", verificationDate: "" },
+    ],
     preparation: [""],
     usage: "",
     dosage: "",
@@ -125,10 +128,22 @@ export function TreatmentForm({
 
   useEffect(() => {
     if (initialData) {
+      // Convert single sourceInfo to sources array for backward compatibility
+      let sources = [];
+      if (initialData.sources && Array.isArray(initialData.sources)) {
+        sources = initialData.sources;
+      } else if (initialData.sourceInfo) {
+        sources = [initialData.sourceInfo];
+      } else {
+        sources = [
+          { authority: "", url: "", description: "", verificationDate: "" },
+        ];
+      }
+
       setFormData({
         name: initialData.name || "",
         sourceType: initialData.sourceType || "Local Remedy",
-        sourceInfo: initialData.sourceInfo,
+        sources: sources,
         preparation: initialData.preparation || [""],
         usage: initialData.usage || "",
         dosage: initialData.dosage || "",
@@ -175,25 +190,32 @@ export function TreatmentForm({
     if (current.sourceType !== (original.sourceType || "Local Remedy"))
       return true;
 
-    // Compare sourceInfo (only if sourceType is Verified Source)
+    // Compare sources
     if (current.sourceType === "Verified Source") {
-      const currentSource: any = current.sourceInfo || {};
-      const originalSource: any = original.sourceInfo || {};
-      if (
-        (currentSource.authority || "").trim() !==
-          (originalSource.authority || "").trim() ||
-        (currentSource.url || "").trim() !==
-          (originalSource.url || "").trim() ||
-        (currentSource.description || "").trim() !==
-          (originalSource.description || "").trim() ||
-        (currentSource.verificationDate || "").trim() !==
-          (originalSource.verificationDate || "").trim()
-      ) {
-        return true;
+      // Compare sources arrays
+      const currentSources = current.sources || [];
+      const originalSources = original.sources || [];
+
+      if (currentSources.length !== originalSources.length) return true;
+
+      // Compare each source
+      for (let i = 0; i < currentSources.length; i++) {
+        const curr = currentSources[i];
+        const orig = originalSources[i];
+
+        if (
+          (curr.authority || "").trim() !== (orig.authority || "").trim() ||
+          (curr.url || "").trim() !== (orig.url || "").trim() ||
+          (curr.description || "").trim() !== (orig.description || "").trim() ||
+          (curr.verificationDate || "").trim() !==
+            (orig.verificationDate || "").trim()
+        ) {
+          return true;
+        }
       }
     } else {
-      // If switched to Local Remedy, check if original had sourceInfo
-      if (original.sourceInfo) return true;
+      // If switched to Local Remedy, check if original had sources
+      if (original.sources && original.sources.length > 0) return true;
     }
 
     // Compare usage
@@ -330,41 +352,51 @@ export function TreatmentForm({
         }
         break;
 
-      case "sourceInfo":
+      case "sources":
         if (formData.sourceType === "Verified Source") {
-          const info = formData.sourceInfo;
-          if (!info?.authority?.trim()) {
-            newErrors.sourceAuthority =
-              "Authority name is required for verified sources";
+          if (!formData.sources || formData.sources.length === 0) {
+            newErrors.sources =
+              "At least one source is required for verified sources";
           } else {
-            delete newErrors.sourceAuthority;
-          }
+            // Validate each source
+            formData.sources.forEach((source, index) => {
+              if (!source.authority?.trim()) {
+                newErrors[
+                  `source-${index}-authority`
+                ] = `Authority name is required for source ${index + 1}`;
+              }
 
-          if (!info?.url?.trim()) {
-            newErrors.sourceUrl = "Source URL is required for verified sources";
-          } else if (!/^https?:\/\/.+\..+/.test(info.url)) {
-            newErrors.sourceUrl = "Please enter a valid URL";
-          } else {
-            delete newErrors.sourceUrl;
-          }
+              if (!source.url?.trim()) {
+                newErrors[
+                  `source-${index}-url`
+                ] = `Source URL is required for source ${index + 1}`;
+              } else if (!/^https?:\/\/.+\..+/.test(source.url)) {
+                newErrors[
+                  `source-${index}-url`
+                ] = `Please enter a valid URL for source ${index + 1}`;
+              }
 
-          if (!info?.description?.trim()) {
-            newErrors.sourceDescription =
-              "Description is required for verified sources";
-          } else {
-            delete newErrors.sourceDescription;
-          }
+              if (!source.description?.trim()) {
+                newErrors[
+                  `source-${index}-description`
+                ] = `Description is required for source ${index + 1}`;
+              }
 
-          if (!info?.verificationDate) {
-            newErrors.sourceDate = "Verification date is required";
-          } else {
-            delete newErrors.sourceDate;
+              if (!source.verificationDate) {
+                newErrors[
+                  `source-${index}-date`
+                ] = `Verification date is required for source ${index + 1}`;
+              }
+            });
           }
         } else {
-          delete newErrors.sourceAuthority;
-          delete newErrors.sourceUrl;
-          delete newErrors.sourceDescription;
-          delete newErrors.sourceDate;
+          // Remove any source-related errors when switching to Local Remedy
+          Object.keys(newErrors).forEach((key) => {
+            if (key.startsWith("source-")) {
+              delete newErrors[key];
+            }
+          });
+          delete newErrors.sources;
         }
         break;
     }
@@ -380,7 +412,7 @@ export function TreatmentForm({
       "dosage",
       "preparation",
       "benefits",
-      "sourceInfo",
+      "sources",
     ];
     let isValid = true;
 
@@ -486,7 +518,7 @@ export function TreatmentForm({
               // Don't fail the whole operation if delete fails
             }
           }
-        } catch (error) {
+        } catch (error: any) {
           toast({
             title: "Upload Error",
             description: "Failed to upload image. Please try again.",
@@ -506,11 +538,8 @@ export function TreatmentForm({
         preparation: formData.preparation.filter((p) => p.trim()),
         warnings: formData.warnings.filter((w) => w.trim()),
         symptoms: formData.symptoms.filter((s) => s.trim()),
-        // Remove sourceInfo if sourceType is Local Remedy
-        sourceInfo:
-          formData.sourceType === "Local Remedy"
-            ? undefined
-            : formData.sourceInfo,
+        // Remove sources if sourceType is Local Remedy
+        sources: formData.sourceType === "Local Remedy" ? [] : formData.sources,
       };
 
       if (isEdit && initialData?.id) {
@@ -536,12 +565,30 @@ export function TreatmentForm({
             imageUrl = await uploadTreatmentImage(imageFile, newTreatment.id);
             // Update treatment with image URL
             await updateTreatment(newTreatment.id, { imageUrl });
-          } catch (error) {
+          } catch (error: any) {
             console.error("Error uploading image:", error);
+
+            // Provide more specific error messages for image upload failures
+            let errorMessage =
+              "Treatment created but image upload failed. You can add the image later.";
+
+            // Safely check for error message
+            if (error && typeof error === "object" && "message" in error) {
+              const errorMsg = error.message;
+              if (
+                typeof errorMsg === "string" &&
+                errorMsg.includes("permissions")
+              ) {
+                errorMessage =
+                  "Treatment created but image upload failed due to permissions. You can add the image later.";
+              } else if (typeof errorMsg === "string") {
+                errorMessage = `Treatment created but image upload failed: ${errorMsg}. You can add the image later.`;
+              }
+            }
+
             toast({
               title: "Warning",
-              description:
-                "Treatment created but image upload failed. You can add the image later.",
+              description: errorMessage,
               variant: "default",
             });
           } finally {
@@ -619,6 +666,38 @@ export function TreatmentForm({
       ...prev,
       warnings: prev.warnings.map((warning, i) =>
         i === index ? value : warning
+      ),
+    }));
+  };
+
+  // Source Management Functions
+  const addSource = () => {
+    setFormData((prev) => ({
+      ...prev,
+      sources: [
+        ...prev.sources,
+        { authority: "", url: "", description: "", verificationDate: "" },
+      ],
+    }));
+  };
+
+  const removeSource = (index: number) => {
+    setFormData((prev) => ({
+      ...prev,
+      sources: prev.sources.filter((_, i) => i !== index),
+    }));
+    validateField("sources", formData.sources);
+  };
+
+  const updateSource = (
+    index: number,
+    field: keyof TreatmentFormData["sources"][number],
+    value: string
+  ) => {
+    setFormData((prev) => ({
+      ...prev,
+      sources: prev.sources.map((source, i) =>
+        i === index ? { ...source, [field]: value } : source
       ),
     }));
   };
@@ -758,15 +837,14 @@ export function TreatmentForm({
                   <div className="space-y-4">
                     {imagePreview ? (
                       <div className="space-y-2">
-                        <div className="relative w-full h-48 rounded-lg border border-gray-200 overflow-hidden bg-gray-50">
-                          <Image
-                            src={imagePreview}
-                            alt="Treatment preview"
-                            fill
-                            className="object-cover"
-                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                          />
-                        </div>
+                        <TreatmentImage
+                          src={imagePreview}
+                          alt="Treatment preview"
+                          width={600}
+                          height={300}
+                          className="rounded-lg border border-gray-200 overflow-hidden bg-gray-50 object-cover w-full h-48"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        />
                         <div className="flex gap-2">
                           <Label
                             htmlFor="image-upload"
@@ -854,13 +932,10 @@ export function TreatmentForm({
                       setFormData((prev) => ({
                         ...prev,
                         sourceType: value,
-                        // Clear sourceInfo when switching to Local Remedy
-                        sourceInfo:
-                          value === "Local Remedy"
-                            ? undefined
-                            : prev.sourceInfo,
+                        // Clear sources when switching to Local Remedy
+                        sources: value === "Local Remedy" ? [] : prev.sources,
                       }));
-                      validateField("sourceInfo", value);
+                      validateField("sources", value);
                     }}
                   >
                     <SelectTrigger>
@@ -928,156 +1003,193 @@ export function TreatmentForm({
             </Card>
 
             {/* Source Information (for Verified Sources) */}
-            {formData.sourceType === "Verified Source" && (
-              <Card>
-                <CardHeader>
-                  <CardTitle>Source Information</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="authority">Authority *</Label>
-                    <Input
-                      id="authority"
-                      value={formData.sourceInfo?.authority || ""}
-                      onChange={(e) => {
-                        setFormData((prev) => ({
-                          ...prev,
-                          sourceInfo: {
-                            ...prev.sourceInfo!,
-                            authority: e.target.value,
-                          },
-                        }));
-                        if (touched.sourceAuthority)
-                          validateField("sourceInfo", e.target.value);
-                      }}
-                      onBlur={() => {
-                        setTouched((prev) => ({
-                          ...prev,
-                          sourceAuthority: true,
-                        }));
-                        validateField("sourceInfo", formData.sourceInfo);
-                      }}
-                      className={
-                        errors.sourceAuthority && touched.sourceAuthority
-                          ? "border-red-500"
-                          : ""
-                      }
-                    />
-                    {errors.sourceAuthority && touched.sourceAuthority && (
-                      <p className="text-red-500 text-sm">
-                        {errors.sourceAuthority}
-                      </p>
-                    )}
-                  </div>
+            <Card>
+              <CardHeader>
+                <CardTitle>Source Information</CardTitle>
+                <p className="text-sm text-gray-600">
+                  Add one or more verified sources for this treatment.
+                </p>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                {formData.sources.map((source, index) => (
+                  <div
+                    key={index}
+                    className="space-y-4 border border-gray-200 rounded-lg p-4 relative"
+                  >
+                    <div className="flex justify-between items-center">
+                      <h3 className="font-medium">Source {index + 1}</h3>
+                      {formData.sources.length > 1 && (
+                        <Button
+                          type="button"
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => removeSource(index)}
+                          className="text-red-600 hover:text-red-800 hover:bg-red-50"
+                        >
+                          <Trash2 className="h-4 w-4" />
+                        </Button>
+                      )}
+                    </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="sourceUrl">Official URL *</Label>
-                    <Input
-                      id="sourceUrl"
-                      type="url"
-                      placeholder="https://example.com"
-                      value={formData.sourceInfo?.url || ""}
-                      onChange={(e) => {
-                        setFormData((prev) => ({
-                          ...prev,
-                          sourceInfo: {
-                            ...prev.sourceInfo!,
-                            url: e.target.value,
-                          },
-                        }));
-                        if (touched.sourceUrl)
-                          validateField("sourceInfo", formData.sourceInfo);
-                      }}
-                      onBlur={() => {
-                        setTouched((prev) => ({ ...prev, sourceUrl: true }));
-                        validateField("sourceInfo", formData.sourceInfo);
-                      }}
-                      className={
-                        errors.sourceUrl && touched.sourceUrl
-                          ? "border-red-500"
-                          : ""
-                      }
-                    />
-                    {errors.sourceUrl && touched.sourceUrl && (
-                      <p className="text-red-500 text-sm">{errors.sourceUrl}</p>
-                    )}
-                  </div>
+                    <div className="space-y-2">
+                      <Label htmlFor={`authority-${index}`}>Authority *</Label>
+                      <Input
+                        id={`authority-${index}`}
+                        value={source.authority || ""}
+                        onChange={(e) => {
+                          updateSource(index, "authority", e.target.value);
+                          if (touched[`source-${index}-authority`])
+                            validateField("sources", formData.sources);
+                        }}
+                        onBlur={() => {
+                          setTouched((prev) => ({
+                            ...prev,
+                            [`source-${index}-authority`]: true,
+                          }));
+                          validateField("sources", formData.sources);
+                        }}
+                        className={
+                          errors[`source-${index}-authority`] &&
+                          touched[`source-${index}-authority`]
+                            ? "border-red-500"
+                            : ""
+                        }
+                      />
+                      {errors[`source-${index}-authority`] &&
+                        touched[`source-${index}-authority`] && (
+                          <p className="text-red-500 text-sm">
+                            {errors[`source-${index}-authority`]}
+                          </p>
+                        )}
+                    </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="sourceDescription">Description *</Label>
-                    <Textarea
-                      id="sourceDescription"
-                      value={formData.sourceInfo?.description || ""}
-                      onChange={(e) => {
-                        setFormData((prev) => ({
-                          ...prev,
-                          sourceInfo: {
-                            ...prev.sourceInfo!,
-                            description: e.target.value,
-                          },
-                        }));
-                        if (touched.sourceDescription)
-                          validateField("sourceInfo", formData.sourceInfo);
-                      }}
-                      onBlur={() => {
-                        setTouched((prev) => ({
-                          ...prev,
-                          sourceDescription: true,
-                        }));
-                        validateField("sourceInfo", formData.sourceInfo);
-                      }}
-                      rows={3}
-                      className={
-                        errors.sourceDescription && touched.sourceDescription
-                          ? "border-red-500"
-                          : ""
-                      }
-                    />
-                    {errors.sourceDescription && touched.sourceDescription && (
-                      <p className="text-red-500 text-sm">
-                        {errors.sourceDescription}
-                      </p>
-                    )}
-                  </div>
+                    <div className="space-y-2">
+                      <Label htmlFor={`sourceUrl-${index}`}>
+                        Official URL *
+                      </Label>
+                      <Input
+                        id={`sourceUrl-${index}`}
+                        type="url"
+                        placeholder="https://example.com"
+                        value={source.url || ""}
+                        onChange={(e) => {
+                          updateSource(index, "url", e.target.value);
+                          if (touched[`source-${index}-url`])
+                            validateField("sources", formData.sources);
+                        }}
+                        onBlur={() => {
+                          setTouched((prev) => ({
+                            ...prev,
+                            [`source-${index}-url`]: true,
+                          }));
+                          validateField("sources", formData.sources);
+                        }}
+                        className={
+                          errors[`source-${index}-url`] &&
+                          touched[`source-${index}-url`]
+                            ? "border-red-500"
+                            : ""
+                        }
+                      />
+                      {errors[`source-${index}-url`] &&
+                        touched[`source-${index}-url`] && (
+                          <p className="text-red-500 text-sm">
+                            {errors[`source-${index}-url`]}
+                          </p>
+                        )}
+                    </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="verificationDate">
-                      Verification Date *
-                    </Label>
-                    <Input
-                      id="verificationDate"
-                      type="date"
-                      value={formData.sourceInfo?.verificationDate || ""}
-                      onChange={(e) => {
-                        setFormData((prev) => ({
-                          ...prev,
-                          sourceInfo: {
-                            ...prev.sourceInfo!,
-                            verificationDate: e.target.value,
-                          },
-                        }));
-                        if (touched.sourceDate)
-                          validateField("sourceInfo", formData.sourceInfo);
-                      }}
-                      onBlur={() => {
-                        setTouched((prev) => ({ ...prev, sourceDate: true }));
-                        validateField("sourceInfo", formData.sourceInfo);
-                      }}
-                      className={
-                        errors.sourceDate && touched.sourceDate
-                          ? "border-red-500"
-                          : ""
-                      }
-                    />
-                    {errors.sourceDate && touched.sourceDate && (
-                      <p className="text-red-500 text-sm">
-                        {errors.sourceDate}
-                      </p>
-                    )}
+                    <div className="space-y-2">
+                      <Label htmlFor={`sourceDescription-${index}`}>
+                        Description *
+                      </Label>
+                      <Textarea
+                        id={`sourceDescription-${index}`}
+                        value={source.description || ""}
+                        onChange={(e) => {
+                          updateSource(index, "description", e.target.value);
+                          if (touched[`source-${index}-description`])
+                            validateField("sources", formData.sources);
+                        }}
+                        onBlur={() => {
+                          setTouched((prev) => ({
+                            ...prev,
+                            [`source-${index}-description`]: true,
+                          }));
+                          validateField("sources", formData.sources);
+                        }}
+                        rows={3}
+                        className={
+                          errors[`source-${index}-description`] &&
+                          touched[`source-${index}-description`]
+                            ? "border-red-500"
+                            : ""
+                        }
+                      />
+                      {errors[`source-${index}-description`] &&
+                        touched[`source-${index}-description`] && (
+                          <p className="text-red-500 text-sm">
+                            {errors[`source-${index}-description`]}
+                          </p>
+                        )}
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor={`verificationDate-${index}`}>
+                        Verification Date *
+                      </Label>
+                      <Input
+                        id={`verificationDate-${index}`}
+                        type="date"
+                        value={source.verificationDate || ""}
+                        onChange={(e) => {
+                          updateSource(
+                            index,
+                            "verificationDate",
+                            e.target.value
+                          );
+                          if (touched[`source-${index}-date`])
+                            validateField("sources", formData.sources);
+                        }}
+                        onBlur={() => {
+                          setTouched((prev) => ({
+                            ...prev,
+                            [`source-${index}-date`]: true,
+                          }));
+                          validateField("sources", formData.sources);
+                        }}
+                        className={
+                          errors[`source-${index}-date`] &&
+                          touched[`source-${index}-date`]
+                            ? "border-red-500"
+                            : ""
+                        }
+                      />
+                      {errors[`source-${index}-date`] &&
+                        touched[`source-${index}-date`] && (
+                          <p className="text-red-500 text-sm">
+                            {errors[`source-${index}-date`]}
+                          </p>
+                        )}
+                    </div>
                   </div>
-                </CardContent>
-              </Card>
-            )}
+                ))}
+
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={addSource}
+                  className="w-full bg-transparent"
+                >
+                  <Plus className="mr-2 h-4 w-4" />
+                  Add Another Source
+                </Button>
+
+                {errors.sources && (
+                  <p className="text-red-500 text-sm">{errors.sources}</p>
+                )}
+              </CardContent>
+            </Card>
 
             {/* Preparation Steps */}
             <Card>

@@ -10,19 +10,19 @@ import Link from "next/link";
 import { getTreatment, deleteTreatment } from "@/lib/admin/treatments-api";
 import { getReviews } from "@/lib/admin/reviews-api";
 import { ConfirmDialog } from "@/components/admin/confirm-dialog";
+import { TreatmentImage } from "@/components/admin/treatment-image";
 import { toast } from "@/hooks/use-toast";
-import Image from "next/image";
 
 interface Treatment {
   id: string;
   name: string;
   sourceType: "Local Remedy" | "Verified Source";
-  sourceInfo?: {
+  sources?: Array<{
     authority: string;
     url: string;
     description: string;
     verificationDate: string;
-  };
+  }>;
   preparation: string[];
   usage: string;
   dosage: string;
@@ -246,15 +246,14 @@ export default function TreatmentViewPage() {
               {treatment.imageUrl && (
                 <div>
                   <h4 className="font-semibold mb-2">Image</h4>
-                  <div className="relative w-full h-64 rounded-lg border border-gray-200 overflow-hidden bg-gray-50">
-                    <Image
-                      src={treatment.imageUrl}
-                      alt={treatment.name}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    />
-                  </div>
+                  <TreatmentImage
+                    src={treatment.imageUrl}
+                    alt={treatment.name}
+                    width={600}
+                    height={400}
+                    className="rounded-lg border border-gray-200 overflow-hidden bg-gray-50 object-cover w-full h-64"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  />
                 </div>
               )}
 
@@ -367,44 +366,50 @@ export default function TreatmentViewPage() {
             </CardContent>
           </Card>
 
-          {treatment.sourceType === "Verified Source" &&
-            treatment.sourceInfo && (
-              <Card>
-                <CardHeader>
-                  <CardTitle>Source Information</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                  <div>
-                    <p className="font-medium">
-                      {treatment.sourceInfo.authority}
-                    </p>
-                    <p className="text-sm text-gray-600">
-                      {treatment.sourceInfo.description}
-                    </p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-500">Verified on</p>
-                    <p className="text-sm">
-                      {treatment.sourceInfo.verificationDate}
-                    </p>
-                  </div>
-                  <Button
-                    asChild
-                    variant="outline"
-                    size="sm"
-                    className="w-full bg-transparent"
+          {treatment.sources && treatment.sources.length > 0 && (
+            <Card>
+              <CardHeader>
+                <CardTitle>Source Information</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                {treatment.sources.map((source, index) => (
+                  <div
+                    key={index}
+                    className="space-y-3 border-b border-gray-100 pb-4 last:border-0 last:pb-0"
                   >
-                    <a
-                      href={treatment.sourceInfo.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      View Official Source
-                    </a>
-                  </Button>
-                </CardContent>
-              </Card>
-            )}
+                    <div>
+                      <p className="font-medium">{source.authority}</p>
+                      <p className="text-sm text-gray-600">
+                        {source.description}
+                      </p>
+                    </div>
+                    {source.verificationDate && (
+                      <div>
+                        <p className="text-sm text-gray-500">Verified on</p>
+                        <p className="text-sm">{source.verificationDate}</p>
+                      </div>
+                    )}
+                    {source.url && (
+                      <Button
+                        asChild
+                        variant="outline"
+                        size="sm"
+                        className="w-full bg-transparent"
+                      >
+                        <a
+                          href={source.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          View Official Source
+                        </a>
+                      </Button>
+                    )}
+                  </div>
+                ))}
+              </CardContent>
+            </Card>
+          )}
         </div>
       </div>
 

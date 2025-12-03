@@ -2,18 +2,28 @@
 
 import type React from "react";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { Plus, Search, Edit, Trash2, Eye, ImageIcon } from "lucide-react";
+import {
+  Plus,
+  Search,
+  Edit,
+  Trash2,
+  Eye,
+  ImageIcon,
+  ChevronUp,
+  ChevronDown,
+  Filter,
+} from "lucide-react";
 import Link from "next/link";
-import Image from "next/image";
 import { getTreatments, deleteTreatment } from "@/lib/admin/treatments-api";
 import { getReviews } from "@/lib/admin/reviews-api";
 import { AdminPagination } from "@/components/admin/pagination";
 import { ConfirmDialog } from "@/components/admin/confirm-dialog";
+import { TreatmentImage } from "@/components/admin/treatment-image";
 import { toast } from "@/hooks/use-toast";
 
 interface Treatment {
@@ -38,12 +48,34 @@ export default function TreatmentsPage() {
   const [liveReviewData, setLiveReviewData] = useState<
     Record<string, { count: number; rating: number }>
   >({});
+  const [sortBy, setSortBy] = useState<string>("createdAt");
+  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc");
+  const [showSortOptions, setShowSortOptions] = useState(false);
+
+  const sortOptionsRef = useRef<HTMLDivElement>(null);
 
   const itemsPerPage = 10;
 
+  // Close sort options when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        sortOptionsRef.current &&
+        !sortOptionsRef.current.contains(event.target as Node)
+      ) {
+        setShowSortOptions(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   useEffect(() => {
     loadTreatments();
-  }, [currentPage, searchTerm]);
+  }, [currentPage, searchTerm, sortBy, sortOrder]);
 
   const loadTreatments = async () => {
     setLoading(true);
@@ -52,6 +84,8 @@ export default function TreatmentsPage() {
         page: currentPage,
         limit: itemsPerPage,
         search: searchTerm,
+        sortBy,
+        sortOrder,
       });
       setTreatments(data.treatments);
       setTotalPages(data.totalPages);
@@ -124,6 +158,27 @@ export default function TreatmentsPage() {
     setDeleteId(null);
   };
 
+  const handleSort = (field: string) => {
+    if (sortBy === field) {
+      // Toggle sort order if clicking the same field
+      setSortOrder(sortOrder === "asc" ? "desc" : "asc");
+    } else {
+      // Set new sort field, default to ascending
+      setSortBy(field);
+      setSortOrder("asc");
+    }
+    setCurrentPage(1); // Reset to first page when sorting changes
+  };
+
+  const getSortIcon = (field: string) => {
+    if (sortBy !== field) return null;
+    return sortOrder === "asc" ? (
+      <ChevronUp className="ml-1 h-4 w-4 inline" />
+    ) : (
+      <ChevronDown className="ml-1 h-4 w-4 inline" />
+    );
+  };
+
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     setCurrentPage(1);
@@ -170,7 +225,62 @@ export default function TreatmentsPage() {
       {/* Treatments List */}
       <Card>
         <CardHeader>
-          <CardTitle>All Treatments ({totalCount})</CardTitle>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <CardTitle>All Treatments ({totalCount})</CardTitle>
+            <div className="relative" ref={sortOptionsRef}>
+              <Button
+                variant="outline"
+                onClick={() => setShowSortOptions(!showSortOptions)}
+                className="flex items-center gap-2"
+              >
+                <Filter className="h-4 w-4" />
+                Sort By
+                {getSortIcon(sortBy)}
+              </Button>
+
+              {showSortOptions && (
+                <div className="absolute right-0 top-full mt-1 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-10">
+                  <div className="py-1">
+                    <button
+                      onClick={() => handleSort("name")}
+                      className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex justify-between items-center"
+                    >
+                      Name
+                      {getSortIcon("name")}
+                    </button>
+                    <button
+                      onClick={() => handleSort("createdAt")}
+                      className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex justify-between items-center"
+                    >
+                      Created Date
+                      {getSortIcon("createdAt")}
+                    </button>
+                    <button
+                      onClick={() => handleSort("averageRating")}
+                      className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex justify-between items-center"
+                    >
+                      Rating
+                      {getSortIcon("averageRating")}
+                    </button>
+                    <button
+                      onClick={() => handleSort("totalReviews")}
+                      className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex justify-between items-center"
+                    >
+                      Reviews
+                      {getSortIcon("totalReviews")}
+                    </button>
+                    <button
+                      onClick={() => handleSort("sourceType")}
+                      className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex justify-between items-center"
+                    >
+                      Source Type
+                      {getSortIcon("sourceType")}
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
         </CardHeader>
         <CardContent>
           {loading ? (
@@ -189,21 +299,13 @@ export default function TreatmentsPage() {
                   <div className="flex items-start gap-4">
                     {/* Thumbnail */}
                     <div className="flex-shrink-0">
-                      {treatment.imageUrl ? (
-                        <div className="relative w-20 h-20 rounded-lg border border-gray-200 overflow-hidden bg-gray-50">
-                          <Image
-                            src={treatment.imageUrl}
-                            alt={treatment.name}
-                            fill
-                            className="object-cover"
-                            sizes="80px"
-                          />
-                        </div>
-                      ) : (
-                        <div className="w-20 h-20 rounded-lg border border-gray-200 bg-gray-100 flex items-center justify-center">
-                          <ImageIcon className="h-8 w-8 text-gray-400" />
-                        </div>
-                      )}
+                      <TreatmentImage
+                        src={treatment.imageUrl}
+                        alt={treatment.name}
+                        width={80}
+                        height={80}
+                        className="rounded-lg border border-gray-200 overflow-hidden bg-gray-50 object-cover"
+                      />
                     </div>
 
                     {/* Content */}

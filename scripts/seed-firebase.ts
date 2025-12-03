@@ -24,19 +24,19 @@ if (!getApps().length) {
 
 const db = getDatabase();
 
-interface Treatment {
+interface Treatment2 {
   id: number;
   name: string;
   category: string[];
   symptoms: string[];
   imageUrl: string;
   sourceType: string;
-  sourceInfo: {
+  sources: Array<{
     authority: string;
     url: string;
     description: string;
     verificationDate: string;
-  };
+  }>;
   preparation: string;
   usage: string;
   dosage: string;
@@ -62,7 +62,7 @@ interface Review {
 
 // Herbal remedies data from up.html
 const herbalTreatments: Omit<
-  Treatment,
+  Treatment2,
   "averageRating" | "totalReviews" | "createdAt" | "updatedAt"
 >[] = [
   {
@@ -85,12 +85,34 @@ const herbalTreatments: Omit<
     ],
     imageUrl: "",
     sourceType: "Local Remedy",
-    sourceInfo: {
-      authority: "",
-      url: "",
-      description: "",
-      verificationDate: "",
-    },
+    sources: [
+      {
+        authority: "Philippine Department of Health",
+        url: "https://pitahc.gov.ph/directory-of-herbs/",
+        description: "Approved herbal medicine by PITAHC",
+        verificationDate: "01/01/2023",
+      },
+      {
+        authority: "ScienceDirect",
+        url: "https://www.sciencedirect.com",
+        description:
+          "Metabolic analysis of the CAZy class glycosyltransferases in rhizospheric soil fungiome of the plant species Moringa oleifera",
+        verificationDate: "",
+      },
+      {
+        authority: "ScienceDirect",
+        url: "https://www.sciencedirect.com",
+        description:
+          "Moringa oleifera, Lycium barbarum: A Perspective on New Sources of Phytochemicals, Lipids and Proteins",
+        verificationDate: "",
+      },
+      {
+        authority: "Google Books",
+        url: "https://books.google.com",
+        description: "Moringa - The Miracle Tree",
+        verificationDate: "",
+      },
+    ],
     preparation:
       "Boil fresh leaves (5-10 minutes) and drink as tea, Add to soups and dishes",
     usage: "Oral consumption",
@@ -122,12 +144,21 @@ const herbalTreatments: Omit<
     ],
     imageUrl: "",
     sourceType: "Local Remedy",
-    sourceInfo: {
-      authority: "",
-      url: "",
-      description: "",
-      verificationDate: "",
-    },
+    sources: [
+      {
+        authority: "Philippine Department of Health",
+        url: "https://pitahc.gov.ph/directory-of-herbs/",
+        description: "Approved herbal medicine by PITAHC",
+        verificationDate: "01/01/2023",
+      },
+      {
+        authority: "ScienceDirect",
+        url: "https://www.sciencedirect.com",
+        description:
+          "Biomass-Based Iron Removal: Adsorption Kinetics, Isotherm and Machine Learning Modelling with Ocimum sanctum And Syzygium cumini",
+        verificationDate: "",
+      },
+    ],
     preparation:
       "Boil fresh or dried leaves for 10-15 minutes and drink as tea, Pound leaves and apply as poultice",
     usage: "Oral consumption or topical application",
@@ -158,12 +189,29 @@ const herbalTreatments: Omit<
     ],
     imageUrl: "",
     sourceType: "Local Remedy",
-    sourceInfo: {
-      authority: "",
-      url: "",
-      description: "",
-      verificationDate: "",
-    },
+    sources: [
+      {
+        authority: "ScienceDirect",
+        url: "https://www.sciencedirect.com",
+        description:
+          "Anti-tuberculosis activity of bio-active compounds from Lantana camara L., Euphorbia hirta L., Mukia maderaspatana (L.) M. Roem, and Abutilon indicum (L.)",
+        verificationDate: "",
+      },
+      {
+        authority: "ScienceDirect",
+        url: "https://www.sciencedirect.com",
+        description:
+          "Phenolic compounds analysis of three Euphorbia species by LC-DAD-MSn and their biological properties",
+        verificationDate: "",
+      },
+      {
+        authority: "Google Books",
+        url: "https://books.google.com",
+        description:
+          "Phytotherapy in the Management of Diabetes and Hypertension",
+        verificationDate: "",
+      },
+    ],
     preparation:
       "Boil handful of fresh leaves in 2 cups of water for 10-15 minutes, Crush leaves for topical application",
     usage: "Oral consumption or topical application",
@@ -196,12 +244,34 @@ const herbalTreatments: Omit<
     ],
     imageUrl: "",
     sourceType: "Verified Source",
-    sourceInfo: {
-      authority: "Philippine Department of Health",
-      url: "https://pitahc.gov.ph/directory-of-herbs/",
-      description: "Approved herbal medicine by PITAHC",
-      verificationDate: "01/01/2023",
-    },
+    sources: [
+      {
+        authority: "Philippine Department of Health",
+        url: "https://pitahc.gov.ph/directory-of-herbs/",
+        description: "Approved herbal medicine by PITAHC",
+        verificationDate: "01/01/2023",
+      },
+      {
+        authority: "ScienceDirect",
+        url: "https://www.sciencedirect.com",
+        description:
+          "Chemical Composition and Insecticidal Activities of Blumea balsamifera (Sambong) Essential Oil Against Three Stored Product Insects",
+        verificationDate: "",
+      },
+      {
+        authority: "ScienceDirect",
+        url: "https://www.sciencedirect.com",
+        description:
+          "Antibacterial activity and cytotoxicity of sequentially extracted medicinal plant Blumea balsamifera Lin. (DC).",
+        verificationDate: "",
+      },
+      {
+        authority: "Google Books",
+        url: "https://books.google.com",
+        description: "Malaysian Medicinal Herbs: Home Garden",
+        verificationDate: "",
+      },
+    ],
     preparation:
       "Boil 50g of fresh leaves or 25g of dried leaves in 1 liter of water for 10-15 minutes",
     usage: "Drink as tea or use essential oil in topical applications",
@@ -233,12 +303,35 @@ const herbalTreatments: Omit<
     ],
     imageUrl: "",
     sourceType: "Verified Source",
-    sourceInfo: {
-      authority: "Philippine Department of Health",
-      url: "https://www.stuartxchange.org/Oregano.html",
-      description: "Traditional medicinal herb with scientific backing",
-      verificationDate: "01/01/2023",
-    },
+    sources: [
+      {
+        authority: "Philippine Department of Health",
+        url: "https://www.stuartxchange.org/Oregano.html",
+        description: "Traditional medicinal herb with scientific backing",
+        verificationDate: "01/01/2023",
+      },
+      {
+        authority: "ScienceDirect",
+        url: "https://www.sciencedirect.com",
+        description:
+          "Plectranthus amboinicus (Lour.) Spreng (Indian Oregano) essential oil combats Methicillin resistant Staphylococcus aureus by targeting bacterial septation and attenuation of virulence factors",
+        verificationDate: "",
+      },
+      {
+        authority: "ScienceDirect",
+        url: "https://www.sciencedirect.com",
+        description:
+          "Physiological and biochemical adaptations of Plectranthus amboinicus under severe cadmium and lead contamination",
+        verificationDate: "",
+      },
+      {
+        authority: "Google Books",
+        url: "https://books.google.com",
+        description:
+          "Handbook of Spices in India: 75 Years of Research and Development",
+        verificationDate: "",
+      },
+    ],
     preparation:
       "Boil 5-10 fresh leaves in 2 cups of water, Crush leaves for poultice, Use essential oil in diluted form",
     usage: "Drink as tea, gargle, or apply topically",
@@ -267,12 +360,22 @@ const herbalTreatments: Omit<
     ],
     imageUrl: "",
     sourceType: "Local Remedy",
-    sourceInfo: {
-      authority: "",
-      url: "",
-      description: "",
-      verificationDate: "",
-    },
+    sources: [
+      {
+        authority: "ScienceDirect",
+        url: "https://www.sciencedirect.com",
+        description:
+          "In vitro anti-venom potential of various solvent based leaf extracts of Andrographis serpyllifolia (Rottler ex Vahl) Wight against Naja naja and Daboia russelli",
+        verificationDate: "",
+      },
+      {
+        authority: "ScienceDirect",
+        url: "https://www.sciencedirect.com",
+        description:
+          "Ethnobotanical survey of malaria prophylactic remedies in Odisha, India",
+        verificationDate: "",
+      },
+    ],
     preparation:
       "Boil leaves or roots into decoction, Make into capsules and extracts",
     usage: "Oral consumption or topical application",
@@ -306,12 +409,28 @@ const herbalTreatments: Omit<
     ],
     imageUrl: "",
     sourceType: "Verified Source",
-    sourceInfo: {
-      authority: "Philippine Department of Health",
-      url: "https://pitahc.gov.ph/directory-of-herbs/",
-      description: "Approved herbal medicine by PITAHC",
-      verificationDate: "01/01/2023",
-    },
+    sources: [
+      {
+        authority: "Philippine Department of Health",
+        url: "https://pitahc.gov.ph/directory-of-herbs/",
+        description: "Approved herbal medicine by PITAHC",
+        verificationDate: "01/01/2023",
+      },
+      {
+        authority: "ScienceDirect",
+        url: "https://www.sciencedirect.com",
+        description:
+          "The chemistry and biological activities of Peperomia pellucida (Piperaceae): A critical review",
+        verificationDate: "",
+      },
+      {
+        authority: "ScienceDirect",
+        url: "https://www.sciencedirect.com",
+        description:
+          "Comparative toxicity, phytochemistry, and use of 53 Philippine medicinal plants",
+        verificationDate: "",
+      },
+    ],
     preparation:
       "Eat raw as salad, Boil 1 cup of leaves/stems in 2 cups of water, Pound into poultice",
     usage: "Oral consumption or topical application",
@@ -344,12 +463,28 @@ const herbalTreatments: Omit<
     ],
     imageUrl: "",
     sourceType: "Local Remedy",
-    sourceInfo: {
-      authority: "",
-      url: "",
-      description: "",
-      verificationDate: "",
-    },
+    sources: [
+      {
+        authority: "ScienceDirect",
+        url: "https://www.sciencedirect.com",
+        description:
+          "Antifungal properties of Cymbopogon citratus (DC.) Stapf—A scoping review",
+        verificationDate: "",
+      },
+      {
+        authority: "ScienceDirect",
+        url: "https://www.sciencedirect.com",
+        description:
+          "Phytochemistry and pharmacological activities of Cymbopogon citratus: A review",
+        verificationDate: "",
+      },
+      {
+        authority: "Google Books",
+        url: "https://books.google.com",
+        description: "The Encyclopedia of Herbs and Spices",
+        verificationDate: "",
+      },
+    ],
     preparation:
       "Boil fresh stalks or leaves for 5-15 minutes, Use diluted essential oil topically or by inhalation",
     usage: "Drink as tea or use topically",
@@ -382,12 +517,14 @@ const herbalTreatments: Omit<
     ],
     imageUrl: "",
     sourceType: "Verified Source",
-    sourceInfo: {
-      authority: "Philippine Department of Health",
-      url: "https://pitahc.gov.ph/directory-of-herbs/",
-      description: "Approved herbal medicine by PITAHC",
-      verificationDate: "01/01/2023",
-    },
+    sources: [
+      {
+        authority: "Philippine Department of Health",
+        url: "https://pitahc.gov.ph/directory-of-herbs/",
+        description: "Approved herbal medicine by PITAHC",
+        verificationDate: "01/01/2023",
+      },
+    ],
     preparation:
       "Boil 4-6 fresh leaves in water for 10-15 minutes, Crush leaves into paste for topical use",
     usage: "Drink as tea or apply topically",
@@ -410,12 +547,28 @@ const herbalTreatments: Omit<
     ],
     imageUrl: "",
     sourceType: "Local Remedy",
-    sourceInfo: {
-      authority: "",
-      url: "",
-      description: "",
-      verificationDate: "",
-    },
+    sources: [
+      {
+        authority: "ScienceDirect",
+        url: "https://www.sciencedirect.com",
+        description:
+          "Biochemical profiling of plant latex Euphorbia hirta and Croton bonplandianum: Unveiling the nuclease and protease activity",
+        verificationDate: "",
+      },
+      {
+        authority: "ScienceDirect",
+        url: "https://www.sciencedirect.com",
+        description:
+          "Euphorbia hirta nanoextract as a piezoelectric ultrasonic scaler coolant in gingivitis treatment in a Wistar rat model",
+        verificationDate: "",
+      },
+      {
+        authority: "Google Books",
+        url: "https://books.google.com",
+        description: "The Essential Guide to Herbal Safety",
+        verificationDate: "",
+      },
+    ],
     preparation:
       "Boil 7 leaves in 3 glasses of water for menstrual issues, Squeeze leaves for juice extraction, Pound leaves for poultice",
     usage: "Oral consumption or topical application",
@@ -446,12 +599,22 @@ const herbalTreatments: Omit<
     ],
     imageUrl: "",
     sourceType: "Local Remedy",
-    sourceInfo: {
-      authority: "",
-      url: "",
-      description: "",
-      verificationDate: "",
-    },
+    sources: [
+      {
+        authority: "ScienceDirect",
+        url: "https://www.sciencedirect.com",
+        description:
+          "Phytochemical and biological studies of betel leaf (Piper betle L.): Review on paradigm and its potential benefits in human health",
+        verificationDate: "",
+      },
+      {
+        authority: "ScienceDirect",
+        url: "https://www.sciencedirect.com",
+        description:
+          "On the antifungal potentials of Piper betle L. ethanol extract against sclerotium rolfsii for pesticidal applicability: In vitro evidence and in silico screening",
+        verificationDate: "",
+      },
+    ],
     preparation:
       "Wash and pound fresh leaves for poultice, Boil leaves for wash or mouth rinse",
     usage: "Topical application or oral rinse",
@@ -478,12 +641,15 @@ const herbalTreatments: Omit<
     ],
     imageUrl: "",
     sourceType: "Local Remedy",
-    sourceInfo: {
-      authority: "",
-      url: "",
-      description: "",
-      verificationDate: "",
-    },
+    sources: [
+      {
+        authority: "ScienceDirect",
+        url: "https://www.sciencedirect.com",
+        description:
+          "Bitter leaf (Vernonia amygdalina) and siam weed (Chromolaena odorata) aqueous extracts alleviate testicular damage induced by Plasmodium berghei in male mice via modulation of oxidative stress pathways",
+        verificationDate: "",
+      },
+    ],
     preparation:
       "Boil fresh stem or roots thoroughly to remove toxins, Pound leaves or stem for poultice",
     usage: "External application on affected areas",
@@ -511,12 +677,22 @@ const herbalTreatments: Omit<
     ],
     imageUrl: "",
     sourceType: "Local Remedy",
-    sourceInfo: {
-      authority: "",
-      url: "",
-      description: "",
-      verificationDate: "",
-    },
+    sources: [
+      {
+        authority: "ScienceDirect",
+        url: "https://www.sciencedirect.com",
+        description:
+          "Biosynthesis of ZnO nanoparticles using Averrhoa bilimbi fruit extract: evaluation of photocatalytic and antibacterial activities",
+        verificationDate: "",
+      },
+      {
+        authority: "ScienceDirect",
+        url: "https://www.sciencedirect.com",
+        description:
+          "Biogenic synthesis of nickel oxide nanoparticles using Averrhoa bilimbi and investigation of its antibacterial, antidiabetic and cytotoxic properties",
+        verificationDate: "",
+      },
+    ],
     preparation:
       "Eat fresh fruits raw or as juice, Boil leaves for decoction, Apply leaves as poultice",
     usage: "Oral consumption or topical application",
@@ -544,12 +720,14 @@ const herbalTreatments: Omit<
     ],
     imageUrl: "",
     sourceType: "Verified Source",
-    sourceInfo: {
-      authority: "Philippine Department of Health",
-      url: "https://pitahc.gov.ph/directory-of-herbs/",
-      description: "Approved herbal medicine by PITAHC",
-      verificationDate: "01/01/2023",
-    },
+    sources: [
+      {
+        authority: "Philippine Department of Health",
+        url: "https://pitahc.gov.ph/directory-of-herbs/",
+        description: "Approved herbal medicine by PITAHC",
+        verificationDate: "01/01/2023",
+      },
+    ],
     preparation: "Boil 5 leaves in 2 cups of water for 10-15 minutes",
     usage: "Drink as tea or apply poultice externally",
     dosage: "1 cup 3 times a day",
@@ -574,12 +752,22 @@ const herbalTreatments: Omit<
     ],
     imageUrl: "",
     sourceType: "Local Remedy",
-    sourceInfo: {
-      authority: "",
-      url: "",
-      description: "",
-      verificationDate: "",
-    },
+    sources: [
+      {
+        authority: "ScienceDirect",
+        url: "https://www.sciencedirect.com",
+        description:
+          "Investigation of the Role of Lunasia amara Blanco in the Treatment of Malaria Through Network Pharmacology Analysis",
+        verificationDate: "",
+      },
+      {
+        authority: "ScienceDirect",
+        url: "https://www.sciencedirect.com",
+        description:
+          "Novel furoquinolinones from an Indonesian Plant, Lunasia amara",
+        verificationDate: "",
+      },
+    ],
     preparation:
       "Wash, pound, and apply fresh leaves directly, Use leaf decoction for washing wounds",
     usage: "Topical application",
@@ -609,12 +797,14 @@ const herbalTreatments: Omit<
     ],
     imageUrl: "",
     sourceType: "Verified Source",
-    sourceInfo: {
-      authority: "StuartXchange",
-      url: "https://www.stuartxchange.org/Kuchai.html",
-      description: "Traditional medicinal herb documentation",
-      verificationDate: "01/01/2023",
-    },
+    sources: [
+      {
+        authority: "StuartXchange",
+        url: "https://www.stuartxchange.org/Kuchai.html",
+        description: "Traditional medicinal herb documentation",
+        verificationDate: "01/01/2023",
+      },
+    ],
     preparation:
       "Eat raw or cooked, Pound for poultice, Make decoction from leaves",
     usage: "Oral consumption or topical application",
@@ -643,12 +833,22 @@ const herbalTreatments: Omit<
     ],
     imageUrl: "",
     sourceType: "Local Remedy",
-    sourceInfo: {
-      authority: "",
-      url: "",
-      description: "",
-      verificationDate: "",
-    },
+    sources: [
+      {
+        authority: "ScienceDirect",
+        url: "https://www.sciencedirect.com",
+        description:
+          "Exploration of polaron dynamics in Lagerstroemia speciosa (L.): Microstructure and semiconducting nature of novel organic system",
+        verificationDate: "",
+      },
+      {
+        authority: "ScienceDirect",
+        url: "https://www.sciencedirect.com",
+        description:
+          "Electrochemical studies on Lagerstroemia speciosa based hard carbon anode for sodium ion batteries",
+        verificationDate: "",
+      },
+    ],
     preparation:
       "Boil leaves for 10-15 minutes as tea, Eat young leaves fresh, Use dried leaves for herbal tea",
     usage: "Oral consumption",
@@ -678,12 +878,29 @@ const herbalTreatments: Omit<
     ],
     imageUrl: "",
     sourceType: "Local Remedy",
-    sourceInfo: {
-      authority: "",
-      url: "",
-      description: "",
-      verificationDate: "",
-    },
+    sources: [
+      {
+        authority: "ScienceDirect",
+        url: "https://www.sciencedirect.com",
+        description:
+          "Anti-atherosclerotic effects of combined Bambusa bambos (L.) Voss and Ananas comosus (L.) Merr. extract on hypercholesterolemic rabbits",
+        verificationDate: "",
+      },
+      {
+        authority: "ScienceDirect",
+        url: "https://www.sciencedirect.com",
+        description:
+          "Phytochrome-interacting factors 3 (AbPIF3) synergistically regulates anthocyanin, carotenoids and chlorophyll biosynthesis in the chimeric leaves of Ananas comosus var. bracteatus",
+        verificationDate: "",
+      },
+      {
+        authority: "ScienceDirect",
+        url: "https://www.sciencedirect.com",
+        description:
+          "Phytochemical profiling of Ananas comosus fruit via UPLC-MS and its anti-inflammatory and anti-arthritic activities: In Silico, In Vitro and In Vivo Approach",
+        verificationDate: "",
+      },
+    ],
     preparation:
       "Boil leaves for decoction, Crush fresh leaves for external application, Eat fruit fresh",
     usage: "Oral consumption or topical application",
@@ -708,12 +925,22 @@ const herbalTreatments: Omit<
     ],
     imageUrl: "",
     sourceType: "Local Remedy",
-    sourceInfo: {
-      authority: "",
-      url: "",
-      description: "",
-      verificationDate: "",
-    },
+    sources: [
+      {
+        authority: "ScienceDirect",
+        url: "https://www.sciencedirect.com",
+        description:
+          "Determination of the physicochemical characteristics and bioactive compounds of the miracle fruit (Synsepalum dulcificum) considering different extraction and preservation methods",
+        verificationDate: "",
+      },
+      {
+        authority: "ScienceDirect",
+        url: "https://www.sciencedirect.com",
+        description:
+          "Analyzing the miraculin content of Beninese Sisrè berries (Synsepalum dulcificum Schumach. & Thonn.) and exploring its thermal behavior",
+        verificationDate: "",
+      },
+    ],
     preparation: "Eat fresh berries, Boil leaves for tea in some practices",
     usage: "Oral consumption",
     dosage: "As needed typically before meals",
@@ -741,12 +968,28 @@ const herbalTreatments: Omit<
     ],
     imageUrl: "",
     sourceType: "Local Remedy",
-    sourceInfo: {
-      authority: "",
-      url: "",
-      description: "",
-      verificationDate: "",
-    },
+    sources: [
+      {
+        authority: "ScienceDirect",
+        url: "https://www.sciencedirect.com",
+        description:
+          "Nutritional, phytochemical and functional properties of avocado (Persea Americana Mill) leaf: Evaluation of its derivative extraction",
+        verificationDate: "",
+      },
+      {
+        authority: "ScienceDirect",
+        url: "https://www.sciencedirect.com",
+        description:
+          "Chemical constituents of leaves of Persea americana (avocado) and their protective effects against neomycin-induced hair cell damage",
+        verificationDate: "",
+      },
+      {
+        authority: "Google Books",
+        url: "https://books.google.com",
+        description: "International Poisonous Plants Checklist",
+        verificationDate: "",
+      },
+    ],
     preparation:
       "Boil fresh or dried leaves for 10-15 minutes, Crush leaves for poultice",
     usage: "Drink as tea or apply topically",
@@ -773,12 +1016,22 @@ const herbalTreatments: Omit<
     ],
     imageUrl: "",
     sourceType: "Local Remedy",
-    sourceInfo: {
-      authority: "",
-      url: "",
-      description: "",
-      verificationDate: "",
-    },
+    sources: [
+      {
+        authority: "ScienceDirect",
+        url: "https://www.sciencedirect.com",
+        description:
+          "Lactuca indica L. polysaccharide ameliorates type 1 diabetes via gut microbiota-SCFAs-IRS-1/PI3K/GLUT4-MYD88/NF-κB axis",
+        verificationDate: "",
+      },
+      {
+        authority: "ScienceDirect",
+        url: "https://www.sciencedirect.com",
+        description:
+          "Discovery of anti-inflammatory phytoconstituents from Lactuca indica L. based on its traditional uses",
+        verificationDate: "",
+      },
+    ],
     preparation:
       "Boil leaves for tea or decoction, Pound fresh leaves for poultice",
     usage: "Oral consumption or topical application",
@@ -808,12 +1061,29 @@ const herbalTreatments: Omit<
     ],
     imageUrl: "",
     sourceType: "Local Remedy",
-    sourceInfo: {
-      authority: "",
-      url: "",
-      description: "",
-      verificationDate: "",
-    },
+    sources: [
+      {
+        authority: "ScienceDirect",
+        url: "https://www.sciencedirect.com",
+        description:
+          "Ultrasound-assisted extraction, characterization, and bioactivity assessment of polyphenol-rich papaya (Carica papaya) leaf extract for application in plant-based food products",
+        verificationDate: "",
+      },
+      {
+        authority: "ScienceDirect",
+        url: "https://www.sciencedirect.com",
+        description:
+          "Modulation of COX-2, 5-LOX, and cytokine signalling by Carica papaya L. Leaf cultivar 'Red Lady' flavonoids in inflammation: in-vitro and in-silico insights",
+        verificationDate: "",
+      },
+      {
+        authority: "Google Books",
+        url: "https://books.google.com",
+        description:
+          "International Conference on Health, Education, & Computer Science Technology",
+        verificationDate: "",
+      },
+    ],
     preparation:
       "Boil fresh leaves for 10-15 minutes, Extract juice from crushed leaves",
     usage: "Oral consumption",
@@ -841,12 +1111,14 @@ const herbalTreatments: Omit<
     ],
     imageUrl: "",
     sourceType: "Verified Source",
-    sourceInfo: {
-      authority: "Philippine Department of Health",
-      url: "https://pitahc.gov.ph/directory-of-herbs/",
-      description: "Approved herbal medicine by DOH",
-      verificationDate: "01/01/2023",
-    },
+    sources: [
+      {
+        authority: "Philippine Department of Health",
+        url: "https://pitahc.gov.ph/directory-of-herbs/",
+        description: "Approved herbal medicine by DOH",
+        verificationDate: "01/01/2023",
+      },
+    ],
     preparation: "Boil 1 cup of dried leaves in 2 cups of water for 10 minutes",
     usage: "Drink as tea or use as mouthwash",
     dosage: "1 cup before meals",
@@ -867,12 +1139,14 @@ const herbalTreatments: Omit<
     ],
     imageUrl: "",
     sourceType: "Verified Source",
-    sourceInfo: {
-      authority: "Philippine Department of Health",
-      url: "https://pitahc.gov.ph/directory-of-herbs/",
-      description: "Approved herbal medicine by DOH",
-      verificationDate: "01/01/2023",
-    },
+    sources: [
+      {
+        authority: "Philippine Department of Health",
+        url: "https://pitahc.gov.ph/directory-of-herbs/",
+        description: "Approved herbal medicine by DOH",
+        verificationDate: "01/01/2023",
+      },
+    ],
     preparation: "Crush fresh leaves into paste, Apply as lotion/ointment",
     usage: "Topical application on affected areas",
     dosage: "Apply twice daily",
@@ -898,12 +1172,14 @@ const herbalTreatments: Omit<
     ],
     imageUrl: "",
     sourceType: "Verified Source",
-    sourceInfo: {
-      authority: "Philippine Department of Health",
-      url: "https://pitahc.gov.ph/directory-of-herbs/",
-      description: "Approved herbal medicine by DOH",
-      verificationDate: "01/01/2023",
-    },
+    sources: [
+      {
+        authority: "Philippine Department of Health",
+        url: "https://pitahc.gov.ph/directory-of-herbs/",
+        description: "Approved herbal medicine by DOH",
+        verificationDate: "01/01/2023",
+      },
+    ],
     preparation:
       "Boil leaves for tea, Infuse in oil, Use as poultice or inhalation",
     usage: "Drink as tea or apply topically",
@@ -927,12 +1203,14 @@ const herbalTreatments: Omit<
     ],
     imageUrl: "",
     sourceType: "Verified Source",
-    sourceInfo: {
-      authority: "Philippine Department of Health",
-      url: "https://pitahc.gov.ph/directory-of-herbs/",
-      description: "Approved herbal medicine by DOH",
-      verificationDate: "01/01/2023",
-    },
+    sources: [
+      {
+        authority: "Philippine Department of Health",
+        url: "https://pitahc.gov.ph/directory-of-herbs/",
+        description: "Approved herbal medicine by DOH",
+        verificationDate: "01/01/2023",
+      },
+    ],
     preparation: "Consume raw, cooked, or in oil/extract form",
     usage: "Oral consumption",
     dosage: "1-2 raw cloves daily or as capsules",
@@ -955,12 +1233,14 @@ const herbalTreatments: Omit<
     ],
     imageUrl: "",
     sourceType: "Verified Source",
-    sourceInfo: {
-      authority: "Philippine Department of Health",
-      url: "https://pitahc.gov.ph/directory-of-herbs/",
-      description: "Approved herbal medicine by DOH",
-      verificationDate: "01/01/2023",
-    },
+    sources: [
+      {
+        authority: "Philippine Department of Health",
+        url: "https://pitahc.gov.ph/directory-of-herbs/",
+        description: "Approved herbal medicine by DOH",
+        verificationDate: "01/01/2023",
+      },
+    ],
     preparation: "Eat seeds or prepare leaf/root decoctions",
     usage: "Oral consumption",
     dosage: "8-10 seeds for children 4-6 years old, 2 hours after eating",
@@ -983,12 +1263,14 @@ const herbalTreatments: Omit<
     ],
     imageUrl: "",
     sourceType: "Verified Source",
-    sourceInfo: {
-      authority: "Philippine Department of Health",
-      url: "https://pitahc.gov.ph/directory-of-herbs/",
-      description: "Approved herbal medicine by DOH",
-      verificationDate: "01/01/2023",
-    },
+    sources: [
+      {
+        authority: "Philippine Department of Health",
+        url: "https://pitahc.gov.ph/directory-of-herbs/",
+        description: "Approved herbal medicine by DOH",
+        verificationDate: "01/01/2023",
+      },
+    ],
     preparation: "Eat cooked leaves or fruits, Prepare as juice or tea",
     usage: "Oral consumption",
     dosage: "1/2 cup twice a day",
@@ -1000,400 +1282,96 @@ const herbalTreatments: Omit<
       "Anti-inflammatory properties",
     ],
   },
+  {
+    id: 29,
+    name: "Calamansi",
+    category: ["Digestive", "Immune System", "Skin Health"],
+    symptoms: [
+      "Poor digestion",
+      "weak immune system",
+      "skin problems",
+      "scurvy symptoms",
+      "poor wound healing",
+    ],
+    imageUrl: "",
+    sourceType: "Local Remedy",
+    sources: [
+      {
+        authority: "ScienceDirect",
+        url: "https://www.sciencedirect.com",
+        description:
+          "Citrus microcarpa biochar: A green solution for the adsorption of dyes and phenols",
+        verificationDate: "",
+      },
+      {
+        authority: "ScienceDirect",
+        url: "https://www.sciencedirect.com",
+        description:
+          "Microbial succession and organic acid metabolism during spontaneous calamondin fermentation: The vital role of Pichia",
+        verificationDate: "",
+      },
+      {
+        authority: "Google Books",
+        url: "https://books.google.com",
+        description: "Ontologies and Natures",
+        verificationDate: "",
+      },
+    ],
+    preparation:
+      "Consume fresh fruit juice, Use peel for zest, Apply topically for skin issues",
+    usage: "Oral consumption or topical application",
+    dosage: "As needed for symptoms",
+    warnings: "May cause tooth enamel erosion, Use in moderation",
+    benefits: [
+      "Rich in vitamin C",
+      "Antioxidant properties",
+      "Skin brightening effects",
+      "Digestive aid",
+    ],
+  },
+  {
+    id: 30,
+    name: "Guyabano",
+    category: ["Anti-cancer", "Digestive", "Nervous System"],
+    symptoms: [
+      "Cancer-related symptoms",
+      "digestive issues",
+      "stress and anxiety",
+      "sleep problems",
+      "joint pain",
+    ],
+    imageUrl: "",
+    sourceType: "Local Remedy",
+    sources: [
+      {
+        authority: "ScienceDirect",
+        url: "https://www.sciencedirect.com",
+        description:
+          "Annona muricata: A comprehensive review on its traditional medicinal uses, phytochemicals, pharmacological activities, mechanisms of action and toxicity",
+        verificationDate: "",
+      },
+      {
+        authority: "ScienceDirect",
+        url: "https://www.sciencedirect.com",
+        description:
+          "Soursop (Annona muricata L.): Composition, Nutritional Value, Medicinal Uses, and Toxicology",
+        verificationDate: "",
+      },
+    ],
+    preparation:
+      "Consume fruit flesh, Prepare as tea from leaves, Use extract supplements",
+    usage: "Oral consumption",
+    dosage: "As directed by traditional practitioner",
+    warnings:
+      "May be toxic in high doses, Consult doctor for serious conditions",
+    benefits: [
+      "Potential anti-cancer properties",
+      "Stress and anxiety relief",
+      "Improved sleep quality",
+      "Anti-inflammatory effects",
+    ],
+  },
 ];
-
-// Sample reviews data for herbal treatments
-const sampleReviews: Omit<Review, "treatmentId" | "createdAt" | "updatedAt">[] =
-  [
-    // Malunggay reviews
-    {
-      treatmentName: "Malunggay",
-      rating: 5,
-      comment:
-        "Excellent for increasing breastmilk supply! My baby is much happier now.",
-      userName: "Maria Santos",
-      userEmail: "maria.s@email.com",
-      anonymous: false,
-    },
-    {
-      treatmentName: "Malunggay",
-      rating: 4,
-      comment: "Helped regulate my blood sugar levels effectively.",
-      userName: "Juan Dela Cruz",
-      userEmail: "juan.dc@email.com",
-      anonymous: false,
-    },
-    {
-      treatmentName: "Malunggay",
-      rating: 5,
-      comment: "Great natural remedy for inflammation and joint pain.",
-      userName: "Anonymous User",
-      userEmail: "",
-      anonymous: true,
-    },
-
-    // Lomboy (Duhat) reviews
-    {
-      treatmentName: "Lomboy (Duhat)",
-      rating: 4,
-      comment: "Effective for managing diabetes symptoms and oral health.",
-      userName: "Dr. Roberto Garcia",
-      userEmail: "roberto.g@clinic.com",
-      anonymous: false,
-    },
-    {
-      treatmentName: "Lomboy (Duhat)",
-      rating: 5,
-      comment: "Amazing for wound healing and skin problems!",
-      userName: "Ana Reyes",
-      userEmail: "ana.r@email.com",
-      anonymous: false,
-    },
-
-    // Tawa-Tawa reviews
-    {
-      treatmentName: "Tawa-Tawa",
-      rating: 5,
-      comment:
-        "This helped my cousin during dengue recovery. Platelet count improved!",
-      userName: "Carlos Lim",
-      userEmail: "carlos.l@email.com",
-      anonymous: false,
-    },
-    {
-      treatmentName: "Tawa-Tawa",
-      rating: 4,
-      comment: "Good for respiratory issues and fever management.",
-      userName: "Anonymous User",
-      userEmail: "",
-      anonymous: true,
-    },
-
-    // Sambong reviews
-    {
-      treatmentName: "Sambong",
-      rating: 5,
-      comment: "Verified by DOH and really works for kidney stones!",
-      userName: "Dr. Maria Santos",
-      userEmail: "maria.santos@clinic.com",
-      anonymous: false,
-    },
-    {
-      treatmentName: "Sambong",
-      rating: 4,
-      comment: "Effective diuretic and good for urinary problems.",
-      userName: "Pedro Martinez",
-      userEmail: "pedro.m@email.com",
-      anonymous: false,
-    },
-
-    // Oregano reviews
-    {
-      treatmentName: "Oregano",
-      rating: 5,
-      comment: "Perfect for cough, colds, and sore throat relief!",
-      userName: "Sofia Tan",
-      userEmail: "sofia.t@email.com",
-      anonymous: false,
-    },
-    {
-      treatmentName: "Oregano",
-      rating: 4,
-      comment: "Great antibacterial properties for skin infections.",
-      userName: "Anonymous User",
-      userEmail: "",
-      anonymous: true,
-    },
-
-    // Lagundi reviews
-    {
-      treatmentName: "Lagundi",
-      rating: 5,
-      comment: "DOH-approved and very effective for asthma and cough!",
-      userName: "Miguel Torres",
-      userEmail: "miguel.t@email.com",
-      anonymous: false,
-    },
-    {
-      treatmentName: "Lagundi",
-      rating: 5,
-      comment: "My go-to remedy for persistent coughing. Works every time!",
-      userName: "Elena Cruz",
-      userEmail: "elena.c@email.com",
-      anonymous: false,
-    },
-
-    // Bayabas (Guava) reviews
-    {
-      treatmentName: "Bayabas (Guava)",
-      rating: 5,
-      comment:
-        "Excellent for diarrhea and gum infections. Traditional remedy that works!",
-      userName: "Lorna Santiago",
-      userEmail: "lorna.s@email.com",
-      anonymous: false,
-    },
-    {
-      treatmentName: "Bayabas (Guava)",
-      rating: 4,
-      comment: "Good for wound healing and skin problems.",
-      userName: "Anonymous User",
-      userEmail: "",
-      anonymous: true,
-    },
-
-    // Bawang reviews
-    {
-      treatmentName: "Bawang",
-      rating: 5,
-      comment: "Natural way to control blood pressure and cholesterol!",
-      userName: "Ricardo Gomez",
-      userEmail: "ricardo.g@email.com",
-      anonymous: false,
-    },
-    {
-      treatmentName: "Bawang",
-      rating: 4,
-      comment: "Effective antimicrobial properties for minor infections.",
-      userName: "Dr. Maria Santos",
-      userEmail: "maria.santos@clinic.com",
-      anonymous: false,
-    },
-
-    // Ampalaya reviews
-    {
-      treatmentName: "Ampalaya",
-      rating: 4,
-      comment: "Helps manage blood sugar levels naturally.",
-      userName: "Diabetes Patient",
-      userEmail: "",
-      anonymous: true,
-    },
-    {
-      treatmentName: "Ampalaya",
-      rating: 3,
-      comment: "Effective but the taste takes getting used to.",
-      userName: "Anonymous User",
-      userEmail: "",
-      anonymous: true,
-    },
-
-    // Yerba Buena reviews
-    {
-      treatmentName: "Yerba Buena",
-      rating: 5,
-      comment: "Perfect for headaches and body pain relief!",
-      userName: "Carmen Reyes",
-      userEmail: "carmen.r@email.com",
-      anonymous: false,
-    },
-    {
-      treatmentName: "Yerba Buena",
-      rating: 4,
-      comment: "Good digestive aid and pain reliever.",
-      userName: "Anonymous User",
-      userEmail: "",
-      anonymous: true,
-    },
-
-    // Tsaang Gubat reviews
-    {
-      treatmentName: "Tsaang Gubat",
-      rating: 5,
-      comment: "Excellent for stomach problems and as mouthwash!",
-      userName: "Jose Mercado",
-      userEmail: "jose.m@email.com",
-      anonymous: false,
-    },
-    {
-      treatmentName: "Tsaang Gubat",
-      rating: 4,
-      comment: "DOH-approved and reliable for digestive issues.",
-      userName: "Anonymous User",
-      userEmail: "",
-      anonymous: true,
-    },
-
-    // Akapulko reviews
-    {
-      treatmentName: "Akapulko",
-      rating: 5,
-      comment: "Very effective for fungal skin infections!",
-      userName: "Rosa Villanueva",
-      userEmail: "rosa.v@email.com",
-      anonymous: false,
-    },
-    {
-      treatmentName: "Akapulko",
-      rating: 4,
-      comment: "Good natural remedy for ringworm and skin problems.",
-      userName: "Anonymous User",
-      userEmail: "",
-      anonymous: true,
-    },
-
-    // Niyog-Niyogan reviews
-    {
-      treatmentName: "Niyog-Niyogan",
-      rating: 5,
-      comment: "Effective deworming treatment for children when used properly.",
-      userName: "Pediatric Mom",
-      userEmail: "",
-      anonymous: true,
-    },
-    {
-      treatmentName: "Niyog-Niyogan",
-      rating: 4,
-      comment: "Traditional remedy that works but follow dosage carefully.",
-      userName: "Anonymous User",
-      userEmail: "",
-      anonymous: true,
-    },
-
-    // Banaba reviews
-    {
-      treatmentName: "Banaba",
-      rating: 5,
-      comment: "Great for diabetes management and urinary health!",
-      userName: "Diabetes Patient",
-      userEmail: "",
-      anonymous: true,
-    },
-    {
-      treatmentName: "Banaba",
-      rating: 4,
-      comment: "Helps with weight management and blood sugar control.",
-      userName: "Anonymous User",
-      userEmail: "",
-      anonymous: true,
-    },
-
-    // Serpentina reviews
-    {
-      treatmentName: "Serpentina",
-      rating: 4,
-      comment: "Strong herb that needs medical supervision but effective.",
-      userName: "Traditional Healer",
-      userEmail: "",
-      anonymous: true,
-    },
-    {
-      treatmentName: "Serpentina",
-      rating: 5,
-      comment: "Powerful remedy for high blood pressure when used correctly.",
-      userName: "Anonymous User",
-      userEmail: "",
-      anonymous: true,
-    },
-
-    // Papaya Leaves reviews
-    {
-      treatmentName: "Papaya Leaves",
-      rating: 5,
-      comment: "Traditional support for dengue fever recovery.",
-      userName: "Family Caregiver",
-      userEmail: "",
-      anonymous: true,
-    },
-    {
-      treatmentName: "Papaya Leaves",
-      rating: 4,
-      comment: "Good for digestive problems and intestinal worms.",
-      userName: "Anonymous User",
-      userEmail: "",
-      anonymous: true,
-    },
-
-    // Avocado Leaves reviews
-    {
-      treatmentName: "Avocado Leaves",
-      rating: 4,
-      comment: "Effective for kidney stones and urinary problems.",
-      userName: "Kidney Patient",
-      userEmail: "",
-      anonymous: true,
-    },
-    {
-      treatmentName: "Avocado Leaves",
-      rating: 5,
-      comment: "Natural remedy for diarrhea and high blood pressure.",
-      userName: "Anonymous User",
-      userEmail: "",
-      anonymous: true,
-    },
-
-    // Pansit-Pansitan reviews
-    {
-      treatmentName: "Pansit-Pansitan",
-      rating: 5,
-      comment: "Excellent for gout and uric acid reduction!",
-      userName: "Arthritis Patient",
-      userEmail: "",
-      anonymous: true,
-    },
-    {
-      treatmentName: "Pansit-Pansitan",
-      rating: 4,
-      comment: "DOH-approved and effective for inflammation.",
-      userName: "Anonymous User",
-      userEmail: "",
-      anonymous: true,
-    },
-
-    // Tanglad reviews
-    {
-      treatmentName: "Tanglad",
-      rating: 5,
-      comment: "Great for digestion and anxiety relief!",
-      userName: "Anxiety Sufferer",
-      userEmail: "",
-      anonymous: true,
-    },
-    {
-      treatmentName: "Tanglad",
-      rating: 4,
-      comment: "Good for digestive issues and as a calming tea.",
-      userName: "Anonymous User",
-      userEmail: "",
-      anonymous: true,
-    },
-
-    // Kutsay reviews
-    {
-      treatmentName: "Kutsay",
-      rating: 4,
-      comment: "Effective for blood pressure and digestive health.",
-      userName: "Health Conscious",
-      userEmail: "",
-      anonymous: true,
-    },
-    {
-      treatmentName: "Kutsay",
-      rating: 5,
-      comment: "Natural antimicrobial and good for appetite stimulation.",
-      userName: "Anonymous User",
-      userEmail: "",
-      anonymous: true,
-    },
-
-    // Miracle Fruit reviews
-    {
-      treatmentName: "Miracle Fruit",
-      rating: 4,
-      comment: "Helps with sugar cravings for diabetics.",
-      userName: "Diabetes Patient",
-      userEmail: "",
-      anonymous: true,
-    },
-    {
-      treatmentName: "Miracle Fruit",
-      rating: 5,
-      comment: "Natural sweetener alternative that works!",
-      userName: "Anonymous User",
-      userEmail: "",
-      anonymous: true,
-    },
-  ];
 
 async function seedDatabase() {
   console.log(
@@ -1401,9 +1379,7 @@ async function seedDatabase() {
   );
 
   try {
-    const treatmentsRef = db.ref("treatments");
-    const reviewsRef = db.ref("reviews");
-
+    const treatmentsRef = db.ref("treatments2");
     // Load existing treatments to check for duplicates
     const existingTreatmentsSnapshot = await treatmentsRef.once("value");
     const existingTreatments: Record<string, { id: string; data: any }> = {};
@@ -1428,7 +1404,6 @@ async function seedDatabase() {
     console.log("📝 Creating/updating herbal treatments...");
     const treatmentIds: Record<string, string> = {};
     const now = new Date().toISOString();
-    let baseTimestamp = Date.now();
     let createdCount = 0;
     let updatedCount = 0;
 
@@ -1443,10 +1418,8 @@ async function seedDatabase() {
         isUpdate = true;
         console.log(`   ↻ Updating: ${treatment.name} (ID: ${id})`);
       } else {
-        // Generate new ID only if treatment doesn't exist
-        id =
-          (baseTimestamp++).toString() +
-          Math.random().toString(36).substring(2, 11);
+        // Use treatment name in lowercase with spaces replaced by hyphens
+        id = treatment.name.toLowerCase().replace(/ /g, "-");
         console.log(`   ✓ Creating: ${treatment.name} (ID: ${id})`);
       }
 
@@ -1535,126 +1508,9 @@ async function seedDatabase() {
     console.log(`   - Created: ${createdCount}`);
     console.log(`   - Updated: ${updatedCount}\n`);
 
-    // Create reviews
-    console.log("💬 Creating reviews...");
-    let reviewTimestamp = Date.now() + 1000; // Offset from treatment timestamps
-    let createdReviewsCount = 0;
-    let skippedReviewsCount = 0;
-
-    for (const review of sampleReviews) {
-      const treatmentId = treatmentIds[review.treatmentName];
-      if (!treatmentId) {
-        console.log(
-          `   ⚠️  Warning: Treatment "${review.treatmentName}" not found, skipping review`
-        );
-        skippedReviewsCount++;
-        continue;
-      }
-
-      // Generate unique ID with timestamp and random string
-      const id =
-        (reviewTimestamp++).toString() +
-        Math.random().toString(36).substring(2, 11);
-      const reviewData: Review = {
-        ...review,
-        treatmentId,
-        createdAt: now,
-        updatedAt: now,
-      };
-
-      await reviewsRef.child(id).set(reviewData);
-      console.log(
-        `   ✓ Created review for: ${review.treatmentName} (${review.rating} stars)`
-      );
-      createdReviewsCount++;
-    }
-
-    console.log(`\n✅ Review operations completed:`);
-    console.log(`   - Created: ${createdReviewsCount}`);
-    if (skippedReviewsCount > 0) {
-      console.log(`   - Skipped: ${skippedReviewsCount}\n`);
-    } else {
-      console.log();
-    }
-
-    // Recalculate treatment ratings from ALL reviews (existing + new)
-    console.log("⭐ Recalculating treatment ratings from all reviews...");
-
-    // Build a map of treatmentId -> treatmentName for all treatments (existing + new)
-    const treatmentIdToName: Record<string, string> = {};
-
-    // Add treatments from seed data
-    for (const [name, id] of Object.entries(treatmentIds)) {
-      treatmentIdToName[id] = name;
-    }
-
-    // Add existing treatments that weren't in seed data
-    const finalTreatmentsSnapshot = await treatmentsRef.once("value");
-    if (finalTreatmentsSnapshot.exists()) {
-      const allTreatments = finalTreatmentsSnapshot.val();
-      for (const [id, data] of Object.entries(allTreatments)) {
-        const treatmentData = data as any;
-        if (treatmentData.name && !treatmentIdToName[id]) {
-          treatmentIdToName[id] = treatmentData.name;
-        }
-      }
-    }
-
-    // Calculate ratings per treatmentId
-    const reviewsSnapshot = await reviewsRef.once("value");
-    const treatmentRatingsById: Record<string, { sum: number; count: number }> =
-      {};
-
-    if (reviewsSnapshot.exists()) {
-      const allReviews = reviewsSnapshot.val();
-      for (const [reviewId, reviewData] of Object.entries(allReviews)) {
-        const review = reviewData as any;
-        if (review.treatmentId && review.rating) {
-          if (!treatmentRatingsById[review.treatmentId]) {
-            treatmentRatingsById[review.treatmentId] = { sum: 0, count: 0 };
-          }
-          treatmentRatingsById[review.treatmentId].sum += review.rating;
-          treatmentRatingsById[review.treatmentId].count += 1;
-        }
-      }
-    }
-
-    // Update treatment ratings for all treatments that have reviews
-    let updatedRatingsCount = 0;
-    for (const [treatmentId, ratings] of Object.entries(treatmentRatingsById)) {
-      const treatmentName = treatmentIdToName[treatmentId] || treatmentId;
-
-      const averageRating = ratings.count > 0 ? ratings.sum / ratings.count : 0;
-      const roundedRating = Math.round(averageRating * 10) / 10;
-
-      await treatmentsRef.child(treatmentId).update({
-        averageRating: roundedRating,
-        totalReviews: ratings.count,
-        updatedAt: new Date().toISOString(),
-      });
-
-      console.log(
-        `   ✓ Updated ${treatmentName}: ${roundedRating} stars (${ratings.count} reviews)`
-      );
-      updatedRatingsCount++;
-    }
-
-    // Also update treatments with 0 reviews (if they don't have any reviews)
-    for (const treatmentId of Object.keys(treatmentIdToName)) {
-      if (!treatmentRatingsById[treatmentId]) {
-        await treatmentsRef.child(treatmentId).update({
-          averageRating: 0,
-          totalReviews: 0,
-          updatedAt: new Date().toISOString(),
-        });
-      }
-    }
-
     console.log("\n🎉 Database seeding completed successfully!");
     console.log(`\n📊 Summary:`);
     console.log(`   - Treatments processed: ${herbalTreatments.length}`);
-    console.log(`   - Reviews created: ${createdReviewsCount}`);
-    console.log(`   - Treatment ratings updated: ${updatedRatingsCount}`);
   } catch (error) {
     console.error("❌ Error seeding database:", error);
     process.exit(1);

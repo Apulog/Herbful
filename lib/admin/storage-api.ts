@@ -33,9 +33,19 @@ export async function uploadTreatmentImage(
     const downloadURL = await getDownloadURL(imageRef);
 
     return downloadURL;
-  } catch (error) {
+  } catch (error: any) {
     console.error("Error uploading image:", error);
-    throw new Error("Failed to upload image");
+
+    // Handle Firebase Storage permission errors specifically
+    if (error?.code === "storage/unauthorized") {
+      throw new Error(
+        "Insufficient permissions to upload image to Firebase Storage"
+      );
+    }
+
+    throw new Error(
+      "Failed to upload image: " + (error?.message || "Unknown error")
+    );
   }
 }
 
@@ -79,10 +89,24 @@ export async function deleteTreatmentImage(imageUrl: string): Promise<void> {
 
     // Delete the file
     await deleteObject(imageRef);
-  } catch (error) {
+  } catch (error: any) {
     console.error("Error deleting image:", error);
-    // Don't throw an error here as we don't want to interrupt the main operation
+
+    // Don't throw permission errors as they shouldn't break the main operation
     // The image deletion is a secondary operation
+    if (error?.code === "storage/unauthorized") {
+      console.warn(
+        "Insufficient permissions to delete image from Firebase Storage:",
+        imageUrl
+      );
+      return;
+    }
+
+    // For other errors, still don't throw but log them
+    console.warn(
+      "Non-permission error deleting image:",
+      error?.message || "Unknown error"
+    );
   }
 }
 
@@ -94,4 +118,39 @@ export async function deleteTreatmentImage(imageUrl: string): Promise<void> {
  */
 export function getTreatmentImageRef(treatmentId: string, fileName: string) {
   return ref(storage, `${IMAGES_PATH}/${treatmentId}/${fileName}`);
+}
+
+/**
+ * Check if an image URL is accessible
+ * @param imageUrl - The image URL to check
+ * @returns True if accessible, false otherwise
+ */
+export async function isImageAccessible(imageUrl: string): Promise<boolean> {
+  try {
+    // For Firebase Storage URLs, we need to handle them specially
+    if (imageUrl.includes("firebasestorage.googleapis.com")) {
+      // For Firebase Storage, we can't reliably check accessibility due to CORS
+      // Instead, we'll assume it's accessible and let the Image component handle errors
+      // This is a common approach for Firebase Storage URLs in web apps
+      return true;
+    }
+
+    // For non-Firebase URLs, use a simple HEAD request
+    const response = await fetch(imageUrl, { method: "HEAD" });
+    return response.ok;
+  } catch (error) {
+    // Handle CORS errors specifically - if we can't check due to CORS, assume accessible
+    if (error instanceof TypeError && error.message.includes("fetch")) {
+      console.warn(
+        "Cannot check image accessibility due to CORS policy:",
+        imageUrl
+      );
+      // In case of CORS errors, we assume the image might be accessible
+      // The actual image loading will determine if it's really accessible
+      return true;
+    }
+
+    console.warn("Image accessibility check failed for", imageUrl, ":", error);
+    return false;
+  }
 }
