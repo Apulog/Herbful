@@ -90,7 +90,7 @@ const herbalTreatments: Omit<
         authority: "Philippine Department of Health",
         url: "https://pitahc.gov.ph/directory-of-herbs/",
         description: "Approved herbal medicine by PITAHC",
-        verificationDate: "01/01/2023",
+        verificationDate: "2023-01-01",
       },
       {
         authority: "ScienceDirect",
@@ -149,13 +149,19 @@ const herbalTreatments: Omit<
         authority: "Philippine Department of Health",
         url: "https://pitahc.gov.ph/directory-of-herbs/",
         description: "Approved herbal medicine by PITAHC",
-        verificationDate: "01/01/2023",
+        verificationDate: "2023-01-01",
       },
       {
         authority: "ScienceDirect",
         url: "https://www.sciencedirect.com",
         description:
           "Biomass-Based Iron Removal: Adsorption Kinetics, Isotherm and Machine Learning Modelling with Ocimum sanctum And Syzygium cumini",
+        verificationDate: "",
+      },
+      {
+        authority: "ScienceDirect",
+        url: "https://www.sciencedirect.com",
+        description: "Syzygium cumini (Java Plum)",
         verificationDate: "",
       },
     ],
@@ -249,7 +255,7 @@ const herbalTreatments: Omit<
         authority: "Philippine Department of Health",
         url: "https://pitahc.gov.ph/directory-of-herbs/",
         description: "Approved herbal medicine by PITAHC",
-        verificationDate: "01/01/2023",
+        verificationDate: "2023-01-01",
       },
       {
         authority: "ScienceDirect",
@@ -308,7 +314,7 @@ const herbalTreatments: Omit<
         authority: "Philippine Department of Health",
         url: "https://www.stuartxchange.org/Oregano.html",
         description: "Traditional medicinal herb with scientific backing",
-        verificationDate: "01/01/2023",
+        verificationDate: "2023-01-01",
       },
       {
         authority: "ScienceDirect",
@@ -414,7 +420,7 @@ const herbalTreatments: Omit<
         authority: "Philippine Department of Health",
         url: "https://pitahc.gov.ph/directory-of-herbs/",
         description: "Approved herbal medicine by PITAHC",
-        verificationDate: "01/01/2023",
+        verificationDate: "2023-01-01",
       },
       {
         authority: "ScienceDirect",
@@ -522,7 +528,27 @@ const herbalTreatments: Omit<
         authority: "Philippine Department of Health",
         url: "https://pitahc.gov.ph/directory-of-herbs/",
         description: "Approved herbal medicine by PITAHC",
-        verificationDate: "01/01/2023",
+        verificationDate: "2023-01-01",
+      },
+      {
+        authority: "ScienceDirect",
+        url: "https://www.sciencedirect.com",
+        description:
+          "Recommended Medicinal Plants as Source of Natural Products: A Review",
+        verificationDate: "",
+      },
+      {
+        authority: "ScienceDirect",
+        url: "https://www.sciencedirect.com",
+        description: "Guava",
+        verificationDate: "",
+      },
+      {
+        authority: "Google Books",
+        url: "https://books.google.com",
+        description:
+          "The Forests of the Philippines ...: Forest types and products",
+        verificationDate: "",
       },
     ],
     preparation:
@@ -649,6 +675,19 @@ const herbalTreatments: Omit<
           "Bitter leaf (Vernonia amygdalina) and siam weed (Chromolaena odorata) aqueous extracts alleviate testicular damage induced by Plasmodium berghei in male mice via modulation of oxidative stress pathways",
         verificationDate: "",
       },
+      {
+        authority: "ScienceDirect",
+        url: "https://www.sciencedirect.com",
+        description:
+          "Bitter leaf (Vernonia amygdalina) and siam weed (Chromolaena odorata) aqueous extracts alleviate testicular damage induced by Plasmodium berghei in male mice via modulation of oxidative stress pathways",
+        verificationDate: "",
+      },
+      {
+        authority: "ScienceDirect",
+        url: "https://www.sciencedirect.com/science/article/pii/S2468227625002339",
+        description: "Research article on Chromolaena odorata",
+        verificationDate: "",
+      },
     ],
     preparation:
       "Boil fresh stem or roots thoroughly to remove toxins, Pound leaves or stem for poultice",
@@ -725,7 +764,21 @@ const herbalTreatments: Omit<
         authority: "Philippine Department of Health",
         url: "https://pitahc.gov.ph/directory-of-herbs/",
         description: "Approved herbal medicine by PITAHC",
-        verificationDate: "01/01/2023",
+        verificationDate: "2023-01-01",
+      },
+      {
+        authority: "ScienceDirect",
+        url: "https://www.sciencedirect.com",
+        description:
+          "Micellar electrokinetic chromatography of the constituents in Philippine lagundi (Vitex negundo) herbal products",
+        verificationDate: "",
+      },
+      {
+        authority: "ScienceDirect",
+        url: "https://www.sciencedirect.com",
+        description:
+          "Towards the establishment of 'lagundi' (Vitex trifolia s.l.) reference germplasm from the Philippines: An agro-morphological and phytochemical evaluation of native genotypes",
+        verificationDate: "",
       },
     ],
     preparation: "Boil 5 leaves in 2 cups of water for 10-15 minutes",
@@ -802,7 +855,27 @@ const herbalTreatments: Omit<
         authority: "StuartXchange",
         url: "https://www.stuartxchange.org/Kuchai.html",
         description: "Traditional medicinal herb documentation",
-        verificationDate: "01/01/2023",
+        verificationDate: "2023-01-01",
+      },
+      {
+        authority: "ScienceDirect",
+        url: "https://www.sciencedirect.com",
+        description:
+          "Multi-omics analysis reveals the transcription factor AtuMYB306 improves drought tolerance by regulating flavonoid metabolism in Chinese chive (Allium tuberosum Rottler)",
+        verificationDate: "",
+      },
+      {
+        authority: "ScienceDirect",
+        url: "https://www.sciencedirect.com",
+        description:
+          "Identification and characterization of Pantoea eucalypti as the causative agent of soft rot disease in Chinese chive (Allium tuberosum Rottler ex Sprengle) in China☆",
+        verificationDate: "",
+      },
+      {
+        authority: "Google Books",
+        url: "https://books.google.com",
+        description: "Handy Pocket Guide to Asian Vegetables",
+        verificationDate: "",
       },
     ],
     preparation:
@@ -898,6 +971,13 @@ const herbalTreatments: Omit<
         url: "https://www.sciencedirect.com",
         description:
           "Phytochemical profiling of Ananas comosus fruit via UPLC-MS and its anti-inflammatory and anti-arthritic activities: In Silico, In Vitro and In Vivo Approach",
+        verificationDate: "",
+      },
+      {
+        authority: "ScienceDirect",
+        url: "https://www.sciencedirect.com",
+        description:
+          "Efficient adsorption of nitroaromatic compounds from reusable hierarchical porous biochar emanates from the Ananas comosus crown and Citrus limetta fibers",
         verificationDate: "",
       },
     ],
@@ -1116,7 +1196,21 @@ const herbalTreatments: Omit<
         authority: "Philippine Department of Health",
         url: "https://pitahc.gov.ph/directory-of-herbs/",
         description: "Approved herbal medicine by DOH",
-        verificationDate: "01/01/2023",
+        verificationDate: "2023-01-01",
+      },
+      {
+        authority: "ScienceDirect",
+        url: "https://www.sciencedirect.com",
+        description:
+          "Recommended Medicinal Plants as Source of Natural Products: A Review",
+        verificationDate: "",
+      },
+      {
+        authority: "ScienceDirect",
+        url: "https://www.sciencedirect.com",
+        description:
+          "Antibacterial activities of ethanol extracts of Philippine medicinal plants against multidrug-resistant bacteria",
+        verificationDate: "",
       },
     ],
     preparation: "Boil 1 cup of dried leaves in 2 cups of water for 10 minutes",
@@ -1144,7 +1238,7 @@ const herbalTreatments: Omit<
         authority: "Philippine Department of Health",
         url: "https://pitahc.gov.ph/directory-of-herbs/",
         description: "Approved herbal medicine by DOH",
-        verificationDate: "01/01/2023",
+        verificationDate: "2023-01-01",
       },
     ],
     preparation: "Crush fresh leaves into paste, Apply as lotion/ointment",
@@ -1177,7 +1271,20 @@ const herbalTreatments: Omit<
         authority: "Philippine Department of Health",
         url: "https://pitahc.gov.ph/directory-of-herbs/",
         description: "Approved herbal medicine by DOH",
-        verificationDate: "01/01/2023",
+        verificationDate: "2023-01-01",
+      },
+      {
+        authority: "ScienceDirect",
+        url: "https://www.sciencedirect.com",
+        description: "A new antimutagen from Mentha cordifolia Opiz.",
+        verificationDate: "",
+      },
+      {
+        authority: "ScienceDirect",
+        url: "https://www.sciencedirect.com",
+        description:
+          "The use of medicinal plants by Paraguayan migrants in the Atlantic Forest of Misiones, Argentina, is based on Guaraní tradition, colonial and current plant knowledge",
+        verificationDate: "",
       },
     ],
     preparation:
@@ -1208,7 +1315,28 @@ const herbalTreatments: Omit<
         authority: "Philippine Department of Health",
         url: "https://pitahc.gov.ph/directory-of-herbs/",
         description: "Approved herbal medicine by DOH",
-        verificationDate: "01/01/2023",
+        verificationDate: "2023-01-01",
+      },
+      {
+        authority: "ScienceDirect",
+        url: "https://www.sciencedirect.com",
+        description:
+          "Recent Study of Turmeric in Combination with Garlic as Antidiabetic Agent",
+        verificationDate: "",
+      },
+      {
+        authority: "ScienceDirect",
+        url: "https://www.sciencedirect.com",
+        description:
+          "Recommended Medicinal Plants as Source of Natural Products: A Review",
+        verificationDate: "",
+      },
+      {
+        authority: "Google Books",
+        url: "https://books.google.com",
+        description:
+          "Phytochemistry and Pharmacology of Garlic (Allium Sativum L.) Clove",
+        verificationDate: "",
       },
     ],
     preparation: "Consume raw, cooked, or in oil/extract form",
@@ -1238,7 +1366,21 @@ const herbalTreatments: Omit<
         authority: "Philippine Department of Health",
         url: "https://pitahc.gov.ph/directory-of-herbs/",
         description: "Approved herbal medicine by DOH",
-        verificationDate: "01/01/2023",
+        verificationDate: "2023-01-01",
+      },
+      {
+        authority: "ScienceDirect",
+        url: "https://www.sciencedirect.com",
+        description:
+          "Lead Levels in Fresh Medicinal Herbs and Commercial Tea Products from Manila, Philippines",
+        verificationDate: "",
+      },
+      {
+        authority: "ScienceDirect",
+        url: "https://www.sciencedirect.com",
+        description:
+          "Perspective on herbal medicine in the Philippines, economic demands, quality control, and regulation",
+        verificationDate: "",
       },
     ],
     preparation: "Eat seeds or prepare leaf/root decoctions",
@@ -1268,7 +1410,48 @@ const herbalTreatments: Omit<
         authority: "Philippine Department of Health",
         url: "https://pitahc.gov.ph/directory-of-herbs/",
         description: "Approved herbal medicine by DOH",
-        verificationDate: "01/01/2023",
+        verificationDate: "2023-01-01",
+      },
+      {
+        authority: "ScienceDirect",
+        url: "https://www.sciencedirect.com",
+        description:
+          "Antidiabetic effects of Momordica charantia (bitter melon) and its medicinal potency",
+        verificationDate: "",
+      },
+      {
+        authority: "PubMed",
+        url: "https://pubmed.ncbi.nlm.nih.gov/",
+        description:
+          "Bitter melon (Momordica charantia): a review of efficacy and safety",
+        verificationDate: "",
+      },
+      {
+        authority: "PubMed",
+        url: "https://pubmed.ncbi.nlm.nih.gov/",
+        description:
+          "The safety and efficacy of Momordica charantia L. in animal models of type 2 diabetes mellitus: A systematic review and meta-analysis",
+        verificationDate: "",
+      },
+      {
+        authority: "ScienceDirect",
+        url: "https://www.sciencedirect.com",
+        description:
+          "Momordica charantia (bitter melon): Potent antiviral efficacy and significant benefits against herpes virus",
+        verificationDate: "",
+      },
+      {
+        authority: "ScienceDirect",
+        url: "https://www.sciencedirect.com",
+        description:
+          "Multidimensional Uses of Bitter Melon (Momordica charantia L.) Considering the Important Functions of its Chemical Components",
+        verificationDate: "",
+      },
+      {
+        authority: "Google Books",
+        url: "https://books.google.com",
+        description: "The Bitter Gourd Genome",
+        verificationDate: "",
       },
     ],
     preparation: "Eat cooked leaves or fruits, Prepare as juice or tea",

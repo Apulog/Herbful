@@ -123,17 +123,17 @@ export async function getTreatments(params: {
 
     // Apply search filter
     if (params.search) {
-      const searchLower = params.search.toLowerCase();
+      const searchLower = (params.search || "").toLowerCase();
       treatments = treatments.filter(
         (treatment) =>
-          treatment.name.toLowerCase().includes(searchLower) ||
+          (treatment.name || "").toLowerCase().includes(searchLower) ||
           (treatment.benefits &&
             treatment.benefits.some((benefit) =>
-              benefit.toLowerCase().includes(searchLower)
+              (benefit || "").toLowerCase().includes(searchLower)
             )) ||
           (treatment.symptoms &&
             treatment.symptoms.some((symptom) =>
-              symptom.toLowerCase().includes(searchLower)
+              (symptom || "").toLowerCase().includes(searchLower)
             ))
       );
     }
@@ -146,29 +146,38 @@ export async function getTreatments(params: {
 
         switch (params.sortBy) {
           case "name":
-            aValue = a.name.toLowerCase();
-            bValue = b.name.toLowerCase();
+            aValue = (a.name || "").toLowerCase();
+            bValue = (b.name || "").toLowerCase();
             break;
           case "createdAt":
-            aValue = new Date(a.createdAt).getTime();
-            bValue = new Date(b.createdAt).getTime();
+            // More robust date parsing that handles various formats
+            const aDate = a.createdAt ? new Date(a.createdAt) : new Date(0);
+            const bDate = b.createdAt ? new Date(b.createdAt) : new Date(0);
+            aValue = isNaN(aDate.getTime()) ? 0 : aDate.getTime();
+            bValue = isNaN(bDate.getTime()) ? 0 : bDate.getTime();
             break;
           case "averageRating":
-            aValue = a.averageRating;
-            bValue = b.averageRating;
+            aValue = a.averageRating || 0;
+            bValue = b.averageRating || 0;
             break;
           case "totalReviews":
-            aValue = a.totalReviews;
-            bValue = b.totalReviews;
+            aValue = a.totalReviews || 0;
+            bValue = b.totalReviews || 0;
             break;
           case "sourceType":
-            aValue = a.sourceType;
-            bValue = b.sourceType;
+            aValue = (a.sourceType || "").toLowerCase();
+            bValue = (b.sourceType || "").toLowerCase();
             break;
           default:
-            // Default to createdAt sorting
-            aValue = new Date(a.createdAt).getTime();
-            bValue = new Date(b.createdAt).getTime();
+            // Default to createdAt sorting with robust date parsing
+            const aDefaultDate = a.createdAt
+              ? new Date(a.createdAt)
+              : new Date(0);
+            const bDefaultDate = b.createdAt
+              ? new Date(b.createdAt)
+              : new Date(0);
+            aValue = isNaN(aDefaultDate.getTime()) ? 0 : aDefaultDate.getTime();
+            bValue = isNaN(bDefaultDate.getTime()) ? 0 : bDefaultDate.getTime();
         }
 
         if (aValue < bValue) return params.sortOrder === "desc" ? 1 : -1;
@@ -176,11 +185,14 @@ export async function getTreatments(params: {
         return 0;
       });
     } else {
-      // Default sorting by createdAt (newest first)
-      treatments.sort(
-        (a, b) =>
-          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-      );
+      // Default sorting by createdAt (newest first) with robust date parsing
+      treatments.sort((a, b) => {
+        const aDate = a.createdAt ? new Date(a.createdAt) : new Date(0);
+        const bDate = b.createdAt ? new Date(b.createdAt) : new Date(0);
+        const aTime = isNaN(aDate.getTime()) ? 0 : aDate.getTime();
+        const bTime = isNaN(bDate.getTime()) ? 0 : bDate.getTime();
+        return bTime - aTime;
+      });
     }
 
     // Get total count after filtering

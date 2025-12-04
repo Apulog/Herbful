@@ -382,11 +382,9 @@ export function TreatmentForm({
                 ] = `Description is required for source ${index + 1}`;
               }
 
-              if (!source.verificationDate) {
-                newErrors[
-                  `source-${index}-date`
-                ] = `Verification date is required for source ${index + 1}`;
-              }
+              // Verification date is now optional, so we don't validate it
+              // Also remove any existing date errors for this source
+              delete newErrors[`source-${index}-date`];
             });
           }
         } else {
@@ -540,6 +538,8 @@ export function TreatmentForm({
         symptoms: formData.symptoms.filter((s) => s.trim()),
         // Remove sources if sourceType is Local Remedy
         sources: formData.sourceType === "Local Remedy" ? [] : formData.sources,
+        // Ensure sourceType is preserved correctly
+        sourceType: formData.sourceType,
       };
 
       if (isEdit && initialData?.id) {
@@ -935,6 +935,16 @@ export function TreatmentForm({
                         // Clear sources when switching to Local Remedy
                         sources: value === "Local Remedy" ? [] : prev.sources,
                       }));
+                      // Clear any existing source errors
+                      setErrors((prevErrors) => {
+                        const newErrors = { ...prevErrors };
+                        Object.keys(newErrors).forEach((key) => {
+                          if (key.startsWith("source-")) {
+                            delete newErrors[key];
+                          }
+                        });
+                        return newErrors;
+                      });
                       validateField("sources", value);
                     }}
                   >
@@ -1136,7 +1146,7 @@ export function TreatmentForm({
 
                     <div className="space-y-2">
                       <Label htmlFor={`verificationDate-${index}`}>
-                        Verification Date *
+                        Verification Date (optional)
                       </Label>
                       <Input
                         id={`verificationDate-${index}`}
